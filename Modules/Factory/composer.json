@@ -1,0 +1,25 @@
+{
+    "name": "nwidart/factory",
+    "description": "",
+    "authors": [
+        {
+            "name": "Ye Hongyu",
+            "email": "yehongyu1234@126.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Factory\\Providers\\FactoryServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Factory\\": ""
+        }
+    }
+}

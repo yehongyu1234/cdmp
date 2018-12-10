@@ -1,0 +1,16 @@
+{
+    "name": "Factory",
+    "alias": "factory",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Factory\\Providers\\FactoryServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
