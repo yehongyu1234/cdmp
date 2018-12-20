@@ -18,7 +18,9 @@
                 <div class="panel-body">
                     <div class="col-md-12">
                         <h3>项目分布</h3>
-                    <div class="col-md-8" style="height: 500px" id="map-container"></div>
+                    <div class="col-md-8" style="height: 500px" id="map-container">
+                        <?php echo "test"?>
+                    </div>
                     <div class="col-md-4">项目清单</div>
                     </div>
                     <div class="col-md-12">项目监控显示
