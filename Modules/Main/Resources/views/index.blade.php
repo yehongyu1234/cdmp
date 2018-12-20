@@ -51,7 +51,7 @@
     var ne = bounds.getNorthEast();
     var lngSpan = Math.abs(sw.lng - ne.lng);
     var latSpan = Math.abs(ne.lat - sw.lat);
-    for (var i = 0; i <10i ++) {
+    for (var i = 0; i <10;i++) {
         var point = new BMap.Point(sw.lng + lngSpan * (Math.random() * 0.7), ne.lat - latSpan * (Math.random() * 0.7));
         var label = new BMap.Label("项目"+i,{offset:new BMap.Size(20,-10)});
         addMarker(point,label);
