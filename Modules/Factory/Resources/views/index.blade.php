@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
-                        
+
                         <table class="display" id="table" style="width:100%">
                             <thead>
                             <tr>

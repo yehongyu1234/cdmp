@@ -114,7 +114,6 @@
                             return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>' +
                                 '<button id="deleteOne" class="btn btn-sm btn-danger" data-id=\'+data+\'>删除</button>';
                         }}
-
                 ],
                 "columnDefs" :
                     [{
@@ -184,7 +183,6 @@
                 });
                 window.location.reload();
             });
-
             /**
              * 多选选中和取消选中,同时选中第一个单元格单选框,并联动全选单选框
              */

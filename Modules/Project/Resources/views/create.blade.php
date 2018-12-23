@@ -50,8 +50,11 @@
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">结构体系</label>
                                 <div class="col-sm-9">
-                                    <label><input type="checkbox" name="structure_type" value="框架结构">框架结构</label>
-                                    <label><input type="checkbox" name="structure_type" value="剪力墙结构">剪力墙结构</label>
+                                    <select name="structure_type" class="form-control">
+                                        <option value="">请选择</option>
+                                            <option value="框架结构">框架结构</option>
+                                            <option value="剪力墙结构">剪力墙结构</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
