@@ -15,44 +15,7 @@
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
-                        <form class="form-horizontal" action="${pageContext.request.contextPath}/equipment/list.do" method="post">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">部门名称：</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="deptname" name="deptname" style="width: 250px">
-                                </div>
-                                <label class="col-sm-2 control-label">部门状态：</label>
-                                <div class="col-sm-3">
-                                    <select class="form-control" style="width: 250px" id="state" name="state">
-                                        <option value="">请选择...</option>
-                                        <option value="1">有 效</option>
-                                        <option value="2">无 效</option>
-                                    </select>
-                                </div>
-                                <!--
-                            <div class="col-sm-2">
-                               <button type="button" class="btn btn-primary" style="float: right;" onclick="javascript:window.location.href=''">添 加</button>
-                             </div>
-                             -->
-                            </div>
-                            <div class="form-group">
-
-                                <label class="col-sm-2 control-label">创建开始时间：</label>
-                                <div class="col-sm-3">
-                                    <input type="text" class="form-control" id="startTime" name="startTime" style="width: 250px" onclick="laydate()">
-                                </div>
-                                <label class="col-sm-2 control-label">创建结束时间：</label>
-                                <div class="col-sm-3">
-                                    <!-- <input type="text" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"> 年月日时分秒-->
-                                    <input type="text" class="form-control" id="endTime" name="endTime" style="width: 250px" onclick="laydate()">
-                                </div>
-                                <div class="col-sm-2">
-                                    <button  type="button" class="btn btn-success search" style="float: right;" >查 询</button>
-                                </div>
-                            </div>
-
-
-                        </form>
+                        
                         <table class="display" id="table" style="width:100%">
                             <thead>
                             <tr>
