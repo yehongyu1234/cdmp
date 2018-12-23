@@ -75,7 +75,6 @@
     player.on('pause', function(){
         console.log('pause');
     });
-
 </script>
 
 @stop
