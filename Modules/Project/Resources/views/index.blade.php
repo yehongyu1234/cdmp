@@ -97,11 +97,7 @@
                     { data: 'project_id', name: 'project_id' },
                     {
                         'data': 'name',
-                        'name': 'name',
-                        'render':function(id){
-                            return '<a href="project/'+id+'/show">'+id+'</a>';
-                        }
-
+                        'name': 'name'
                     },
                     { data: 'body', name: 'body' },
                     { data: 'statue', name: 'statue' },
