@@ -89,14 +89,19 @@
                         "sDefaultContent" : "",
                         "sWidth" : "2%"
                     },
-                    { data: 'id', name: 'id' },
+                    { data: 'id', name: 'id' ,
+                        'render':function(id){
+                            return '<a href="project/'+id+'/show">'+id+'</a>';
+                        }
+                    },
                     { data: 'project_id', name: 'project_id' },
                     {
                         'data': 'name',
                         'name': 'name',
-                        'render':function(name){
-                            return '<a href="project/'+name+'/show">'+name+'</a>';
+                        'render':function(id){
+                            return '<a href="project/'+id+'/show">'+id+'</a>';
                         }
+
                     },
                     { data: 'body', name: 'body' },
                     { data: 'statue', name: 'statue' },
@@ -112,7 +117,7 @@
                         "sWidth" : "10%",
                         "render":function(data, type, full, meta){
                             return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>' +
-                                '<button id="deleteOne" class="btn btn-sm btn-danger" data-id=\'+data+\'>删除</button>';
+                                '<button id="deleteOne" class="btn btn-sm btn-danger" data-id='+data+'>删除</button>';
                         }}
                 ],
                 "columnDefs" :
@@ -163,6 +168,7 @@
              */
             $(document).delegate('#deleteOne','click',function() {
                 var id=$(this).data("id");
+                //console.log(id);
                 $("#delSubmit").val(id);
                 $("#deleteOneModal").modal('show');
             });
