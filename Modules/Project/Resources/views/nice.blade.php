@@ -1,7 +1,7 @@
 @extends('project::layouts.master')
 @section('content')
     <div class="col-xs-12 col-sm-6 col-md-8">
-<img src="http://pic9.nipic.com/20100915/3320946_082429132223_2.jpg" width="auto">
+<img src="http://61.132.72.194:9272/storage/f5dIGcQwygzmMknojDaitCTHNxGsir8ZS4moc6Tl.jpeg" width="auto">
     </div>
 <p>
 <div class="row">
@@ -48,16 +48,19 @@
     <br>
     <label>项目总监：</label>{{$field->structure_type}}
 </div>
-    <div>
-        <h2>项目信息</h2>
-        <hr width="100%" color="#bbe6ff">
-        <a href="#">安全检查项</a>
-        <br>
-        <a href="#">质量检查项</a>
-        <br>
-        <a href="#">项目通讯录</a><br>
-        <a href="#">查看详情</a><br>
-    </div>
+<div>
+    <h2>项目信息</h2>
+    <hr width="100%" color="#bbe6ff">
+    <a href="#">安全检查项</a>
+    <br>
+    <a href="#">质量检查项</a>
+    <br>
+    <a href="#">项目通讯录</a><br>
+    <a href="#">查看详情</a><br>
 </div>
-    <div><img href=""></div>
+    <hr width="100%" color="#bbe6ff">
+    <span class="copyright-text"><span>©2018&nbsp;中民筑友&nbsp;</span><br>
+    <img src="http://61.132.72.194:9272/storage/zaa5RzziNWX4m7HQarNrDrW1so4lhWCuUbphu182.png" width="120px">
+    </span>
+</div>
 @stop
