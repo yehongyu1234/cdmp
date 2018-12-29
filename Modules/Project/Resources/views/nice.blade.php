@@ -1,7 +1,7 @@
 @extends('project::layouts.master')
 @section('content')
     <div class="col-xs-12 col-sm-6 col-md-8">
-<img src="http://61.132.72.194:9272/storage/f5dIGcQwygzmMknojDaitCTHNxGsir8ZS4moc6Tl.jpeg" width="auto">
+<img src="http://61.132.72.194:9272/storage/f5dIGcQwygzmMknojDaitCTHNxGsir8ZS4moc6Tl.jpeg" width="100%">
     </div>
 <p>
 <div class="row">
