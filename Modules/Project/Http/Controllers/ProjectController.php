@@ -24,6 +24,7 @@ class ProjectController extends Controller
     public function index()
     {
         $field=Project::paginate(15);
+
         return view('project::index',compact('field'));
     }
     #获取ajax列表
@@ -120,8 +121,9 @@ class ProjectController extends Controller
     {
 
         $field=Project::find($project_id);
-        //dd($projectid);
-        return view('project::view',compact('field'));
+        $taskfield=Task::where('projectid',$project_id)->get();
+        //dd($taskfield);
+        return view('project::view',compact('field','taskfield'));
     }
 
     /**

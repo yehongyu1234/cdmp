@@ -111,8 +111,14 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>test</td>
-                                <td>test</td>
+                                @foreach($taskfield as $tf)
+                                <td>{{$tf->id}}</td>
+                                <td>{{$tf->taskname}}</td>
+                                <td>{{$tf->body}}</td>
+                                <td>{{$tf->personid}}</td>
+                                <td>{{$tf->pro_complatetime}}</td>
+                                <td>已完成</td>
+                                @endforeach
                             </tr>
                             </tbody>
                         </table>
