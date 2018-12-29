@@ -87,7 +87,7 @@
 
                         <div class="col-md-4">图片（项目二维码）
                             <br>
-                            {!! QrCode::size(400)->generate(Request::url()); !!}
+                            {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.$field->id.'/nice'); !!}
                         </div>
                     </div>
                 </div>
