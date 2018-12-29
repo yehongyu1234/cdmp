@@ -7,12 +7,12 @@
 <div class="row">
 <div class="col-xs-12 col-sm-6 col-md-8">
     <h2>项目简介</h2>
-    <hr width="100%" color="#bbe6ff">
+    <hr width="100%" color="#bbe6ff" size="1px">
     {{$field->body}}
 </div>
 <div class="col-md-12">
     <h2>工程概况</h2>
-    <hr width="100%" color="#bbe6ff">
+    <hr width="100%" color="#bbe6ff" size="1px">
     <label>项目名称：</label>{{$field->name}}
     <br>
     <label>建设地点：</label>{{$field->location}}
@@ -31,7 +31,7 @@
 </div>
 <div>
     <h2>项目监护</h2>
-    <hr width="100%" color="#bbe6ff">
+    <hr width="100%" color="#bbe6ff" size="1px">
     <label>项目经理：</label>{{$field->name}}
     <br>
     <label>生产经理：</label>{{$field->location}}
@@ -50,7 +50,7 @@
 </div>
 <div>
     <h2>项目信息</h2>
-    <hr width="100%" color="#bbe6ff">
+    <hr width="100%" color="#bbe6ff" size="1px">
     <a href="#">安全检查项</a>
     <br>
     <a href="#">质量检查项</a>
@@ -58,7 +58,7 @@
     <a href="#">项目通讯录</a><br>
     <a href="#">查看详情</a><br>
 </div>
-    <hr width="100%" color="#bbe6ff">
+    <hr width="100%" color="#bbe6ff" size="1px">
     <span class="copyright-text"><span>©2018&nbsp;中民筑友&nbsp;</span><br>
     <img src="http://61.132.72.194:9272/storage/zaa5RzziNWX4m7HQarNrDrW1so4lhWCuUbphu182.png" width="120px">
     </span>

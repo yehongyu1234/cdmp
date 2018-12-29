@@ -33,8 +33,11 @@ class CreateProjectsTable extends Migration
             $table->string('hetong_statue')->default('')->comment('//合同签订状态');
             $table->string('location')->default('')->comment('//位置');
             $table->string('designer')->default('')->comment('//设计师');
-            $table->text('statue');
+            $table->text('statue')->default('0')->comment('//状态');
             $table->string('area')->default('')->comment('//面积');
+            $table->string('structure_type')->default('')->comment('//结构形式');
+            $table->string('com_person_id')->default('')->comment('//建设方负责人ID');
+            $table->string('pds')->default('');
             $table->timestamps();
         });
     }

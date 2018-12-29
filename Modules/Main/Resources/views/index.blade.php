@@ -29,8 +29,8 @@
                     </div>
                     <div class="col-md-12">项目监控显示
                         <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
-                            <source src="rtmp://rtmp.open.ys7.com/openlive/f01018a141094b7fa138b9d0b856507b" type="" />
-                            <source src="http://hls.open.ys7.com/openlive/f01018a141094b7fa138b9d0b856507b.m3u8" type="application/x-mpegURL" />
+                            <source src="rtmp://rtmp.open.ys7.com/openlive/5686a37ba9444d86bbe23cb0ed149b16.hd" type="" />
+                            <source src="http://hls.open.ys7.com/openlive/5686a37ba9444d86bbe23cb0ed149b16.hd.m3u8" type="application/x-mpegURL" />
                         </video>
                     </div>
                     <div class="col-md-12">项目任务</div>
