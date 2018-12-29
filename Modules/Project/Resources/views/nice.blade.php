@@ -1,6 +1,8 @@
 @extends('project::layouts.master')
 @section('content')
+    <div class="col-xs-12 col-sm-6 col-md-8">
 <img src="http://pic9.nipic.com/20100915/3320946_082429132223_2.jpg" width="500px">
+    </div>
 <p>
 <div class="row">
 <div class="col-xs-12 col-sm-6 col-md-8">
