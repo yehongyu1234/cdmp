@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2685b101-c1d9-4c87-9745-27cf525fd60b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Modules/Main/Resources/views/index.blade.php" afterPath="$PROJECT_DIR$/Modules/Main/Resources/views/index.blade.php" />
-      <change beforePath="$PROJECT_DIR$/Modules/Project/Database/Migrations/2018_10_09_123839_create_projects_table.php" afterPath="$PROJECT_DIR$/Modules/Project/Database/Migrations/2018_10_09_123839_create_projects_table.php" />
-      <change beforePath="$PROJECT_DIR$/Modules/Project/Resources/views/nice.blade.php" afterPath="$PROJECT_DIR$/Modules/Project/Resources/views/nice.blade.php" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -232,7 +229,7 @@
       <workItem from="1545308778244" duration="3397000" />
       <workItem from="1545565651909" duration="2633000" />
       <workItem from="1546007920858" duration="3617000" />
-      <workItem from="1546081371690" duration="11023000" />
+      <workItem from="1546081371690" duration="11049000" />
     </task>
     <task id="LOCAL-00001" summary="update project">
       <created>1546008688745</created>
@@ -304,11 +301,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546090382259</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="视频更新">
+      <created>1546096140700</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1546096140700</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20670000" />
+    <option name="totallyTimeSpent" value="20696000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -351,7 +355,8 @@
     <MESSAGE value="project nice update2" />
     <MESSAGE value="project nice update 3" />
     <MESSAGE value="nice update" />
-    <option name="LAST_COMMIT_MESSAGE" value="nice update" />
+    <MESSAGE value="视频更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="视频更新" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
