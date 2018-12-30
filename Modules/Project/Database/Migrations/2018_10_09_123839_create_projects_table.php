@@ -36,6 +36,10 @@ class CreateProjectsTable extends Migration
             $table->text('statue')->default('0')->comment('//状态');
             $table->string('area')->default('')->comment('//面积');
             $table->string('structure_type')->default('')->comment('//结构形式');
+            $table->string('construction_id')->default('')->comment('//建设单位ID');
+            $table->string('design_id')->default('')->comment('//设计单位ID');
+            $table->string('create_com_id')->default('')->comment('//施工单位ID');
+            $table->string('supervision_id')->default('')->comment('//监理单位ID');
             $table->string('com_person_id')->default('')->comment('//建设方负责人ID');
             $table->string('pds')->default('');
             $table->timestamps();

@@ -113,15 +113,17 @@
                                 </div>
                             </div>
                             </div>
-                            <div class="col-md-3">项目地点
+                        <div class="col-md-6">
+                            <div class="col-sm-12">项目地点
                                 <div  style="height: 500px" id="map-container"></div>
                             </div>
-                            <div class="col-md-3">
-                                <label class="col-sm-3 control-label">上传文件</label>
-                                <div class="col-md-9"> <input type="file" name="files" class="form-control"></div>
-                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="file">选择文件</label>
+                            <input id="file" type="file" class="form-control" name="source" required>
+                        </div>
                         <div class="form-group col-md-12">
-                            <div class="col-sm-12 col-sm-offset-5">
+                            <div class="col-sm-12 col-sm-offset-11">
                                 <button class="btn btn-primary">提交</button>
                                 <button type="reset" class="btn btn-white">重置</button>
                             </div>
@@ -133,28 +135,28 @@
     </div>
 
 </div>
+
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
 <script type="text/javascript">
     var map = new BMap.Map('map-container');
     var point = new BMap.Point(118.78,32.06);
     map.centerAndZoom(point, 12);
-    map.enableScrollWheelZoom(true);
+    // 添加带有定位的导航控件
+    var navigationControl = new BMap.NavigationControl({
+        // 靠左上角位置
+        anchor: BMAP_ANCHOR_TOP_LEFT,
+        // LARGE类型
+        type: BMAP_NAVIGATION_CONTROL_LARGE,
+        // 启用显示定位
+        enableGeolocation: true
+    });
+    map.addControl(navigationControl);
+
+    //map.enableScrollWheelZoom(true);
     // 编写自定义函数,创建标注
-    function addMarker(point){
-        var marker = new BMap.Marker(point);
-        map.addOverlay(marker);
-        marker.setLabel(label);
-    }
-    // 随机向地图添加25个标注
-    var bounds = map.getBounds();
-    var sw = bounds.getSouthWest();
-    var ne = bounds.getNorthEast();
-    var lngSpan = Math.abs(sw.lng - ne.lng);
-    var latSpan = Math.abs(ne.lat - sw.lat);
-    for (var i = 0; i < 25; i ++) {
-        var point = new BMap.Point(sw.lng + lngSpan * (Math.random() * 0.7), ne.lat - latSpan * (Math.random() * 0.7));
-        var label = new BMap.Label("项目"+i,{offset:new BMap.Size(20,-10)});
-        addMarker(point,label);
-    }
+    var marker = new BMap.Marker(point);
+    map.addOverlay(marker);
+    marker.enableDragging();
+
 </script>
 @stop

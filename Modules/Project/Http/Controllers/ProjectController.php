@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 use Modules\Project\Entities\Project;
 use Modules\Design\Entities\Work;
 use Modules\Design\Entities\Task;
@@ -102,7 +103,19 @@ class ProjectController extends Controller
         $project->pro_drawings= $request->get('pro_drawings');
         $project->harder= $request->get('harder');
         $project->type= $request->get('type');
-
+        //上传文件
+        $fileCharater=$request->file('source');
+        if ($fileCharater->isValid()) { //括号里面的是必须加的哦
+            //如果括号里面的不加上的话，下面的方法也无法调用的
+            //获取文件的扩展名
+            $ext = $fileCharater->getClientOriginalExtension();
+            //获取文件的绝对路径
+            $path = $fileCharater->getRealPath();
+            //定义文件名
+            $filename = date('Y-m-d-h-i-s').'.'.$ext;
+            //存储文件。disk里面的public。总的来说，就是调用disk模块里的public配置
+            Storage::disk('public/projects')->put($filename, file_get_contents($path));
+        }
         //$project->pro_work_time=$hour;
         $project->pro_creator = $request->user()->name;
         $project->user_id = $request->user()->id;

@@ -70,6 +70,10 @@ class ComposerStaticInite65417834eff2604cf674c41ea0d5ca8
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'k' => 
+        array (
+            'kartik\\plugins\\fileinput\\' => 25,
+        ),
         'Y' => 
         array (
             'Yajra\\DataTables\\' => 17,
@@ -198,6 +202,10 @@ class ComposerStaticInite65417834eff2604cf674c41ea0d5ca8
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        'kartik\\plugins\\fileinput\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/bootstrap-fileinput',
         ),
         'Yajra\\DataTables\\' => 
         array (
@@ -3041,15 +3049,17 @@ class ComposerStaticInite65417834eff2604cf674c41ea0d5ca8
         'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
-        'Modules\\Blog\\Database\\Seeders\\BlogDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Blog/Database/Seeders/BlogDatabaseSeeder.php',
-        'Modules\\Blog\\Entities\\Post' => __DIR__ . '/../..' . '/Modules/Blog/Entities/Post.php',
-        'Modules\\Blog\\Http\\Controllers\\BlogController' => __DIR__ . '/../..' . '/Modules/Blog/Http/Controllers/BlogController.php',
-        'Modules\\Blog\\Providers\\BlogServiceProvider' => __DIR__ . '/../..' . '/Modules/Blog/Providers/BlogServiceProvider.php',
         'Modules\\Design\\Database\\Seeders\\DesignDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Design/Database/Seeders/DesignDatabaseSeeder.php',
         'Modules\\Design\\Entities\\Task' => __DIR__ . '/../..' . '/Modules/Design/Entities/Task.php',
         'Modules\\Design\\Entities\\Work' => __DIR__ . '/../..' . '/Modules/Design/Entities/Work.php',
         'Modules\\Design\\Http\\Controllers\\DesignController' => __DIR__ . '/../..' . '/Modules/Design/Http/Controllers/DesignController.php',
         'Modules\\Design\\Providers\\DesignServiceProvider' => __DIR__ . '/../..' . '/Modules/Design/Providers/DesignServiceProvider.php',
+        'Modules\\Factory\\Database\\Seeders\\FactoryDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Factory/Database/Seeders/FactoryDatabaseSeeder.php',
+        'Modules\\Factory\\Entities\\Component' => __DIR__ . '/../..' . '/Modules/Factory/Entities/Component.php',
+        'Modules\\Factory\\Entities\\Factory' => __DIR__ . '/../..' . '/Modules/Factory/Entities/Factory.php',
+        'Modules\\Factory\\Entities\\Thing' => __DIR__ . '/../..' . '/Modules/Factory/Entities/Thing.php',
+        'Modules\\Factory\\Http\\Controllers\\FactoryController' => __DIR__ . '/../..' . '/Modules/Factory/Http/Controllers/FactoryController.php',
+        'Modules\\Factory\\Providers\\FactoryServiceProvider' => __DIR__ . '/../..' . '/Modules/Factory/Providers/FactoryServiceProvider.php',
         'Modules\\Main\\Database\\Seeders\\MainDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Main/Database/Seeders/MainDatabaseSeeder.php',
         'Modules\\Main\\Http\\Controllers\\MainController' => __DIR__ . '/../..' . '/Modules/Main/Http/Controllers/MainController.php',
         'Modules\\Main\\Providers\\MainServiceProvider' => __DIR__ . '/../..' . '/Modules/Main/Providers/MainServiceProvider.php',
