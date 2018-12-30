@@ -26,12 +26,10 @@ Route::group(['as' => 'voyager.'], function () {
 
     Route::group(['middleware' => 'admin.user'], function () use ($namespacePrefix) {
         event(new RoutingAdmin());
-
         // Main Admin and Logout Route
         Route::get('/', ['uses' => $namespacePrefix.'VoyagerController@index',   'as' => 'dashboard']);
         Route::post('logout', ['uses' => $namespacePrefix.'VoyagerController@logout',  'as' => 'logout']);
         Route::post('upload', ['uses' => $namespacePrefix.'VoyagerController@upload',  'as' => 'upload']);
-
         Route::get('profile', ['uses' => $namespacePrefix.'VoyagerController@profile', 'as' => 'profile']);
 
         try {
@@ -101,7 +99,6 @@ Route::group(['as' => 'voyager.'], function () {
             Route::post('remove', ['uses' => $namespacePrefix.'VoyagerMediaController@remove',             'as' => 'remove']);
             Route::post('crop', ['uses' => $namespacePrefix.'VoyagerMediaController@crop',             'as' => 'crop']);
         });
-
         // BREAD Routes
         Route::group([
             'as'     => 'bread.',
