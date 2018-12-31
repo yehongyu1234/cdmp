@@ -114,9 +114,11 @@ class ProjectController extends Controller
             //定义文件名
             $filename = date('Y-m-d-h-i-s').'.'.$ext;
             //存储文件。disk里面的public。总的来说，就是调用disk模块里的public配置
-            Storage::disk('public/projects')->put($filename, file_get_contents($path));
+            Storage::disk('public')->put($filename, file_get_contents($path));
+            $project->images='storage/'.$filename;
         }
         //$project->pro_work_time=$hour;
+
         $project->pro_creator = $request->user()->name;
         $project->user_id = $request->user()->id;
         if ($project->save()) {
@@ -138,7 +140,6 @@ class ProjectController extends Controller
         //dd($taskfield);
         return view('project::view',compact('field','taskfield'));
     }
-
     /**
      * Show the form for editing the specified resource.
      * @return Response
@@ -150,8 +151,6 @@ class ProjectController extends Controller
         //dd($projectid);
         return view('project::nice',compact('field'));
     }
-
-
     public function edit(Request $request,$project_id)
     {
         $field=Project::find($project_id);
@@ -159,7 +158,6 @@ class ProjectController extends Controller
         $user=User::where("name","<>","Admin")->get();
         return view('project::edit',compact('field','user','designtype'));
     }
-
     /**
      * Update the specified resource in storage.
      * @param  Request $request
@@ -167,16 +165,26 @@ class ProjectController extends Controller
      */
     public function update(Request $request,$project_id)
     {
-        $input = Input::except('_token','_method');
-        $re = Project::where('id',$project_id)->update($input);
 
+        $rawinput = Input::except('_token','_method','source');
+        //update图片文件
+        $fileCharater=$request->file('source');
+        if ($fileCharater->isValid()) {
+            $ext = $fileCharater->getClientOriginalExtension();
+            $path = $fileCharater->getRealPath();
+            $filename = date('Y-m-d-h-i-s').'.'.$ext;
+            Storage::disk('public')->put($filename, file_get_contents($path));
+            $imager=array('images'=>'storage/'.$filename);
+        }
+        $input=array_merge($rawinput,$imager);
+        //dd($input);
+        $re = Project::where('id',$project_id)->update($input);
         if($re){
             return redirect('projects');
         }else{
             return back()->with('errors','更新失败！');
         }
     }
-
     /**
      * Remove the specified resource from storage.
      * @return Response
@@ -193,16 +201,13 @@ class ProjectController extends Controller
     //创建任务
     public function creatask(Request $request,$project_id){
         $taskname=Project::where('id',$project_id)->first();
-
         $tasklist=Work::where('workbody',$taskname->type)->first();
         //echo $taskname->type;
         $taskall=$tasklist->tasklist;
         $newtask=explode(',',$taskall);
         //dd($newtask);
-
         foreach ($newtask as $n){
             $tasks=New Task;
-            //echo $n;
             $tasks->taskname = $n;
             $tasks->body = $n;
             $tasks->projectid = $project_id;

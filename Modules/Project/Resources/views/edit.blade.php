@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="col-md-8 form-group">
                                     <label class="col-sm-3 control-label">上传文件</label>
-                                    <div class="col-md-9"> <input type="file" name="files" class="form-control"></div>
+                                    <div class="col-md-9"> <input id="file" type="file" name="source" class="form-control" ></div>
                                 </div>
                                 <div class="form-group col-md-8">
                                     <div class="col-sm-12 col-sm-offset-3">

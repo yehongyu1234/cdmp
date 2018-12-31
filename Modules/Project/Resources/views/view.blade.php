@@ -20,7 +20,7 @@
                             {!! csrf_field() !!}
                         <div class="col-md-12"><h4>基本信息</h4></div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group col-md-12">
                                 <label class="col-sm-2 control-label"><strong>项目名称:</strong></label>
                                 <div class="col-sm-8">
@@ -85,9 +85,12 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">图片（项目二维码）
+                        <div class="col-md-3">图片（项目二维码）
                             <br>
                             {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.$field->id.'/nice'); !!}
+                        </div>
+                        <div class="col-md-4">项目效果图
+                            <br><img src="{{url('/'.$field->images)}}" width="100%">
                         </div>
                     </div>
                 </div>

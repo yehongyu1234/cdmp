@@ -120,7 +120,7 @@
                         </div>
                         <div class="col-md-12">
                             <label for="file">选择文件</label>
-                            <input id="file" type="file" class="form-control" name="source" required>
+                            <input id="file" type="file" class="form-control" name="source">
                         </div>
                         <div class="form-group col-md-12">
                             <div class="col-sm-12 col-sm-offset-11">
