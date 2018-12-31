@@ -13,6 +13,7 @@ use Modules\Project\Entities\Project;
 use Modules\Design\Entities\Work;
 use Modules\Design\Entities\Task;
 use Modules\Setting\Entities\Company;
+use function Sodium\compare;
 use Yajra\Datatables\Datatables;
 
 
@@ -105,14 +106,22 @@ class ProjectController extends Controller
         $project->type= $request->get('type');
         //上传文件
         $fileCharater=$request->file('source');
-        if ($fileCharater->isValid()) { //括号里面的是必须加的哦
+        $allowedImageMimeTypes = [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/bmp',
+            'image/svg+xml',
+        ];
+        if ($fileCharater->isValid() and $allowedImageMimeTypes) { //括号里面的是必须加的哦
             //如果括号里面的不加上的话，下面的方法也无法调用的
             //获取文件的扩展名
+            $fileoriginname=$fileCharater->getClientOriginalName();
             $ext = $fileCharater->getClientOriginalExtension();
             //获取文件的绝对路径
             $path = $fileCharater->getRealPath();
             //定义文件名
-            $filename = date('Y-m-d-h-i-s').'.'.$ext;
+            $filename = base64_encode($fileoriginname.date('YMDHMS')).'.'.$ext;
             //存储文件。disk里面的public。总的来说，就是调用disk模块里的public配置
             Storage::disk('public')->put($filename, file_get_contents($path));
             $project->images='storage/'.$filename;
@@ -136,7 +145,7 @@ class ProjectController extends Controller
     {
 
         $field=Project::find($project_id);
-        $taskfield=Task::where('projectid',$project_id)->get();
+        $taskfield=Task::where('projectid',$project_id)->paginate(10);
         //dd($taskfield);
         return view('project::view',compact('field','taskfield'));
     }
@@ -165,14 +174,21 @@ class ProjectController extends Controller
      */
     public function update(Request $request,$project_id)
     {
-
         $rawinput = Input::except('_token','_method','source');
         //update图片文件
+        $allowedImageMimeTypes = [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/bmp',
+            'image/svg+xml',
+        ];
         $fileCharater=$request->file('source');
-        if ($fileCharater->isValid()) {
+        if ($fileCharater->isValid() and $allowedImageMimeTypes) {
+            $fileoriginname=$fileCharater->getClientOriginalName();
             $ext = $fileCharater->getClientOriginalExtension();
             $path = $fileCharater->getRealPath();
-            $filename = date('Y-m-d-h-i-s').'.'.$ext;
+            $filename = base64_encode($fileoriginname.date('YMDHMS')).'.'.$ext;
             Storage::disk('public')->put($filename, file_get_contents($path));
             $imager=array('images'=>'storage/'.$filename);
         }
@@ -202,21 +218,22 @@ class ProjectController extends Controller
     public function creatask(Request $request,$project_id){
         $taskname=Project::where('id',$project_id)->first();
         $tasklist=Work::where('workbody',$taskname->type)->first();
-        //echo $taskname->type;
         $taskall=$tasklist->tasklist;
-        $newtask=explode(',',$taskall);
-        //dd($newtask);
-        foreach ($newtask as $n){
+        $newtask=explode(",",$taskall);
+        for ($n=0;$n<=count($newtask)-1;$n++){
             $tasks=New Task;
-            $tasks->taskname = $n;
-            $tasks->body = $n;
+            $tasks->taskname = $newtask[$n];
+            $tasks->body = $newtask[$n];
             $tasks->projectid = $project_id;
+            $tasks->personid=$request->user()->id;
+            $tasks->senterid=$request->user()->id;
+            $tasks->pro_complatetime=date('Y-m-d H:i:s');
+            $tasks->save();
         }
         if ($tasks->save()) {
-            return redirect('project');
+            return redirect('tasks');
         } else {
             return redirect()->back()->withInput()->withErrors('保存失败！');
         }
     }
-
 }

@@ -23,7 +23,6 @@
                         <th>ID</th>
                         <th>项目编号</th>
                         <th>项目名称</th>
-                        <th>内容</th>
                         <th>状态</th>
                         <th>预计图纸量</th>
                         <th>难度</th>
@@ -99,7 +98,6 @@
                         'data': 'name',
                         'name': 'name'
                     },
-                    { data: 'body', name: 'body' },
                     { data: 'statue', name: 'statue' },
                     { data: 'pro_drawings', name: 'pro_drawings' },
                     { data: 'harder', name: 'harder' },

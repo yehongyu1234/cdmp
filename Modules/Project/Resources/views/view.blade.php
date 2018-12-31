@@ -3,6 +3,8 @@
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
+
+
 @section('page_header')
     <h1 class="page-title">
         <i class=""></i>
@@ -85,7 +87,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">图片（项目二维码）
+                        <div class="col-md-3">项目二维码
                             <br>
                             {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.$field->id.'/nice'); !!}
                         </div>
@@ -97,7 +99,7 @@
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <div class="col-md-12">
-                            <h4>项目任务信息</h4>
+                            <h4>设计任务信息</h4>
                         </div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <div class="col-md-12">
@@ -113,26 +115,27 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
                                 @foreach($taskfield as $tf)
+                                    <tr>
                                 <td>{{$tf->id}}</td>
                                 <td>{{$tf->taskname}}</td>
                                 <td>{{$tf->body}}</td>
                                 <td>{{$tf->personid}}</td>
                                 <td>{{$tf->pro_complatetime}}</td>
-                                <td>已完成</td>
+                                <td>{{$tf->status}}</td>
+                                    </tr>
                                 @endforeach
-                            </tr>
                             </tbody>
                         </table>
+                            {{ $taskfield->links() }}
                         </div>
 
                     </div>
                 </div>
+
             </div>
         </div>
 
     </div>
 
-    
 @stop
