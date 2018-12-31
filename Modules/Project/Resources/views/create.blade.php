@@ -11,6 +11,8 @@
 @stop
 
 @section('content')
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
+    <link href="{{asset('css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" media="screen">
 <div class="page-content container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -107,11 +109,12 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">预计完成</label>
-                                <div class="col-sm-9">
-                                    <input name="complet_time"  class="form-control layer-date" placeholder="YYYY-MM-DD hh:mm:ss" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
-
+                                <div class="input-append date form_datetime col-md-9">
+                                    <input name="complet_time" class="form-control" size="16" type="text" value="" readonly>
+                                    <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
+
                             </div>
                         <div class="col-md-6">
                             <div class="col-sm-12">项目地点
@@ -135,7 +138,16 @@
     </div>
 
 </div>
-
+<script type="text/javascript" src="{{asset('js/jquery.min.js')}}" charset="UTF-8"></script>
+<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/bootstrap-datetimepicker.min.js')}}" charset="UTF-8"></script>
+<script type="text/javascript" src="{{asset('js/locale/bootstrap-datetimepicker.zh-CN.js')}}" charset="UTF-8"></script>
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        language:  'zh-CN',
+        format: "yyyy-mm-dd-hh:ii"
+    });
+</script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
 <script type="text/javascript">
     var map = new BMap.Map('map-container');
