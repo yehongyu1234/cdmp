@@ -99,7 +99,8 @@
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <div class="col-md-12">
-                            <h4>设计任务信息</h4>
+                            <h4 class="col-md-11">设计任务信息</h4>
+                            <a href="{{url('tasks')}}" class="btn btn-sm btn-info pull-right col-md-1">任务管理</a>
                         </div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <div class="col-md-12">
@@ -132,7 +133,43 @@
 
                     </div>
                 </div>
+                <div class="panel panel-bordered">
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <h4>人员责任</h4>
 
+                        </div>
+                        <hr width="100%" color=#987cb9 SIZE=10 />
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>任务名称</th>
+                                    <th>内容</th>
+                                    <th>执行人</th>
+                                    <th>预计完成时间</th>
+                                    <th>状态</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($taskfield as $tf)
+                                    <tr>
+                                        <td>{{$tf->id}}</td>
+                                        <td>{{$tf->taskname}}</td>
+                                        <td>{{$tf->body}}</td>
+                                        <td>{{$tf->personid}}</td>
+                                        <td>{{$tf->pro_complatetime}}</td>
+                                        <td>{{$tf->status}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {{ $taskfield->links() }}
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
 
