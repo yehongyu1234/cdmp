@@ -7,6 +7,7 @@
         <i class=""></i>
         项目管理
         <a href="{{url('project/create')}}" class="btn btn-success">创建</a>
+
     </h1>
 @stop
 @section('content')
@@ -185,45 +186,50 @@
             });
             /**
              * 多选选中和取消选中,同时选中第一个单元格单选框,并联动全选单选框
-             */
-            $('#example tbody').on('click', 'tr', function(event) {
-                var allChecked=$('input[name=allChecked]')[0];//关联全选单选框
-                $($(this).children()[0]).children().each(function(){
-                    if(this.type=="checkbox" && (!$(event.target).is(":checkbox") && $(":checkbox",this).trigger("click"))){
-                        if(!this.checked){
-                            this.checked = true;
-                            addValue(this);
-                            var selected=table.rows('.selected').data().length;//被选中的行数
-                            //全选单选框的状态处理
-                            var recordsDisplay=table.page.info().recordsDisplay;//搜索条件过滤后的总行数
-                            var iDisplayStart=table.page.info().start;// 起始行数
-                            if(selected === table.page.len()||selected === recordsDisplay||selected === (recordsDisplay - iDisplayStart)){
-                                allChecked.checked = true;
-                            }
-                        }else{
-                            this.checked = false;
-                            cancelValue(this);
-                            allChecked.checked = false;
+         */
+            var table = $('#table').DataTable();
+            $('#table tbody').on('click', 'tr', function(event) {
+            var allChecked=$('input[name=allChecked]')[0];//关联全选单选框
+
+            $($(this).children()[0]).children().each(function(){
+                if(this.type=="checkbox" && (!$(event.target).is(":checkbox") && $(":checkbox",this).trigger("click"))){
+                    if(!this.checked){
+                        this.checked = true;
+                        addValue(this);
+                       // console.log(this);
+                        //console.log(table.rows);
+                        var selected=table.rows('.selected').data().length;//被选中的行数
+                        //全选单选框的状态处理
+                        var recordsDisplay=table.page.info().recordsDisplay;//搜索条件过滤后的总行数
+                        var iDisplayStart=table.page.info().start;// 起始行数
+                        if(selected === table.page.len()||selected === recordsDisplay||selected === (recordsDisplay - iDisplayStart)){
+                            allChecked.checked = true;
                         }
+                    }else{
+                        this.checked = false;
+                        cancelValue(this);
+                        allChecked.checked = false;
                     }
-                });
-                $(this).toggleClass('selected');//放在最后处理，以便给checkbox做检测
+                }
             });
+            $(this).toggleClass('selected');//放在最后处理，以便给checkbox做检测
+        });
+
+
             /**
              * 全选按钮被点击事件
              */
             $('input[name=allChecked]').click(function(){
                 if(this.checked){
-                    $('#example tbody tr').each(function(){
+                    $('#table tbody tr').each(function(){
                         if(!$(this).hasClass('selected')){
                             $(this).click();
                         }
                     });
                 }else{
-                    $('#example tbody tr').click();
+                    $('#table tbody tr').click();
                 }
             });
-
             /**
              * 单选框被选中时将它的value放入隐藏域
              */
@@ -257,9 +263,6 @@
             }
 
 
-//   function exp1(){
-//	   $("#exp").attr("src",contextPath+"/department/export.do?t=" + new Date().getTime());
-//   }
             $(document).delegate('#expCsv','click',function() {
 
                 $("#exp").attr("src",contextPath+"/department/export.do?t=" + new Date().getTime());
