@@ -75,6 +75,9 @@
     <script>
             $(document).ready(function(){
             $('#table').DataTable({
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ],
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
