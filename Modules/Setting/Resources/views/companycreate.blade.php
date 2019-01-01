@@ -6,17 +6,13 @@
 @section('page_header')
     <h1 class="page-title">
         <i class=""></i>
-        创建项目
+        增加企业
     </h1>
 @stop
-
 @section('content')
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
-    <link href="{{asset('css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" media="screen">
 <div class="page-content container-fluid">
     <div class="row">
         <div class="col-md-12">
-
             <div class="panel panel-bordered">
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
@@ -29,9 +25,9 @@
                         {!! csrf_field() !!}
                         <div class="col-md-6">
                             <div class="form-group col-md-12">
-                                <label class="col-sm-3 control-label">项目名称</label>
+                                <label class="col-sm-3 control-label">企业名称</label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入项目名称" class="form-control">
+                                    <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入企业名称" class="form-control">
                                 </div>
                                 <br>
                             </div>
@@ -107,20 +103,9 @@
                                     <input name="harder"  lay-verify="required" autocomplete="off" class="form-control" placeholder="预计难度1~5,1难度最低，5难度最高">
                                 </div>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label class="col-sm-3 control-label">预计完成</label>
-                                <div class="input-append date form_datetime col-md-9">
-                                    <input name="complet_time" class="form-control" size="16" type="text" value="" readonly>
-                                    <span class="add-on"><i class="icon-th"></i></span>
-                                </div>
-                            </div>
+
 
                             </div>
-                        <div class="col-md-6">
-                            <div class="col-sm-12">项目地点
-                                <div  style="height: 500px" id="map-container"></div>
-                            </div>
-                        </div>
                         <div class="col-md-12">
                             <label for="file">选择文件</label>
                             <input id="file" type="file" class="form-control" name="source">
@@ -138,34 +123,6 @@
     </div>
 
 </div>
-<script type="text/javascript" src="{{asset('js/jquery.min.js')}}" charset="UTF-8"></script>
-<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/bootstrap-datetimepicker.min.js')}}" charset="UTF-8"></script>
-<script type="text/javascript" src="{{asset('js/locale/bootstrap-datetimepicker.zh-CN.js')}}" charset="UTF-8"></script>
-<script type="text/javascript">
-    $(".form_datetime").datetimepicker({
-        language:  'zh-CN',
-        format: "yyyy-mm-dd-hh:ii"
-    });
-</script>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
-<script type="text/javascript">
-    var map = new BMap.Map('map-container');
-    var point = new BMap.Point(118.78,32.06);
-    map.centerAndZoom(point, 12);
-    // 添加带有定位的导航控件
-    var navigationControl = new BMap.NavigationControl({
-        // 靠左上角位置
-        anchor: BMAP_ANCHOR_TOP_LEFT,
-        // LARGE类型
-        type: BMAP_NAVIGATION_CONTROL_LARGE,
-        // 启用显示定位
-        enableGeolocation: true
-    });
-    map.addControl(navigationControl);
 
-    var marker = new BMap.Marker(point);
-    map.addOverlay(marker);
-    marker.enableDragging();
-</script>
+
 @stop
