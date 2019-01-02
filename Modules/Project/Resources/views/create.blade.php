@@ -110,15 +110,17 @@
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">预计完成</label>
                                 <div class="input-append date form_datetime col-md-9">
-                                    <input name="complet_time" class="form-control" size="16" type="text" value="" readonly>
+                                    <input name="complet_time" class="form-control" size="16" type="text" readonly>
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
 
                             </div>
                         <div class="col-md-6">
-                            <div class="col-sm-12">项目地点
+                            <label class="col-sm-12 control-label">项目地点(选取位置后点击位置确定后再提交！)</label>
+                            <div class="col-sm-12">
                                 <div  style="height: 500px" id="map-container"></div>
+                                <input id="location" name="location" type="text" hidden/>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -145,7 +147,7 @@
 <script type="text/javascript">
     $(".form_datetime").datetimepicker({
         language:  'zh-CN',
-        format: "yyyy-mm-dd-hh:ii"
+        format: "yyyy-mm-dd hh:ii"
     });
 </script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
@@ -163,9 +165,15 @@
         enableGeolocation: true
     });
     map.addControl(navigationControl);
-
     var marker = new BMap.Marker(point);
     map.addOverlay(marker);
     marker.enableDragging();
+    marker.addEventListener("click",getAttr);
+    function getAttr(){
+        var p = marker.getPosition();       //获取marker的位置
+        var newpt=p.lng + "," + p.lat;
+        document.getElementById('location').value=newpt;
+        alert("您选取的位置坐标是：" + p.lng + "," + p.lat);
+    }
 </script>
 @stop
