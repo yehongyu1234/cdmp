@@ -22,6 +22,7 @@
                             {!! csrf_field() !!}
                         <div class="col-md-12"><h4>基本信息</h4></div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
+                        <input id="location" name="loaction" value="{{$field->location}}" hidden\>
                         <div class="col-md-5">
                             <div class="form-group col-md-12">
                                 <label class="col-sm-2 control-label"><strong>项目名称:</strong></label>
@@ -49,12 +50,6 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-8">
-                                <label class="col-sm-3 control-label">项目经理(A)</label>
-                                <div class="col-sm-9">
-                                    {{$field->manager}}
-                                </div>
-                            </div>
-                            <div class="form-group col-md-8">
                                 <label class="col-sm-3 control-label">状态</label>
                                 <div class="col-sm-9">
                                     {{$field->statue}}
@@ -62,16 +57,17 @@
                             </div>
 
                             <div class="form-group col-md-8">
-                                <label class="col-sm-3 control-label">预计图纸总量（张）</label>
+                                <label class="col-sm-3 control-label">图纸量</label>
                                 <div class="col-sm-9">
                                     {{$field->pro_drawings}}
                                 </div>
                             </div>
                             <div class="form-group col-md-8">
-                                <label class="col-sm-3 control-label">主要设计类型</label>
+                                <label class="col-sm-3 control-label">设计类型</label>
                                 <div class="col-sm-9">
                                     {{$field->type}}
                                 </div>
+
                             </div>
                             <div class="form-group col-md-8">
                                 <label class="col-sm-3 control-label">预计难度</label>
@@ -86,7 +82,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-3">项目二维码
                             <br>
                             {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.$field->id.'/nice'); !!}
@@ -136,6 +131,18 @@
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <div class="col-md-12">
+                            <h4 class="col-md-11">项目位置</h4>
+                        </div>
+                        <hr width="100%" color=#987cb9 SIZE=10 />
+                        <div class="col-md-12">
+                            <div  style="height: 500px" id="map-container"></div>
+                            <input id="location" name="location" type="text" hidden/>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-bordered">
+                    <div class="panel-body">
+                        <div class="col-md-12">
                             <h4>人员责任</h4>
 
                         </div>
@@ -174,5 +181,25 @@
         </div>
 
     </div>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
+    <script type="text/javascript">
+        var map = new BMap.Map('map-container');
+        var newpt=document.getElementById('location').value;
+        //console.log(Number(newpt.split(',')[0]));
+        var point = new BMap.Point(Number(newpt.split(',')[0]),Number(newpt.split(',')[1]));
+        map.centerAndZoom(point, 12);
+        // 添加带有定位的导航控件
+        var navigationControl = new BMap.NavigationControl({
+            // 靠左上角位置
+            anchor: BMAP_ANCHOR_TOP_LEFT,
+            // LARGE类型
+            type: BMAP_NAVIGATION_CONTROL_LARGE,
+            // 启用显示定位
+            enableGeolocation: true
+        });
+        map.addControl(navigationControl);
+        var marker = new BMap.Marker(point);
+        map.addOverlay(marker);
 
+    </script>
 @stop
