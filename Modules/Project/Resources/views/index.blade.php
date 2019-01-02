@@ -217,8 +217,6 @@
             });
             $(this).toggleClass('selected');//放在最后处理，以便给checkbox做检测
         });
-
-
             /**
              * 全选按钮被点击事件
              */
