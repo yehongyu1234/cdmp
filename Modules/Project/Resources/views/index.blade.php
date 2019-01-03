@@ -72,12 +72,20 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/dataTables.bootstrap.css')}}">
     <script type="text/javascript" charset="utf8" src="{{asset('js/jquery.dataTables.js')}}"></script>
     <script type="text/javascript" charset="utf8" src="{{asset('js/dataTables.bootstrap.js')}}"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.css"/>
+
+    <script type="text/javascript" src="{{asset('js/jszip.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/vfs_fonts.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/pdfmake.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/dataTables.buttons.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/buttons.flash.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/buttons.html5.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/buttons.print.js')}}"></script>
+
     <script>
-            $(document).ready(function(){
+        $(document).ready(function(){
             $('#table').DataTable({
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ],
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
@@ -145,7 +153,18 @@
                     drawCallback: function( settings ) {
                         $('input[name=allChecked]')[0].checked=false;//取消全选状态
                         }
-                }
+                },
+                buttons: [
+                    {
+                        extend: 'excel',
+                        text: 'Save current page',
+                        exportOptions: {
+                            modifier: {
+                                page: 'current'
+                            }
+                        }
+                    }
+                ]
             });
             function initComplete(data){
                 var topPlugin='<button   class="btn btn-danger btn-sm" id="deleteAll">批量删除</button> <button   class="btn btn-primary btn-sm addBtn" >新 增</button>             <iframe id="exp" style="display:none;"></iframe><button  class="btn btn-info btn-sm" id="expCsv">导 出全部</button>             <button  class="btn btn-warning btn-sm" id="reset">重置搜索条件</button>' ;
