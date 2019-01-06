@@ -261,7 +261,6 @@
                     userIds.val(userIds.val()+","+$(para).val());
                 }
             }
-
             /**
              * 单选框取消选中时将它的value移除隐藏域
              */
@@ -281,13 +280,10 @@
                     }
                 }
             }
-
-
+            //导出csv格式表格
             $(document).delegate('#expCsv','click',function() {
-
                 $("#exp").attr("src",contextPath+"/department/export.do?t=" + new Date().getTime());
             });
-
             $(document).delegate('.addBtn','click',function() {
 
                 $('#myModal-add-info').modal('show');
@@ -302,11 +298,9 @@
                 }else{
                     alert(theArray);
                 }
-
             });
             $(document).delegate('.upOrderStatus','click',function() {
                 var id=$(this).data("id");
-                //alert(id);
                 $("#titleId").html(id);
                 $('#editOrderStatus').modal("show");
             });
@@ -321,5 +315,4 @@
             });
         });
     </script>
-
 @stop

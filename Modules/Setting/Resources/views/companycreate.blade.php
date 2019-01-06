@@ -31,7 +31,6 @@
                                 </div>
                                 <br>
                             </div>
-
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">内容介绍</label>
                                 <div class="col-sm-9">

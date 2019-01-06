@@ -1,10 +1,7 @@
 @extends('voyager::master')
-
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
-
-
 @section('page_header')
     <h1 class="page-title">
         <i class=""></i>
@@ -112,20 +109,19 @@
                             </thead>
                             <tbody>
                                 @foreach($taskfield as $tf)
-                                    <tr>
+                                <tr>
                                 <td>{{$tf->id}}</td>
                                 <td>{{$tf->taskname}}</td>
                                 <td>{{$tf->body}}</td>
                                 <td>{{$tf->personid}}</td>
                                 <td>{{$tf->pro_complatetime}}</td>
                                 <td>{{$tf->status}}</td>
-                                    </tr>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
                             {{ $taskfield->links() }}
                         </div>
-
                     </div>
                 </div>
                 <div class="panel panel-bordered">
@@ -136,7 +132,6 @@
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <div class="col-md-12">
                             <div  style="height: 500px" id="map-container"></div>
-                            <input id="location" name="location" type="text" hidden/>
                         </div>
                     </div>
                 </div>
@@ -144,7 +139,6 @@
                     <div class="panel-body">
                         <div class="col-md-12">
                             <h4>人员责任</h4>
-
                         </div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <div class="col-md-12">
@@ -174,13 +168,12 @@
                             </table>
                             {{ $taskfield->links() }}
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
+    <input id="location" name="location" type="text" hidden/>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
     <script type="text/javascript">
         var map = new BMap.Map('map-container');
@@ -200,6 +193,5 @@
         map.addControl(navigationControl);
         var marker = new BMap.Marker(point);
         map.addOverlay(marker);
-
     </script>
 @stop
