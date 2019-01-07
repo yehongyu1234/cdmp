@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Design\Entities\Work;
+use Modules\Project\Entities\Custome;
 use Modules\Setting\Entities\Company;
 use Yajra\DataTables\DataTables;
 
@@ -35,10 +36,12 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $user=User::where("name","<>","Admin")->get();
+        $user=User::where("role_id","4")->get();
+        //dd($user);
+        $connect=Custome::all();
         $company=Company::all();
         $designtype=Work::all();
-        return view('setting::companycreate',compact('user','designtype','company'));
+        return view('setting::companycreate',compact('connect','designtype','company','user'));
     }
 
     /**
