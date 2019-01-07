@@ -1,5 +1,4 @@
 @extends('voyager::master')
-
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
@@ -37,7 +36,6 @@
                                     <textarea name="body" placeholder="请输入内容" class="form-control" required="required"></textarea>
                                 </div>
                             </div>
-
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">联系人</label>
                                 <div class="col-sm-9">
@@ -52,7 +50,7 @@
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">诚信评价</label>
                                 <div class="col-sm-9">
-                                    <input name="pro_drawings"  lay-verify="required" autocomplete="off" class="form-control" placeholder="输入级别">
+                                    <input name="pro_drawings"  autocomplete="off" class="form-control" placeholder="输入级别">
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
@@ -68,7 +66,7 @@
                             </div>
                             </div>
                         <div class="col-md-12">
-                            <label for="file">选择文件</label>
+                            <label for="file">营业执照</label>
                             <input id="file" type="file" class="form-control" name="source">
                         </div>
                         <div class="form-group col-md-12">
@@ -82,8 +80,5 @@
             </div>
         </div>
     </div>
-
 </div>
-
-
 @stop

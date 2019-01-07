@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Modules\Design\Entities\Work;
 use Modules\Project\Entities\Custome;
 use Modules\Setting\Entities\Company;
@@ -51,8 +52,52 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        //项目编号计算
+        $maxid=DB::table('projects')->select('project_id')->max('project_id');
+        //项目数据创建
+        $project = new Company;
+        $project->name = $request->get('name');
+        $project->body= $request->get('body');
+        $project->area= $request->get('area');
+        $project->manager= $request->get('manager');
+        $project->managerid=User::where("name","==",$request->get('manager'))->select("id")->get();
+        $project->location= $request->get('location');
+        $project->structure_type= $request->get('structure_type');
+        $project->statue= $request->get('statue');
+        $project->complet_time= $request->get('complet_time');
+        $project->pro_drawings= $request->get('pro_drawings');
+        $project->harder= $request->get('harder');
+        $project->type= $request->get('type');
+        //上传文件
+        $fileCharater=$request->file('source');
+        $allowedImageMimeTypes = [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/bmp',
+            'image/svg+xml',
+        ];
+        if ($fileCharater->isValid() and $allowedImageMimeTypes) { //括号里面的是必须加的哦
+            //如果括号里面的不加上的话，下面的方法也无法调用的
+            //获取文件的扩展名
+            $fileoriginname=$fileCharater->getClientOriginalName();
+            $ext = $fileCharater->getClientOriginalExtension();
+            //获取文件的绝对路径
+            $path = $fileCharater->getRealPath();
+            //定义文件名
+            $filename = base64_encode($fileoriginname.date('YMDHMS')).'.'.$ext;
+            //存储文件。disk里面的public。总的来说，就是调用disk模块里的public配置
+            Storage::disk('public')->put($filename, file_get_contents($path));
+            $project->images='storage/'.$filename;
+        }
+        $project->pro_creator = $request->user()->name;
+        $project->user_id = $request->user()->id;
+        if ($project->save()) {
+            return redirect('project');
+        } else {
+            return redirect()->back()->withInput()->withErrors('保存失败！');
+        }
     }
-
     /**
      * Show the specified resource.
      * @return Response
@@ -61,7 +106,6 @@ class CompanyController extends Controller
     {
         return view('setting::show');
     }
-
     /**
      * Show the form for editing the specified resource.
      * @return Response
@@ -70,7 +114,6 @@ class CompanyController extends Controller
     {
         return view('setting::edit');
     }
-
     /**
      * Update the specified resource in storage.
      * @param  Request $request
@@ -79,7 +122,6 @@ class CompanyController extends Controller
     public function update(Request $request)
     {
     }
-
     /**
      * Remove the specified resource from storage.
      * @return Response
