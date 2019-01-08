@@ -69,6 +69,7 @@
                             <label for="file">营业执照</label>
                             <input id="file" type="file" class="form-control" name="source">
                         </div>
+
                         <div class="form-group col-md-12">
                             <div class="col-sm-12 col-sm-offset-11">
                                 <button class="btn btn-primary">提交</button>
