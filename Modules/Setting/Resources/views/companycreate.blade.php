@@ -28,7 +28,6 @@
                                 <div class="col-sm-9">
                                     <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入企业名称" class="form-control">
                                 </div>
-                                <br>
                             </div>
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">主营业务</label>
@@ -65,11 +64,10 @@
                                 </div>
                             </div>
                             </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label for="file">营业执照</label>
                             <input id="file" type="file" class="form-control" name="source">
                         </div>
-
                         <div class="form-group col-md-12">
                             <div class="col-sm-12 col-sm-offset-11">
                                 <button class="btn btn-primary">提交</button>

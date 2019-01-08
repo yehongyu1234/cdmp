@@ -126,7 +126,13 @@ class CompanyController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy(Request $request,$project_id)
     {
+        $re=Project::where('id',$project_id)->delete();
+        if($re){
+            return redirect('projects');
+        }else{
+            return back()->with('errors','删除失败！');
+        }
     }
 }
