@@ -1,5 +1,4 @@
 @extends('voyager::master')
-
 @section('content')
 <div class="page-content">
 @include('voyager::alerts')
@@ -452,8 +451,6 @@
                                 generateLegend('legend-4-container', data);
                             });
                 }
-
-
                 /**
                  * Extend the Embed APIs `gapi.analytics.report.Data` component to
                  * return a promise the is fulfilled with the value returned by the API.
@@ -472,8 +469,6 @@
                                 .execute();
                     });
                 }
-
-
                 /**
                  * Create a new canvas inside the specified element. Set it to be the width
                  * and height of its container.
@@ -492,8 +487,6 @@
 
                     return ctx;
                 }
-
-
                 /**
                  * Create a visual legend inside the specified element based off of a
                  * Chart.js dataset.
@@ -508,19 +501,14 @@
                         return '<li><i style="background:' + color + '"></i>' + label + '</li>';
                     }).join('');
                 }
-
-
                 // Set some global Chart.js defaults.
                 Chart.defaults.global.animationSteps = 60;
                 Chart.defaults.global.animationEasing = 'easeInOutQuart';
                 Chart.defaults.global.responsive = true;
                 Chart.defaults.global.maintainAspectRatio = false;
-
                 // resize to redraw charts
                 window.dispatchEvent(new Event('resize'));
-
             });
-
         </script>
 
     @endif

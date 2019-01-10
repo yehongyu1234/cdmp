@@ -49,7 +49,6 @@ class ProjectController extends Controller
         $user=User::where("name","<>","Admin")->get();
         $company=Company::all();
         $designtype=Work::all();
-        //dd($designtype);
         return view('project::create',compact('user','designtype','company'));
     }
     /**
@@ -67,27 +66,22 @@ class ProjectController extends Controller
         //]);*//
         //项目编号计算
         $maxid=DB::table('projects')->select('project_id')->max('project_id');
-
+        $thisyear=substr(date('Y'),2,2);
         if(strlen($maxid)>4){
             $maxyear=substr($maxid,2,2);
             $maxnumber=substr($maxid,4,2);
-            if($maxyear<=substr(date('Y'),2,2)){
+            if($maxyear==$thisyear){
                 $pulsone=intval($maxnumber)+1;
                 if(strlen($pulsone)==1){
-                    $proid="04".substr(date('Y'),2,2)."0".$pulsone;
+                    $proid="04".$thisyear."0".$pulsone;
                 }else{
-                    $proid="04".substr(date('Y'),2,2).$pulsone;
+                    $proid="04".$thisyear.$pulsone;
                 }
             }else{
-                $pulsone=intval($maxnumber)+1;
-                if(strlen($pulsone)==1){
-                    $proid="04".substr(date('Y'),2,2)."0".$pulsone;
-                }else{
-                    $proid="04".substr(date('Y'),2,2).$pulsone;
-                }
+                $proid="04".$thisyear."01";
             }
         }else{
-            $proid="04".substr(date('Y'),2,2)."01";
+            $proid="04".$thisyear."01";
         }
         //项目数据创建
         $project = new Project;
@@ -104,30 +98,28 @@ class ProjectController extends Controller
         $project->pro_drawings= $request->get('pro_drawings');
         $project->harder= $request->get('harder');
         $project->type= $request->get('type');
+
         //上传文件
         $fileCharater=$request->file('source');
-        $allowedImageMimeTypes = [
-            'image/jpeg',
-            'image/png',
-            'image/gif',
-            'image/bmp',
-            'image/svg+xml',
-        ];
-        if ($fileCharater->isValid() and $allowedImageMimeTypes) { //括号里面的是必须加的哦
-            //如果括号里面的不加上的话，下面的方法也无法调用的
-            //获取文件的扩展名
-            $fileoriginname=$fileCharater->getClientOriginalName();
-            $ext = $fileCharater->getClientOriginalExtension();
-            //获取文件的绝对路径
-            $path = $fileCharater->getRealPath();
-            //定义文件名
-            $filename = base64_encode($fileoriginname.date('YMDHMS')).'.'.$ext;
-            //存储文件。disk里面的public。总的来说，就是调用disk模块里的public配置
-            Storage::disk('public')->put($filename, file_get_contents($path));
-            $project->images='storage/'.$filename;
+        if($fileCharater==null){
+            $project->images='images/default.jpg';
+        }else{
+            $allowedImageMimeTypes = [
+                'image/jpeg',
+                'image/png',
+                'image/gif',
+                'image/bmp',
+                'image/svg+xml',
+            ];
+            if ($fileCharater->isValid() and $allowedImageMimeTypes) {
+                $fileoriginname=$fileCharater->getClientOriginalName(); //获取文件的扩展名
+                $ext = $fileCharater->getClientOriginalExtension();
+                $path = $fileCharater->getRealPath();//获取文件的绝对路径
+                $filename = base64_encode($fileoriginname.date('YMDHMS')).'.'.$ext;//定义文件名
+                Storage::disk('public')->put($filename, file_get_contents($path));//存储文件。disk里面的public。总的来说，就是调用disk模块里的public配置
+                $project->images='storage/'.$filename;
+            }
         }
-        //$project->pro_work_time=$hour;
-
         $project->pro_creator = $request->user()->name;
         $project->user_id = $request->user()->id;
         if ($project->save()) {
@@ -136,17 +128,14 @@ class ProjectController extends Controller
             return redirect()->back()->withInput()->withErrors('保存失败！');
         }
     }
-
     /**
      * Show the specified resource.
      * @return Response
      */
     public function show(Request $request,$project_id)
     {
-
         $field=Project::find($project_id);
         $taskfield=Task::where('projectid',$project_id)->paginate(10);
-        //dd($taskfield);
         return view('project::view',compact('field','taskfield'));
     }
     /**
@@ -207,7 +196,11 @@ class ProjectController extends Controller
      */
     public function destroy(Request $request,$project_id)
     {
-        $re=Project::where('id',$project_id)->delete();
+
+        $newarray=explode(",",$project_id);
+        for ($i=0;$i<count($newarray);$i++){
+            $re=Project::where('id',$newarray[$i])->delete();
+        }
         if($re){
             return redirect('projects');
         }else{
