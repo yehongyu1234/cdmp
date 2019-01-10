@@ -5,6 +5,8 @@ namespace Modules\Design\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Design\Entities\Task;
+use Yajra\DataTables\Services\DataTable;
 
 class DesignController extends Controller
 {
@@ -14,7 +16,8 @@ class DesignController extends Controller
      */
     public function index()
     {
-        return view('design::index');
+        $field=Task::paginate(15);
+        return view('design::index',compact('field'));
     }
 
     /**

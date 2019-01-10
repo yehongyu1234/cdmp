@@ -26,7 +26,6 @@ class ProjectController extends Controller
     public function index()
     {
         $field=Project::paginate(15);
-
         return view('project::index',compact('field'));
     }
     #获取ajax列表

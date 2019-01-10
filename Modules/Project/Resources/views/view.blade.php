@@ -19,7 +19,7 @@
                             {!! csrf_field() !!}
                         <div class="col-md-12"><h4>基本信息</h4></div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
-                        <input id="location" name="loaction" value="{{$field->location}}" hidden\>
+                        <input id="location" name="loaction" value="{{$field->location}}" type="hidden"\>
                         <div class="col-md-5">
                             <div class="form-group col-md-12">
                                 <label class="col-sm-2 control-label"><strong>项目名称:</strong></label>
@@ -173,7 +173,6 @@
             </div>
         </div>
     </div>
-    <input id="location" name="location" type="text" hidden/>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
     <script type="text/javascript">
         var map = new BMap.Map('map-container');
