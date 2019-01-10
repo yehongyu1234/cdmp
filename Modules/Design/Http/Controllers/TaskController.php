@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Input;
 use Modules\Design\Entities\Task;
 use Modules\Design\Entities\Work;
 use Modules\Project\Entities\Project;
@@ -39,8 +40,7 @@ class TaskController extends Controller
     {
         $user=User::where("name","<>","Admin")->get();
         $project=Project::all();
-        $designtype=Work::all();
-        return view('design::createtask',compact('user','designtype','project'));
+        return view('design::createtask',compact('user','project'));
     }
 
     /**
@@ -79,9 +79,12 @@ class TaskController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit(Request $request,$task_id)
     {
-        return view('design::edit');
+        $field=Task::find($task_id);
+        $project=Project::all();
+        $user=User::where("name","<>","Admin")->get();
+        return view('design::editask',compact('field','user','project'));
     }
 
     /**
@@ -89,8 +92,16 @@ class TaskController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$task_id)
     {
+        $rawinput = Input::except('_token','_method');
+        $re = Task::where('id',$task_id)->update($rawinput);
+        if($re){
+            return redirect('task');
+        }else{
+            return back()->with('errors','更新失败！');
+        }
+
     }
 
     /**
