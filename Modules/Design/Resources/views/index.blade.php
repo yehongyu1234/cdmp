@@ -120,6 +120,7 @@
                         </form>
                     </div>
                     <!--显示任务内容-->
+                    <!--
                     <div class="modal fade" id="taskshow" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel" aria-hidden="true" >
                         <form class="form-horizontal" role="form">
@@ -137,47 +138,40 @@
                                             <div class="form-group col-md-8">
                                                 <label class="col-sm-3 control-label">项目名称</label>
                                                 <div class="col-sm-9">
-                                                    {{$field->status}}
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12">
 
                                                 <label class="col-sm-2 control-label"><strong>任务名称:</strong></label>
                                                 <div class="col-sm-8">
-                                                    {{$field->taskname}}
                                                 </div>
                                                 <br>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label class="col-sm-2 control-label">内容</label>
                                                 <div class="col-sm-8">
-                                                    {{$field->body}}
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-8">
                                                 <label class="col-sm-3 control-label">执行人</label>
                                                 <div class="col-sm-9">
-                                                    {{$field->personid}}
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-8">
                                                 <label class="col-sm-3 control-label">状态</label>
                                                 <div class="col-sm-9">
-                                                    {{$field->status}}
                                                 </div>
                                             </div>
 
                                             <div class="form-group col-md-8">
                                                 <label class="col-sm-3 control-label">发布者</label>
                                                 <div class="col-sm-9">
-                                                    {{$field->senterid}}
                                                 </div>
                                             </div>
 
                                             <div class="form-group col-md-8">
                                                 <label class="col-sm-3 control-label">预计完成</label>
                                                 <div class="col-sm-9">
-                                                    {{$field->pro_complatetime}}
                                                 </div>
                                             </div>
                                         </div>
@@ -189,6 +183,7 @@
                             </div>
                         </form>
                     </div>
+                    -->
                     <!--新增页面开始-->
                     <div class="modal fade" id="myModal-add-info" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel" aria-hidden="true">
@@ -271,7 +266,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    'url':'{{ url('task/getlist') }}',
+                    'url':'task/getlist',
                     'type':"GET"
                 },
                 "dom": '<l<\'#topPlugin\'>f>rt<ip><"clear">',
@@ -299,9 +294,8 @@
                         "orderable" : false,
                         "sDefaultContent" : '',
                         "sWidth" : "10%",
-                        "render":function(data, type, full, meta){
-                            return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>' +
-                                '<button id="deleteOne" class="btn btn-sm btn-danger" data-id='+data+'>删除</button>';
+                        "render":function(data){
+                            return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>';
                         }}
                 ],
                 "columnDefs" :
@@ -377,8 +371,6 @@
                         if(!this.checked){
                             this.checked = true;
                             addValue(this);
-                            // console.log(this);
-                            //console.log(table.rows);
                             var selected=table.rows('.selected').data().length;//被选中的行数
                             //全选单选框的状态处理
                             var recordsDisplay=table.page.info().recordsDisplay;//搜索条件过滤后的总行数
@@ -444,7 +436,6 @@
                 //alert('可以执行！');
                 $("#exp").attr("src","/project/export.do?t=" + new Date().getTime());
             });
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

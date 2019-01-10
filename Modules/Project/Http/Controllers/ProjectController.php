@@ -217,6 +217,7 @@ class ProjectController extends Controller
             $tasks->taskname = $newtask[$n];
             $tasks->body = $newtask[$n];
             $tasks->projectid = $project_id;
+            $tasks->status = 0;
             $tasks->personid=$request->user()->id;
             $tasks->senterid=$request->user()->id;
             $tasks->pro_complatetime=date('Y-m-d H:i:s');

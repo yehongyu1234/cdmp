@@ -17,8 +17,12 @@ class TaskController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $field=Task::all();
+        $users=$request->user()->id;
+        //dd($users);
         return view('design::index');
     }
     #获取ajax列表
