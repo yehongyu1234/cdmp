@@ -163,6 +163,7 @@ class ProjectController extends Controller
     public function update(Request $request,$project_id)
     {
         $rawinput = Input::except('_token','_method','source');
+
         //update图片文件
         $allowedImageMimeTypes = [
             'image/jpeg',
@@ -172,6 +173,9 @@ class ProjectController extends Controller
             'image/svg+xml',
         ];
         $fileCharater=$request->file('source');
+        if($fileCharater==null){
+            $input=$rawinput;
+        }else{
         if ($fileCharater->isValid() and $allowedImageMimeTypes) {
             $fileoriginname=$fileCharater->getClientOriginalName();
             $ext = $fileCharater->getClientOriginalExtension();
@@ -181,7 +185,7 @@ class ProjectController extends Controller
             $imager=array('images'=>'storage/'.$filename);
         }
         $input=array_merge($rawinput,$imager);
-        //dd($input);
+        }
         $re = Project::where('id',$project_id)->update($input);
         if($re){
             return redirect('projects');
