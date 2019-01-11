@@ -329,15 +329,6 @@
                 $("#deleteOneModal").modal('show');
             } );
             /**
-            $(document).delegate('#changestatus','click',function() {
-                document.getElementById('showdata').innerHTML="确定要修改完成状态？";
-                document.getElementById('modalfooter').innerHTML="<button type='button' class='btn btn-primary' id='statuschange'>确认</button>";
-                var id=$(this).data("id");
-                $("#statuschange").val(id);
-                $("#deleteOneModal").modal('show');
-            });
-             **/
-            /**
              * 点击修改完成状态
              */
             $(document).delegate('#statuschange','click',function(){
