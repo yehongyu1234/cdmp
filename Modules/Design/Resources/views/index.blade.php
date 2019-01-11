@@ -32,7 +32,7 @@
                                 <th>执行人</th>
                                 <th>项目名称</th>
                                 <th>发布人</th>
-                                <th>预计完成时间</th>
+                                <th>在此前完成</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -242,7 +242,12 @@
                             }
                         },
                     },
-                    { data: 'personid', name: 'personid' },
+                    { 'data': 'personid',
+                        'name': 'personid',
+                        "render":function(data){
+                            return '<label id="personlabal" data-id='+data+'>'+data+'</label>';
+                        },
+                    },
                     { data: 'projectid', name: 'projectid' },
                     { data: 'senterid', name: 'senterid' },
                     { data: 'pro_complatetime', name: 'pro_complatetime' },
@@ -282,6 +287,10 @@
                 }
             });
             /**
+             * 表格中数据重新显示
+             */
+            //document.getElementById('personlabal').innerHTML="？？？";
+            /**
              * 单行编辑
              */
             function editOne(data) {
@@ -291,6 +300,7 @@
                 var id=$(this).data("id");
                 editOne(id);
             });
+
             /**
              * 单行删除按钮点击事件响应
 

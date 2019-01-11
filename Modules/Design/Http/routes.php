@@ -8,4 +8,5 @@ Route::group(['middleware' => 'web', 'prefix' => 'task', 'namespace' => 'Modules
     Route::any('{task_id}/destroy','TaskController@destroy');
     Route::any('getlist','TaskController@getlist');
     Route::any('status','TaskController@status');
+    Route::any('personget','TaskController@personget');
 });

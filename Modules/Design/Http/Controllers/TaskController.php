@@ -120,16 +120,26 @@ class TaskController extends Controller
             return back()->with('errors','删除失败！');
         }
     }
+
+    /**
+     * 状态调整
+     * 根据ajax发送过来的状态调整数据库内的信息，状态不可逆，如果提交完成，无法在改为未完成
+     */
     public function status(Request $request){
         $id= $request->get('id');
-        //echo $id;
         $re = Task::where('id',$id)->update(["status"=>1]);
-       // dd($re);
         if($re){
             return redirect('task');
         }else{
             return back()->with('errors','更新失败！');
         }
+
+    }
+    public function personget(Request $request){
+        //echo '通过ID查询到名称';
+        $field = User::select(['id', 'role_id', 'name','email']);
+        $data= DataTables::of($field)->make();
+        return $data;
 
     }
 }
