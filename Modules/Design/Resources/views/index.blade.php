@@ -289,7 +289,22 @@
             /**
              * 表格中数据重新显示
              */
-            //document.getElementById('personlabal').innerHTML="？？？";
+            $.ajax({
+                url:'task/personget',
+                async:true,
+                type:"GET",
+                dataType:"json",
+                success: function (data) {
+                    var obj = data;
+                    var html ="";
+                    $.each(obj,function(index, data) {
+                        html +='<li>'+data.name+'</li>'
+                    });
+                    console.log(html);
+                    $("#personlabal").html(html);
+                }
+            });
+
             /**
              * 单行编辑
              */
@@ -514,6 +529,5 @@
             format: "yyyy-mm-dd hh:ii"
         });
     </script>
-    <script type="text/javascript" src="{{asset('js/scripts/task.js')}}"></script>
 
 @stop

@@ -3,7 +3,7 @@ $(function(){
             "processing": true,
             "serverSide": true,
             "ajax": {
-                'url':'{{ url('task/getlist') }}',
+                'url':‘task/getlist’,
             'type':"GET"
                     },
         "dom": '<l<\'#topPlugin\'>f>rt<ip><"clear">',
