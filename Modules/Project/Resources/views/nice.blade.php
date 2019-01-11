@@ -59,7 +59,7 @@
     <a href="#">查看详情</a><br>
 </div>
     <hr width="100%" color="#bbe6ff" size="1px">
-    <span class="copyright-text"><span>©2018&nbsp;中民筑友&nbsp;</span><br>
+    <span class="copyright-text"><span>©2014-{{date('Y')}}&nbsp;中民筑友&nbsp;</span><br>
     <img src="http://61.132.72.194:9272/storage/zaa5RzziNWX4m7HQarNrDrW1so4lhWCuUbphu182.png" width="120px">
     </span>
 </div>
