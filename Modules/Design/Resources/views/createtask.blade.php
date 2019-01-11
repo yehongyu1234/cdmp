@@ -41,15 +41,6 @@
                             </div>
                         </div>
                         <div class="form-group col-md-12">
-                            <label class="col-sm-3 control-label">状态</label>
-                            <div class="col-sm-9">
-                                <select name="status" class="form-control">
-                                    <option value="0">未完成</option>
-                                    <option value="1">已完成</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-12">
                             <label class="col-sm-3 control-label">执行人</label>
                             <div class="col-sm-9">
                                 <select name="personid" class="form-control">

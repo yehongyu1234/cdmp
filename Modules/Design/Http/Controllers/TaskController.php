@@ -21,8 +21,8 @@ class TaskController extends Controller
     public function index(Request $request)
     {
 
-        $field=Task::all();
-        $users=$request->user()->id;
+        //$field=Task::all();
+        //$users=$request->user()->id;
         //dd($users);
         return view('design::index');
     }
@@ -58,7 +58,7 @@ class TaskController extends Controller
         $project->projectid= $request->get('projectid');
         $project->senterid= $request->user()->id;
         $project->pro_complatetime= $request->get('pro_complatetime');
-        $project->status= $request->get('status');
+        $project->status= 0;
         if ($project->save()) {
             return redirect('task');
         } else {
@@ -119,5 +119,17 @@ class TaskController extends Controller
         }else{
             return back()->with('errors','删除失败！');
         }
+    }
+    public function status(Request $request){
+        $id= $request->get('id');
+        //echo $id;
+        $re = Task::where('id',$id)->update(["status"=>1]);
+       // dd($re);
+        if($re){
+            return redirect('task');
+        }else{
+            return back()->with('errors','更新失败！');
+        }
+
     }
 }

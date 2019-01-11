@@ -48,70 +48,16 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close"
-                                                data-dismiss="modal" aria-hidden="true">
-                                            &times;
-                                        </button>
+                                                data-dismiss="modal" aria-hidden="true">&times;</button>
                                         <h4 class="modal-title" id="myModalLabel">
                                             提示信息
                                         </h4>
                                     </div>
                                     <div class="modal-body" style="text-align: left;">
-                                        <h5>您确定要删除当前信息吗？</h5>
+                                        <h5 id="showdata">您确定要删除当前信息吗？</h5>
                                     </div>
-                                    <div class="modal-footer">
+                                    <div class="modal-footer" id="modalfooter">
                                         <button type="button" class="btn btn-primary" id="delSubmit">
-                                            确认
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!--没有选择到的时候弹窗话框-->
-                    <div class="modal fade" id="selectnothing" tabindex="-1" role="dialog"
-                         aria-labelledby="myModalLabel" aria-hidden="true" >
-                        <form class="form-horizontal" role="form">
-                            <div class="modal-dialog modal-sm " >
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close"
-                                                data-dismiss="modal" aria-hidden="true">
-                                            &times;
-                                        </button>
-                                        <h4 class="modal-title" id="myModalLabel">
-                                            提示信息
-                                        </h4>
-                                    </div>
-                                    <div class="modal-body" style="text-align: left;">
-                                        <h5>您什么都没选择，至少需要选择一项！</h5>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" id="selectnothingsubmit">
-                                            确认
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!--多个删除确认对话框-->
-                    <div class="modal fade" id="deleteselectmodel" tabindex="-1" role="dialog"
-                         aria-labelledby="myModalLabel" aria-hidden="true" >
-                        <form class="form-horizontal" role="form">
-                            <div class="modal-dialog modal-sm " >
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close"
-                                                data-dismiss="modal" aria-hidden="true">&times; </button>
-                                        <h4 class="modal-title" id="myModalLabel">
-                                            提示信息
-                                        </h4>
-                                    </div>
-                                    <div class="modal-body" style="text-align: left;">
-                                        <h5>您确定要删除当前选择信息吗？</h5>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" id="deleteselectmodelsubmit">
                                             确认
                                         </button>
                                     </div>
@@ -277,14 +223,25 @@
                         "sDefaultContent" : "",
                         "sWidth" : "2%"
                     },
-                    { data: 'id', name: 'id' ,
+                    { data: 'id',
+                        name: 'id' ,
                         'render':function(id){
                             return '<a href="task/'+id+'/show">'+id+'</a>';
                         }
                     },
                     { data: 'taskname', name: 'taskname' },
                     { data: 'body', name: 'body' },
-                    { data: 'status', name: 'status' },
+                    {
+                        'data':'status',
+                        'name':'status',
+                        "render":function(data){
+                            if(data==0){
+                                return '<button id="changestatus" class="btn btn-sm btn-warning" data-id='+data+'>未完成</button>';
+                            }else{
+                                return '<button class="btn btn-sm btn-success">已完成</button>';
+                            }
+                        },
+                    },
                     { data: 'personid', name: 'personid' },
                     { data: 'projectid', name: 'projectid' },
                     { data: 'senterid', name: 'senterid' },
@@ -295,7 +252,7 @@
                         "sDefaultContent" : '',
                         "sWidth" : "10%",
                         "render":function(data){
-                            return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>';
+                            return data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>';
                         }}
                 ],
                 "columnDefs" :
@@ -307,6 +264,7 @@
                             return '<input type="checkbox" value="'+ data + '" name="id"/>';
                         }
                     }],
+
                 "language" : {
                     "lengthMenu": "每页 _MENU_ 条记录",
                     "processing": "正在加载数据...",
@@ -323,7 +281,6 @@
                     }
                 }
             });
-
             /**
              * 单行编辑
              */
@@ -336,15 +293,16 @@
             });
             /**
              * 单行删除按钮点击事件响应
-             */
+
             $(document).delegate('#deleteOne','click',function() {
                 var id=$(this).data("id");
+                //alert(id);
                 $("#delSubmit").val(id);
                 $("#deleteOneModal").modal('show');
             });
             /**
              * 点击确认删除按钮
-             */
+
             $(document).delegate('#delSubmit','click',function(){
                 var id=$(this).val();
                 $('#deleteOneModal').modal('hide');
@@ -358,6 +316,44 @@
                     }
                 });
                 window.location.reload();
+            });
+            /**
+             * 点击修改完成状态事件响应
+             */
+            $('#table tbody').on( 'click', 'button', function () {
+                var data = table.row( $(this).parents('tr') ).data();
+                document.getElementById('showdata').innerHTML="确定要修改完成状态？";
+                document.getElementById('modalfooter').innerHTML="<button type='button' class='btn btn-primary' id='statuschange'>确认</button>";
+                var id=data['id'];
+                $("#statuschange").val(id);
+                $("#deleteOneModal").modal('show');
+            } );
+            /**
+            $(document).delegate('#changestatus','click',function() {
+                document.getElementById('showdata').innerHTML="确定要修改完成状态？";
+                document.getElementById('modalfooter').innerHTML="<button type='button' class='btn btn-primary' id='statuschange'>确认</button>";
+                var id=$(this).data("id");
+                $("#statuschange").val(id);
+                $("#deleteOneModal").modal('show');
+            });
+             **/
+            /**
+             * 点击修改完成状态
+             */
+            $(document).delegate('#statuschange','click',function(){
+                var id=$(this).val();
+                $('#deleteOneModal').modal('hide');
+                $.ajax({
+                    url:'task/status',
+                    async:true,
+                    type:"POST",
+                    data:{'id':id},
+                    dataType:"json",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+               window.location.reload();
             });
             /**
              * 多选选中和取消选中,同时选中第一个单元格单选框,并联动全选单选框
@@ -441,10 +437,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
             $(document).delegate('#addBtn','click',function() {
                 self.location='task/create';
-                //$('#myModal-add-info').modal('show');
             });
             /**
              * 点击增加内容按钮
@@ -454,7 +448,6 @@
                 $.ajax({
                     url: "task",
                     method: "POST",
-                    //data: {"_token": _token},
                     dataType: "json",
                     success: function success(data) {
                         if (data.error != 0) {
@@ -463,7 +456,6 @@
                         }
                     }
                 });
-
                 //window.location.reload();
             });
             /**
@@ -475,24 +467,26 @@
                     theArray.push($(this).val());
                 });
                 if(theArray.length<1){
-                    $('#selectnothing').modal('show');
+                    document.getElementById('showdata').innerHTML="未选择任何数据？";
+                    $("#deleteOneModal").modal('show');
                 }else{
-                    $("#deleteselectmodelsubmit").val(theArray);
-                    $('#deleteselectmodel').modal('show');
+                    $("#delSubmit").val(theArray);
+                    document.getElementById('showdata').innerHTML="确定删除选择？";
+                    $('#deleteOneModal').modal('show');
                 }
             });
             /**
              * 未选择提示
              */
-            $(document).delegate('#selectnothingsubmit','click',function(){
-                $('#selectnothing').modal('hide');
+            $(document).delegate('#delSubmit','click',function(){
+                $('#deleteOneModal').modal('hide');
             });
             /**
              * 点击确认删除按钮
              */
-            $(document).delegate('#deleteselectmodelsubmit','click',function(){
+            $(document).delegate('#delSubmit','click',function(){
                 var id=$(this).val();
-                $('#deleteselectmodel').modal('hide');
+                $('#deleteOneModal').modal('hide');
                 $.ajax({
                     url:'task/'+id+'/destroy',
                     async:true,
