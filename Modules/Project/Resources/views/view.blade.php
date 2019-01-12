@@ -82,13 +82,15 @@
                             </div>
                         </div>
                         <div class="col-md-3">项目二维码
+
                             <br>
-                            {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.base64_decode($field->guid).'/nice'); !!}
+                            {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.base64_decode($field->guid).'/out'); !!}
                         </div>
                         <div class="col-md-4">项目效果图
                             <br><img src="{{url('/'.$field->images)}}" width="100%">
                         </div>
                     </div>
+                    {{'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.base64_decode($field->guid).'/out'}}
                 </div>
                 <div class="panel panel-bordered">
                     <div class="panel-body">

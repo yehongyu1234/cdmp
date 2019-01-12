@@ -137,7 +137,7 @@ class ProjectController extends Controller
      */
     public function show(Request $request,$project_id)
     {
-        $field=Project::find($project_id);
+        $field=Project::where('project_id',$project_id)->first();
         $taskfield=Task::where('projectid',$project_id)->paginate(10);
         return view('project::view',compact('field','taskfield'));
     }

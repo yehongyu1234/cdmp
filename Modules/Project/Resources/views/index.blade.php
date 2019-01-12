@@ -29,10 +29,9 @@
                         <th>项目编号</th>
                         <th>项目名称</th>
                         <th>状态</th>
-                        <th>预计图纸量</th>
+                        <th>预计工作量</th>
                         <th>难度</th>
                         <th>类型</th>
-                        <th>创建人</th>
                         <th>管理员</th>
                         <th>操作</th>
                     </tr>
@@ -141,12 +140,13 @@
                     "sDefaultContent" : "",
                     "sWidth" : "2%"
                 },
-                { data: 'id', name: 'id' ,
+                { data: 'id', name: 'id'
+                },
+                { data: 'project_id', name: 'project_id',
                     'render':function(id){
                         return '<a href="project/'+id+'/show">'+id+'</a>';
                     }
-                },
-                { data: 'project_id', name: 'project_id' },
+                    },
                 {
                     'data': 'name',
                     'name': 'name'
@@ -155,16 +155,14 @@
                 { data: 'pro_drawings', name: 'pro_drawings' },
                 { data: 'harder', name: 'harder' },
                 { data: 'type', name: 'type' },
-                { data: 'pro_creator', name: 'pro_creator' },
                 { data: 'manager', name: 'manager' },
                 {
                     "mData" : "id",
                     "orderable" : false,
                     "sDefaultContent" : '',
                     "sWidth" : "10%",
-                    "render":function(data, type, full, meta){
-                        return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>' +
-                            '<button id="deleteOne" class="btn btn-sm btn-danger" data-id='+data+'>删除</button>';
+                    "render":function(data){
+                        return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>';
                     }}
             ],
             "columnDefs" :
