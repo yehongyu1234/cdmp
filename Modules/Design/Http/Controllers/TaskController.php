@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Modules\Design\Entities\Task;
 use Modules\Design\Entities\Work;
@@ -39,7 +40,7 @@ class TaskController extends Controller
             $senderid=intval($jsondata[$i]['senterid']);
             $personname=$this->getusername($personid);
             $projectname=$this->getprojectname($projctid);
-            $sendername=$this->getusername($personid);
+            $sendername=$this->getusername($senderid);
             $jsondata[$i]['personid']=$personname;
             $jsondata[$i]['projectid']=$projectname;
             $jsondata[$i]['senterid']=$sendername;
@@ -81,13 +82,12 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $project = new Task;
         $project->taskname = $request->get('taskname');
         $project->body= $request->get('body');
         $project->personid= $request->get('personid');
         $project->projectid= $request->get('projectid');
-        $project->senterid= $request->user()->id;
+        $project->senterid= Auth::user()->id;
         $project->pro_complatetime= $request->get('pro_complatetime');
         $project->status= 0;
         if ($project->save()) {
@@ -102,8 +102,11 @@ class TaskController extends Controller
      */
     public function show(Request $request,$task_id)
     {
-        $field=Task::find($task_id);
-        return view('design::view',compact('field'));
+        $field=Task::where('id',$task_id)->first();
+        $projectname=Project::where('id',$field->projectid)->first();
+        $username=User::where('id',$field->personid)->first();
+        $sendername=User::where('id',$field->senterid)->first();
+        return view('design::view',compact('field','projectname','username','sendername'));
     }
 
     /**
