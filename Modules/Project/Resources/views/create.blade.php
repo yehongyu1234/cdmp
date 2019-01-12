@@ -65,7 +65,7 @@
                                     <select name="manager" class="form-control">
                                         <option value="">请选择</option>
                                         @foreach($user as $u)
-                                        <option value="{{$u->name}}">{{$u->name}}</option>
+                                        <option value="{{$u->id}}">{{$u->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

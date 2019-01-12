@@ -134,13 +134,13 @@
             </div>
         </div>
     </div>
-
-
     <script>
         $(document).ready(function(){
             $('#table').DataTable({
                 "processing": true,
                 "serverSide": true,
+                "bStateSave": true,
+                "order":  [ 1, 'desc' ],
                 "ajax": {
                     'url':'task/getlist',
                     'type':"GET"
@@ -149,9 +149,9 @@
                 "columns": [
                     {
                         "mData" : "id",
-                        "orderable": false , // 禁用排序
                         "sDefaultContent" : "",
                         "sWidth" : "2%"
+
                     },
                     { data: 'id',
                         name: 'id' ,
@@ -177,7 +177,9 @@
                     },
                     { data: 'projectid', name: 'projectid' },
                     { data: 'senterid', name: 'senterid' },
-                    { data: 'pro_complatetime', name: 'pro_complatetime' },
+                    { data: 'pro_complatetime',
+                        name: 'pro_complatetime'
+                    },
                     {
                         "mData" : "id",
                         "orderable" : false,

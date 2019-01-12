@@ -82,14 +82,17 @@ class ProjectController extends Controller
         }else{
             $proid="04".$thisyear."01";
         }
+        //
+        $manid=User::where("id",intval($request->get('manager')))->first();
+        //dd($manid->name);
         //项目数据创建
         $project = new Project;
         $project->name = $request->get('name');
         $project->project_id = $proid;
         $project->body= $request->get('body');
         $project->area= $request->get('area');
-        $project->manager= $request->get('manager');
-        $project->managerid=User::where("name","==",$request->get('manager'))->select("id")->get();
+        $project->manager= $manid->name;
+        $project->managerid=$request->get('manager');
         $project->location= $request->get('location');
         $project->structure_type= $request->get('structure_type');
         $project->statue= $request->get('statue');
@@ -218,13 +221,13 @@ class ProjectController extends Controller
         $newtask=explode(",",$taskall);
         for ($n=0;$n<=count($newtask)-1;$n++){
             $tasks=New Task;
-            $tasks->taskname = $newtask[$n];
+            $tasks->taskname = $tasklist->workbody;
             $tasks->body = $newtask[$n];
             $tasks->projectid = $project_id;
             $tasks->status = 0;
-            $tasks->personid=$request->user()->id;
+            $tasks->personid=$taskname->managerid;
             $tasks->senterid=$request->user()->id;
-            $tasks->pro_complatetime=date('Y-m-d H:i:s');
+            $tasks->pro_complatetime=$taskname->complete_time;
             $tasks->save();
         }
         if ($tasks->save()) {
