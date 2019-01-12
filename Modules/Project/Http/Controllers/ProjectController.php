@@ -227,7 +227,7 @@ class ProjectController extends Controller
             $tasks->status = 0;
             $tasks->personid=$taskname->managerid;
             $tasks->senterid=$request->user()->id;
-            $tasks->pro_complatetime=$taskname->complete_time;
+            $tasks->pro_complatetime=$taskname->complet_time;
             $tasks->save();
         }
         if ($tasks->save()) {
