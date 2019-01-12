@@ -130,76 +130,6 @@
                         </form>
                     </div>
                     -->
-                    <!--新增页面开始-->
-                    <div class="modal fade" id="myModal-add-info" tabindex="-1" role="dialog"
-                         aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content" style="width:800px">
-                                <div class="modal-header">
-                                    <button type="button" class="close"
-                                            data-dismiss="modal" aria-hidden="true">
-                                        &times;
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel">
-                                        新 增
-                                    </h4>
-                                </div>
-                                <form class="form-horizontal" role="form" action="{{url('task')}}" method="post"  id="task_add" enctype="multipart/form-data">
-                                    <div class="modal-body">
-                                        <meta name="csrf-token" content="{{ csrf_token() }}">
-                                        <div class="form-group col-md-12">
-                                            <label class="col-sm-3 control-label">任务名称</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入任务名称" class="form-control">
-                                            </div>
-                                            <br>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label class="col-sm-3 control-label">内容介绍</label>
-                                            <div class="col-sm-9">
-                                                <textarea name="body" placeholder="请输入内容" class="form-control" required="required"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label class="col-sm-3 control-label">状态</label>
-                                            <div class="col-sm-9">
-                                                <select name="status" class="form-control">
-                                                    <option value="0">未完成</option>
-                                                    <option value="1">已完成</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label class="col-sm-3 control-label">执行人</label>
-                                            <div class="col-sm-9">
-                                                <select name="personid" class="form-control">
-                                                    <option value="">请选择</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label class="col-sm-3 control-label">预计完成</label>
-                                            <div class="input-append date form_datetime col-md-9">
-                                                <input name="pro_complatetime" class="form-control" size="16" type="text" readonly>
-                                                <span class="add-on"><i class="icon-th"></i></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default"
-                                                    data-dismiss="modal">关闭
-                                            </button>
-                                            <button type="button" class="btn btn-primary" id="taskaddbutton">
-                                                提交
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div><!-- /.modal-content -->
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -243,10 +173,7 @@
                         },
                     },
                     { 'data': 'personid',
-                        'name': 'personid',
-                        "render":function(data){
-                            return '<label id="personlabal" data-id='+data+'>'+data+'</label>';
-                        },
+                        'name': 'personid'
                     },
                     { data: 'projectid', name: 'projectid' },
                     { data: 'senterid', name: 'senterid' },
@@ -286,24 +213,6 @@
                     }
                 }
             });
-            /**
-             * 表格中数据重新显示
-             */
-            $.ajax({
-                url:'task/personget',
-                async:true,
-                type:"GET",
-                dataType:"json",
-                success: function (data) {
-                    var obj = data;
-                    var html ="";
-                    $.each(obj,function(index, data) {
-                        html +='<li>'+data.name+'</li>'
-                    });
-                    console.log(html);
-                    $("#personlabal").html(html);
-                }
-            });
 
             /**
              * 单行编辑
@@ -316,36 +225,11 @@
                 editOne(id);
             });
 
-            /**
-             * 单行删除按钮点击事件响应
 
-            $(document).delegate('#deleteOne','click',function() {
-                var id=$(this).data("id");
-                //alert(id);
-                $("#delSubmit").val(id);
-                $("#deleteOneModal").modal('show');
-            });
-            /**
-             * 点击确认删除按钮
-
-            $(document).delegate('#delSubmit','click',function(){
-                var id=$(this).val();
-                $('#deleteOneModal').modal('hide');
-                $.ajax({
-                    url:'task/'+id+'/destroy',
-                    async:true,
-                    type:"GET",
-                    dataType:"json",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                window.location.reload();
-            });
             /**
              * 点击修改完成状态事件响应
              */
-            $('#table tbody').on( 'click', 'button', function () {
+            $(document).delegate('#changestatus','click',function(){
                 var data = table.row( $(this).parents('tr') ).data();
                 document.getElementById('showdata').innerHTML="确定要修改完成状态？";
                 document.getElementById('modalfooter').innerHTML="<button type='button' class='btn btn-primary' id='statuschange'>确认</button>";
@@ -516,10 +400,7 @@
             });
         });
     </script>
-
-
     <script type="text/javascript" src="{{asset('js/jquery.min.js')}}" charset="UTF-8"></script>
-
     <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bootstrap-datetimepicker.min.js')}}" charset="UTF-8"></script>
     <script type="text/javascript" src="{{asset('js/locale/bootstrap-datetimepicker.zh-CN.js')}}" charset="UTF-8"></script>
@@ -529,5 +410,4 @@
             format: "yyyy-mm-dd hh:ii"
         });
     </script>
-
 @stop

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Input;
 use Modules\Design\Entities\Task;
 use Modules\Design\Entities\Work;
 use Modules\Project\Entities\Project;
+use function PHPSTORM_META\type;
 use Yajra\Datatables\Datatables;
 
 class TaskController extends Controller
@@ -27,10 +28,40 @@ class TaskController extends Controller
         return view('design::index');
     }
     #获取ajax列表
-    public function getlist() {
-        $field = Task::select(['id','taskname', 'body', 'personid', 'projectid','senterid','pro_complatetime','status','created_at','updated_at']);
-        $data= DataTables::of($field)->make();
+    public function getlist(Request $request) {
+        //dd($request->user()->id); //这里需要加入数据筛选同时设置权限
+        $field = Task::select(['id','taskname', 'body', 'personid', 'projectid','senterid','pro_complatetime','status','created_at','updated_at'])->get();
+        $newdata=json_encode($field);
+        $jsondata=json_decode($newdata,true);
+        for ($i=0;$i<count($jsondata);$i++){
+            $personid=intval($jsondata[$i]['personid']);
+            $projctid=intval($jsondata[$i]['projectid']);
+            $senderid=intval($jsondata[$i]['senterid']);
+            $personname=$this->getusername($personid);
+            $projectname=$this->getprojectname($projctid);
+            $sendername=$this->getusername($personid);
+            $jsondata[$i]['personid']=$personname;
+            $jsondata[$i]['projectid']=$projectname;
+            $jsondata[$i]['senterid']=$sendername;
+        };
+        //下面是用来转译的
+        $data= DataTables::of($jsondata)->make();
         return $data;
+    }
+    /**
+     * 检索用户名的函数
+     */
+    public function getusername($id){
+        $username=User::where('id',$id)->first();
+        return $username->name;
+    }
+    /**
+     * 检索项目名称函数
+     */
+    public function getprojectname($id){
+        $projectname=Project::where('id',$id)->first();
+        //dd($projectname);
+        return $projectname->name;
     }
     /**
      * Show the form for creating a new resource.
@@ -133,13 +164,6 @@ class TaskController extends Controller
         }else{
             return back()->with('errors','更新失败！');
         }
-
-    }
-    public function personget(Request $request){
-        //echo '通过ID查询到名称';
-        $field = User::select(['id', 'role_id', 'name','email']);
-        $data= DataTables::of($field)->make();
-        return $data;
 
     }
 }
