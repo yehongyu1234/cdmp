@@ -83,7 +83,7 @@
                         </div>
                         <div class="col-md-3">项目二维码
                             <br>
-                            {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.$field->id.'/nice'); !!}
+                            {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.base64_decode($field->guid).'/nice'); !!}
                         </div>
                         <div class="col-md-4">项目效果图
                             <br><img src="{{url('/'.$field->images)}}" width="100%">

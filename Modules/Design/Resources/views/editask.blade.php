@@ -89,7 +89,7 @@
     <script type="text/javascript">
         $(".form_datetime").datetimepicker({
             language:  'zh-CN',
-            format: "yyyy-mm-dd-hh:ii"
+            format: "yyyy-mm-dd hh:ii"
         });
     </script>
 @stop

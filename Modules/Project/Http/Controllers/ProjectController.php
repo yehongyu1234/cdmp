@@ -124,6 +124,7 @@ class ProjectController extends Controller
         }
         $project->pro_creator = $request->user()->name;
         $project->user_id = $request->user()->id;
+        $project->guid = base64_encode($this->create_uuid());
         if ($project->save()) {
             return redirect('project');
         } else {
@@ -144,11 +145,9 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function nice(Request $request,$project_id)
+    public function nice(Request $request,$guid)
     {
-
-        $field=Project::find($project_id);
-        //dd($projectid);
+        $field=Project::where('guid',base64_encode($guid))->first();
         return view('project::nice',compact('field'));
     }
     public function edit(Request $request,$project_id)
@@ -235,5 +234,16 @@ class ProjectController extends Controller
         } else {
             return redirect()->back()->withInput()->withErrors('保存失败！');
         }
+    }
+
+    //创建GUID
+    function create_uuid($prefix = ""){    //可以指定前缀
+        $str = md5(uniqid(mt_rand(), true));
+        $uuid  = substr($str,0,8) ;
+        $uuid .= substr($str,8,4) ;
+        $uuid .= substr($str,12,4);
+        $uuid .= substr($str,16,4);
+        $uuid .= substr($str,20,12);
+        return $prefix . $uuid;
     }
 }
