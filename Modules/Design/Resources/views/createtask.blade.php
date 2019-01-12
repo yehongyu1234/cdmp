@@ -59,13 +59,14 @@
                                     @foreach($project as $p)
                                         <option value="{{$p->id}}">{{$p->name}}</option>
                                     @endforeach
+                                    <option value="0"><b style="font-weight: bold;color: #17e500;">日常工作项目</b></option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group col-md-12">
                             <label class="col-sm-3 control-label">预计完成</label>
                             <div class="input-append date form_datetime col-md-9">
-                                <input name="pro_complatetime" class="form-control" size="16" type="text" readonly>
+                                <input name="pro_complatetime" class="form-control" size="16" type="text" value="{{date('Y-m-d H:i')}}" readonly>
                                 <span class="add-on"><i class="icon-th"></i></span>
                             </div>
                         </div>

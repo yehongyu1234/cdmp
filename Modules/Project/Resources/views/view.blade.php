@@ -8,7 +8,9 @@
         {{$field->name}}信息
     </h1>
         <a href="{{url('project/'.$field->id.'/edit')}}" class="btn btn-success">编辑</a>
+    <a onclick="alert('还在开发中，采用的glTF技术！')" class="btn btn-warning">查看模型</a>
         <a href="{{url('project/'.$field->id.'/creatask')}}" class="btn btn-info pull-right">创建任务</a>
+
 @stop
 @section('content')
     <div class="page-content container-fluid">
@@ -113,9 +115,14 @@
                                 <td>{{$tf->id}}</td>
                                 <td>{{$tf->taskname}}</td>
                                 <td>{{$tf->body}}</td>
-                                <td>{{$tf->personid}}</td>
+                                <td>{{\App\User::where("id",$tf->personid)->first()->name}}</td>
                                 <td>{{$tf->pro_complatetime}}</td>
-                                <td>{{$tf->status}}</td>
+                                    @if($tf->status==1)
+                                <td><button class="btn btm-xs btn-success">已完成</button></td>
+                                    @else
+                                    <td><button class="btn btm-xs btn-warning">未完成</button></td>
+                                    @endif
+
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -146,10 +153,9 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>任务名称</th>
-                                    <th>内容</th>
-                                    <th>执行人</th>
-                                    <th>预计完成时间</th>
+                                    <th>设计人员名称</th>
+                                    <th>职位</th>
+                                    <th>联系方式</th>
                                     <th>状态</th>
                                 </tr>
                                 </thead>
@@ -160,11 +166,11 @@
                                         <td>{{$tf->taskname}}</td>
                                         <td>{{$tf->body}}</td>
                                         <td>{{$tf->personid}}</td>
-                                        <td>{{$tf->pro_complatetime}}</td>
                                         <td>{{$tf->status}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
+
                             </table>
                             {{ $taskfield->links() }}
                         </div>

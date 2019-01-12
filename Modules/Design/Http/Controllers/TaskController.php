@@ -37,13 +37,24 @@ class TaskController extends Controller
         for ($i=0;$i<count($jsondata);$i++){
             $personid=intval($jsondata[$i]['personid']);
             $projctid=intval($jsondata[$i]['projectid']);
-            $senderid=intval($jsondata[$i]['senterid']);
-            $personname=$this->getusername($personid);
-            $projectname=$this->getprojectname($projctid);
-            $sendername=$this->getusername($senderid);
-            $jsondata[$i]['personid']=$personname;
-            $jsondata[$i]['projectid']=$projectname;
-            $jsondata[$i]['senterid']=$sendername;
+            //这里加入等于0的判断是应该在日常工作中并不是所有的都是项目工作
+            if($projctid==0){
+                $senderid=intval($jsondata[$i]['senterid']);
+                $personname=$this->getusername($personid);
+                $projectname="日常工作";
+                $sendername=$this->getusername($senderid);
+                $jsondata[$i]['personid']=$personname;
+                $jsondata[$i]['projectid']=$projectname;
+                $jsondata[$i]['senterid']=$sendername;
+            }else{
+                $senderid=intval($jsondata[$i]['senterid']);
+                $personname=$this->getusername($personid);
+                $projectname=$this->getprojectname($projctid);
+                $sendername=$this->getusername($senderid);
+                $jsondata[$i]['personid']=$personname;
+                $jsondata[$i]['projectid']=$projectname;
+                $jsondata[$i]['senterid']=$sendername;
+            }
         };
         //下面是用来转译的
         $data= DataTables::of($jsondata)->make();
