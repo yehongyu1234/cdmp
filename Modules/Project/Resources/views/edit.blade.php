@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-8">
-                                    <label class="col-sm-3 control-label">预计图纸总量（张）</label>
+                                    <label class="col-sm-3 control-label">预计产生工作量</label>
                                     <div class="col-sm-9">
                                         <input name="pro_drawings"  lay-verify="required" autocomplete="off" class="form-control" value=" {{$field->pro_drawings}}">
                                     </div>

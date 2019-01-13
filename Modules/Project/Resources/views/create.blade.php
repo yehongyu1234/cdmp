@@ -85,9 +85,9 @@
                             </div>
 
                             <div class="form-group col-md-12">
-                                <label class="col-sm-3 control-label">预计图纸总量（张）</label>
+                                <label class="col-sm-3 control-label">预计产生工作量</label>
                                 <div class="col-sm-9">
-                                    <input name="pro_drawings"  lay-verify="required" autocomplete="off" class="form-control" placeholder="根据构件数量">
+                                    <input name="pro_drawings"  lay-verify="required" autocomplete="off" class="form-control" placeholder="用于计算总设计工作量限制">
                                 </div>
                             </div>
                             <div class="form-group col-md-12">

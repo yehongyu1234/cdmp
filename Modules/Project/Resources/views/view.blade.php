@@ -95,6 +95,43 @@
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <div class="col-md-12">
+                            <h4 class="col-md-11">楼栋管理</h4>
+                        </div>
+                        <hr width="100%" color=#987cb9 SIZE=10 />
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>楼栋号</th>
+                                    <th>层数</th>
+                                    <th>结构类型</th>
+                                    <th>面积</th>
+                                    <th>相同于</th>
+                                    <th>层高</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($buildings as $bd)
+                                    <tr>
+                                        <td>{{$bd->id}}</td>
+                                        <td>{{$bd->buildingid}}</td>
+                                        <td>{{$bd->floors}}</td>
+                                        <td>{{$bd->structure_type}}</td>
+                                        <td>{{$bd->area}}</td>
+                                        <td>{{$bd->sameas}}</td>
+                                        <td>{{$bd->floor_height}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {{ $buildings->links() }}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-bordered">
+                    <div class="panel-body">
+                        <div class="col-md-12">
                             <h4 class="col-md-11">设计任务信息</h4>
                             <a href="{{url('tasks')}}" class="btn btn-sm btn-info pull-right col-md-1">任务管理</a>
                         </div>
@@ -133,6 +170,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <div class="col-md-12">

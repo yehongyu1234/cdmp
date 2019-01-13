@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
+use Modules\Project\Entities\Building;
 use Modules\Project\Entities\Project;
 use Modules\Design\Entities\Work;
 use Modules\Design\Entities\Task;
@@ -138,8 +139,11 @@ class ProjectController extends Controller
     public function show(Request $request,$project_id)
     {
         $field=Project::where('project_id',$project_id)->first();
-        $taskfield=Task::where('projectid',$project_id)->paginate(10);
-        return view('project::view',compact('field','taskfield'));
+        $proid=$field->id;
+        $taskfield=Task::where('projectid',$proid)->paginate(10);
+        $buildings=Building::where('project_id',$proid)->paginate(10);
+        //dd($taskfield);
+        return view('project::view',compact('field','taskfield','buildings'));
     }
     /**
      * Show the form for editing the specified resource.
