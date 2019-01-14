@@ -23,7 +23,7 @@
                                 <th>ID</th>
                                 <th>企业名称</th>
                                 <th>主营业务</th>
-                                <th>历史合作</th>
+                                <th>类型</th>
                                 <th>诚信评价</th>
                                 <th>联系人</th>
                                 <th>营销经理</th>
@@ -95,9 +95,12 @@
                         'data': 'name',
                         'name': 'name'
                     },
+                    {
+                        'data': 'body',
+                        'name': 'body'
+                    },
                     { data: 'type', name: 'type' },
                     { data: 'history', name: 'history' },
-                    { data: 'zhizhao', name: 'zhizhao' },
                     { data: 'connectorid', name: 'connectorid' },
                     { data: 'marketmanager_id', name: 'marketmanager_id' },
                     {
@@ -106,7 +109,8 @@
                         "sDefaultContent" : '',
                         "sWidth" : "10%",
                         "render":function(data, type, full, meta){
-                            return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>';
+                            return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>'+
+                                '<button id="deleteOne" class="btn btn-sm btn-danger" data-id='+data+'>删除</button>';
                         }}
                 ],
                 "columnDefs" :

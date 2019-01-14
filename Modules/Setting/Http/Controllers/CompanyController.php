@@ -26,11 +26,34 @@ class CompanyController extends Controller
     }
     #获取ajax列表
     public function getlist() {
-        $field = Company::select(['id', 'name', 'location', 'zhizhao','connectorid','com_code','type','location','history','marketmanager_id']);
-        $data= DataTables::of($field)->make();
+        $field = Company::select(['id', 'name','body', 'location', 'zhizhao','connectorid','com_code','type','location','history','marketmanager_id'])->get();
+        $newdata=json_encode($field);
+        $jsondata=json_decode($newdata,true);
+        for ($i=0;$i<count($jsondata);$i++){
+            $personid=intval($jsondata[$i]['marketmanager_id']);
+            $projctid=intval($jsondata[$i]['connectorid']);
+            $personname=$this->getusername($personid);
+            $projectname=$this->getCustomename($projctid);
+            $jsondata[$i]['marketmanager_id']=$personname;
+            $jsondata[$i]['connectorid']=$projectname;
+        };
+        $data= DataTables::of($jsondata)->make();
         return $data;
     }
-
+    /**
+     * 检索客户的函数
+     */
+    public function getCustomename($id){
+        $username=Custome::where('id',$id)->first();
+        return $username->name;
+    }
+    /**
+     * 检索用户名的函数
+     */
+    public function getusername($id){
+        $username=User::where('id',$id)->first();
+        return $username->name;
+    }
     /**
      * Show the form for creating a new resource.
      * @return Response

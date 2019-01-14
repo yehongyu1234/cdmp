@@ -22,7 +22,6 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-
         //$field=Task::all();
         //$users=$request->user()->id;
         //dd($users);

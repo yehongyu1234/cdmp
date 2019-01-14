@@ -101,6 +101,12 @@ class ProjectController extends Controller
         $project->pro_drawings= $request->get('pro_drawings');
         $project->harder= $request->get('harder');
         $project->type= $request->get('type');
+        $project->market_manager= $request->get('market_manager');
+        $project->construction_company_id= $request->get('construction_company_id');
+        $project->construction_connector= $request->get('construction_connector');
+        $project->design_company_id= $request->get('design_company_id');
+        $project->building_company_id= $request->get('building_company_id');
+        $project->vis_company_id= $request->get('vis_company_id');
 
         //上传文件
         $fileCharater=$request->file('source');

@@ -71,6 +71,17 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">营销经理</label>
+                                <div class="col-sm-9">
+                                    <select name="market_manager" class="form-control">
+                                        <option value="">请选择</option>
+                                        @foreach($user as $u)
+                                            <option value="{{$u->id}}">{{$u->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">状态</label>
                                 <div class="col-sm-9">
                                     <label class="radio-inline">
@@ -90,6 +101,11 @@
                                     <input name="pro_drawings"  lay-verify="required" autocomplete="off" class="form-control" placeholder="用于计算总设计工作量限制">
                                 </div>
                             </div>
+
+
+                            </div>
+                        <div class="col-md-6">
+
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">主要设计类型</label>
                                 <div class="col-sm-9">
@@ -102,11 +118,68 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">建设方</label>
+                                <div class="col-sm-9">
+                                    <select name="construction_company_id" class="form-control">
+                                        <option value="">请选择</option>
+                                        @foreach($designtype as $d)
+                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">建设方联系人</label>
+                                <div class="col-sm-9">
+                                    <select name="construction_connector" class="form-control">
+                                        <option value="">请选择</option>
+                                        @foreach($designtype as $d)
+                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">设计单位</label>
+                                <div class="col-sm-9">
+                                    <select name="design_company_id" class="form-control">
+                                        <option value="">请选择</option>
+                                        @foreach($designtype as $d)
+                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">施工单位</label>
+                                <div class="col-sm-9">
+                                    <select name="building_company_id" class="form-control">
+                                        <option value="">请选择</option>
+                                        @foreach($designtype as $d)
+                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">监理单位</label>
+                                <div class="col-sm-9">
+                                    <select name="vis_company_id" class="form-control">
+                                        <option value="">请选择</option>
+                                        @foreach($designtype as $d)
+                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">预计难度</label>
                                 <div class="col-sm-9">
                                     <input name="harder"  lay-verify="required" autocomplete="off" class="form-control" placeholder="预计难度1~5,1难度最低，5难度最高">
                                 </div>
                             </div>
+
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">预计完成</label>
                                 <div class="input-append date form_datetime col-md-9">
@@ -114,12 +187,11 @@
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
-
-                            </div>
-                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-12">
                             <label class="col-sm-12 control-label">项目地点(选取位置后点击位置确定后再提交！)</label>
                             <div class="col-sm-12">
-                                <div  style="height: 500px" id="map-container"></div>
+                                <div  style="height: 400px" id="map-container"></div>
                                 <input id="location" name="location" type="text" hidden/>
                             </div>
                         </div>

@@ -53,6 +53,28 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">组织机构代码</label>
+                                <div class="col-sm-9">
+                                    <input name="com_code"  autocomplete="off" class="form-control" placeholder="输入组织机构代码">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">类型</label>
+                                <div class="col-sm-9">
+                                    <select name="type" class="form-control">
+                                        <option value="">请选择</option>
+                                        <option value="政府">政府</option>
+                                        <option value="施工单位">施工单位</option>
+                                        <option value="设计院">设计院</option>
+                                        <option value="建设单位">建设单位</option>
+                                        <option value="构件供应商">构件供应商</option>
+                                        <option value="监理单位">监理单位</option>
+                                        <option value="材料供应商">材料供应商</option>
+                                        <option value="劳务分包">劳务分包</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">营销经理</label>
                                 <div class="col-sm-9">
                                     <select name="marketmanager_id" class="form-control">
