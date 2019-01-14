@@ -106,8 +106,7 @@
                         "sDefaultContent" : '',
                         "sWidth" : "10%",
                         "render":function(data, type, full, meta){
-                            return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>' +
-                                '<button id="deleteOne" class="btn btn-sm btn-danger" data-id='+data+'>删除</button>';
+                            return	data='<button id="editOne" class="btn btn-sm btn-primary" data-id='+data+'>编辑</button>';
                         }}
                 ],
                 "columnDefs" :
@@ -147,7 +146,7 @@
              * 单行编辑
              */
             function editOne(data) {
-                self.location='project/'+data+'/edit';
+                self.location='company/'+data+'/edit';
             }
             $(document).delegate('#editOne','click',function() {
                 var id=$(this).data("id");
@@ -169,7 +168,7 @@
                 var id=$(this).val();
                 $('#deleteOneModal').modal('hide');
                 $.ajax({
-                    url:'project/'+id+'/destroy',
+                    url:'company/'+id+'/destroy',
                     async:true,
                     type:"GET",
                     dataType:"json",

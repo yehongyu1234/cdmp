@@ -25,7 +25,6 @@
                     <thead>
                     <tr>
                         <th><input type="checkbox" name="allChecked" /></th>
-                        <th>ID</th>
                         <th>项目编号</th>
                         <th>项目名称</th>
                         <th>状态</th>
@@ -140,8 +139,7 @@
                     "sDefaultContent" : "",
                     "sWidth" : "2%"
                 },
-                { data: 'id', name: 'id'
-                },
+
                 { data: 'project_id', name: 'project_id',
                     'render':function(id){
                         return '<a href="project/'+id+'/show">'+id+'</a>';

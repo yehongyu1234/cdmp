@@ -20,7 +20,7 @@
                     </div>
                 @endif
                 <div class="panel-body">
-                    <form action="{{ url('project') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('company') }}" method="POST" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         <div class="col-md-6">
                             <div class="form-group col-md-12">
@@ -38,10 +38,10 @@
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">联系人</label>
                                 <div class="col-sm-9">
-                                    <select name="manager" class="form-control">
+                                    <select name="connectorid" class="form-control">
                                         <option value="">请选择</option>
                                         @foreach($connect as $u)
-                                        <option value="{{$u->name}}">{{$u->name}}</option>
+                                        <option value="{{$u->id}}">{{$u->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -49,16 +49,16 @@
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">诚信评价</label>
                                 <div class="col-sm-9">
-                                    <input name="pro_drawings"  autocomplete="off" class="form-control" placeholder="输入级别">
+                                    <input name="history"  autocomplete="off" class="form-control" placeholder="输入级别">
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">营销经理</label>
                                 <div class="col-sm-9">
-                                    <select name="type" class="form-control">
+                                    <select name="marketmanager_id" class="form-control">
                                         <option value="">请选择</option>
                                         @foreach($user as $d)
-                                            <option value="{{$d->name}}">{{$d->name}}</option>
+                                            <option value="{{$d->id}}">{{$d->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

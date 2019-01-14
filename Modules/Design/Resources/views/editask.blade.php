@@ -35,6 +35,7 @@
                                     <textarea name="body" placeholder="请输入内容" class="form-control" required="required">{{$field->body}}</textarea>
                                 </div>
                             </div>
+                            @if(Auth::user()->role_id==1)
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">状态</label>
                                 <div class="col-sm-9">
@@ -49,6 +50,7 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">执行人</label>
                                 <div class="col-sm-9">
@@ -67,7 +69,7 @@
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
-
+                            @endif
                                 <div class="form-group col-md-8">
                                     <div class="col-sm-12 col-sm-offset-3">
                                         <button class="btn btn-primary">提交</button>

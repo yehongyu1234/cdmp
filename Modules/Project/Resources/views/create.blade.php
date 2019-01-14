@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="col-sm-3 control-label">项目经理(A)</label>
+                                <label class="col-sm-3 control-label">项目负责人</label>
                                 <div class="col-sm-9">
                                     <select name="manager" class="form-control">
                                         <option value="">请选择</option>
@@ -110,7 +110,7 @@
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">预计完成</label>
                                 <div class="input-append date form_datetime col-md-9">
-                                    <input name="complet_time" class="form-control" size="16" type="text" readonly>
+                                    <input name="complet_time" class="form-control" size="16" type="text" value="{{date('Y-m-d h:i')}}" readonly>
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>
