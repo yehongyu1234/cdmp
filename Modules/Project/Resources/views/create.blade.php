@@ -122,8 +122,8 @@
                                 <div class="col-sm-9">
                                     <select name="construction_company_id" class="form-control">
                                         <option value="">请选择</option>
-                                        @foreach($designtype as $d)
-                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @foreach($company as $d)
+                                            <option value="{{$d->id}}">{{$d->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -133,8 +133,8 @@
                                 <div class="col-sm-9">
                                     <select name="construction_connector" class="form-control">
                                         <option value="">请选择</option>
-                                        @foreach($designtype as $d)
-                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @foreach($custom as $d)
+                                            <option value="{{$d->id}}">{{$d->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -144,8 +144,8 @@
                                 <div class="col-sm-9">
                                     <select name="design_company_id" class="form-control">
                                         <option value="">请选择</option>
-                                        @foreach($designtype as $d)
-                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @foreach($company as $d)
+                                            <option value="{{$d->id}}">{{$d->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -155,8 +155,8 @@
                                 <div class="col-sm-9">
                                     <select name="building_company_id" class="form-control">
                                         <option value="">请选择</option>
-                                        @foreach($designtype as $d)
-                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @foreach($company as $d)
+                                            <option value="{{$d->id}}">{{$d->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -166,8 +166,8 @@
                                 <div class="col-sm-9">
                                     <select name="vis_company_id" class="form-control">
                                         <option value="">请选择</option>
-                                        @foreach($designtype as $d)
-                                            <option value="{{$d->workbody}}">{{$d->workbody}}</option>
+                                        @foreach($company as $d)
+                                            <option value="{{$d->id}}">{{$d->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

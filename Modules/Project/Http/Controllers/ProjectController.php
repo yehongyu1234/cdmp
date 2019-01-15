@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Modules\Project\Entities\Building;
+use Modules\Project\Entities\Custome;
 use Modules\Project\Entities\Project;
 use Modules\Design\Entities\Work;
 use Modules\Design\Entities\Task;
@@ -49,7 +50,8 @@ class ProjectController extends Controller
         $user=User::where("name","<>","Admin")->get();
         $company=Company::all();
         $designtype=Work::all();
-        return view('project::create',compact('user','designtype','company'));
+        $custom=Custome::all();
+        return view('project::create',compact('user','designtype','company','custom'));
     }
     /**
      * Store a newly created resource in storage.
