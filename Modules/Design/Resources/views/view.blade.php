@@ -48,9 +48,11 @@
                                 <label class="col-sm-4 control-label">状态</label>
                                 <div class="col-sm-8">
                                     @if($field->status==1)
-                                        已完成
+                                        在审核
+                                        @elseif($field->status==0)
+                                        未完成
                                         @else
-                                    未完成
+                                    已完成
                                         @endif
                                 </div>
                             </div>
@@ -96,12 +98,41 @@
                         <div class="col-md-4"><h4>审阅信息</h4></div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <div class="col-md-12">
-                            <div class="form-group col-md-12">
-                                <label class="col-sm-4 control-label">任务完成后审阅信息显示</label>
-                                <div class="col-sm-8">
-                                    <strong>显示审阅信息通过列表显示</strong>
-                                </div>
-                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>审核状态</th>
+                                    <th>审核人</th>
+                                    <th>评语</th>
+                                    <th>当前审核次数</th>
+                                    <th>评分</th>
+                                    <th>是否需要再次审核</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($tcheck as $bd)
+                                    <tr>
+                                        <td>{{$bd->id}}</td>
+                                        @if($bd->status==0)
+                                        <td>未审核</td>
+                                        @else
+                                            <td>审核完成</td>
+                                        @endif
+                                        <td>{{\App\User::where('id',$bd->checker)->first()->name}}</td>
+                                        <td>{{$bd->body}}</td>
+                                        <td>{{$bd->times}}</td>
+                                        <td>{{$bd->numbers}}</td>
+                                        @if($bd->another==0)
+                                            <td>否</td>
+                                        @else
+                                            <td>需要</td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {{ $tcheck->links() }}
                         </div>
                     </div>
                 </div>

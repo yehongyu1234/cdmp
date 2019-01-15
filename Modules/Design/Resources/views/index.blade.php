@@ -167,6 +167,8 @@
                         "render":function(data){
                             if(data==0){
                                 return '<button id="changestatus" class="btn btn-sm btn-warning" data-id='+data+'>未完成</button>';
+                            }else if(data==1){
+                                return '<button class="btn btn-sm btn-info">在审核</button>';
                             }else{
                                 return '<button class="btn btn-sm btn-success">已完成</button>';
                             }

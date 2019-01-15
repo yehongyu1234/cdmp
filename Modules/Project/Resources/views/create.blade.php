@@ -107,7 +107,7 @@
                         <div class="col-md-6">
 
                             <div class="form-group col-md-12">
-                                <label class="col-sm-3 control-label">主要设计类型</label>
+                                <label class="col-sm-3 control-label">类型</label>
                                 <div class="col-sm-9">
                                     <select name="type" class="form-control">
                                         <option value="">请选择</option>
@@ -183,7 +183,7 @@
                             <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">预计完成</label>
                                 <div class="input-append date form_datetime col-md-9">
-                                    <input name="complet_time" class="form-control" size="16" type="text" value="{{date('Y-m-d h:i')}}" readonly>
+                                    <input name="complet_time" class="form-control" size="16" type="text" value="{{date('Y-m-d H:i')}}" readonly>
                                     <span class="add-on"><i class="icon-th"></i></span>
                                 </div>
                             </div>

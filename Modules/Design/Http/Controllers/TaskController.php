@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Modules\Design\Entities\Task;
+use Modules\Design\Entities\TCheck;
 use Modules\Design\Entities\Work;
 use Modules\Project\Entities\Project;
 use function PHPSTORM_META\type;
@@ -112,11 +113,12 @@ class TaskController extends Controller
      */
     public function show(Request $request,$task_id)
     {
+        $tcheck=TCheck::where('taskid',$task_id)->paginate(10);
         $field=Task::where('id',$task_id)->first();
         $projectname=Project::where('id',$field->projectid)->first();
         $username=User::where('id',$field->personid)->first();
         $sendername=User::where('id',$field->senterid)->first();
-        return view('design::view',compact('field','projectname','username','sendername'));
+        return view('design::view',compact('field','projectname','username','sendername','tcheck'));
     }
 
     /**
@@ -171,8 +173,21 @@ class TaskController extends Controller
      */
     public function status(Request $request){
         $id= $request->get('id');
+        $taskdata=Task::where('id',$id)->first();
+        //dd($taskdata);
         $re = Task::where('id',$id)->update(["status"=>1]);
-        if($re){
+
+        //这里创建一个审查任务
+        $check=New TCheck;
+
+        $check->taskid=$id;
+        $check->status=0;//0为未审核状态，1为审核状态
+        $check->checker=$taskdata->senterid;
+        $check->body=null;
+        $check->times=1;
+        $check->numbers=0;
+        $check->another=0;
+        if($check->save() and $re){
             return redirect('task');
         }else{
             return back()->with('errors','更新失败！');
