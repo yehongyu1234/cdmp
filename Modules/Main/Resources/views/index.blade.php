@@ -7,8 +7,8 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <style>
-       video{max-height: 400px;
-           width: 100%;}
+       video{max-height: 300px;
+           width: 500px;}
         body{background: #050d1d
         }
     </style>
@@ -18,10 +18,10 @@
             <div class="panel panel-bordered">
                 <div class="panel-body">
                     <div class="col-md-12">
-                        <h3>项目分布</h3>
-                    <div class="col-md-8" style="height: 300px;width:400px" id="map-container">
+                        <h5>中民筑友项目分布</h5>
+                    <div class="col-md-8" style="height: 500px;width:400px" id="map-container">
                     </div>
-                        <div class="col-md-4">项目监控显示
+                        <div class="col-md-4">
                             <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
                                 <source src="rtmp://rtmp.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd" type="" />
                                 <source src="http://hls.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd.m3u8" type="application/x-mpegURL" />
@@ -74,5 +74,5 @@
     function myrefresh(){
     window.location.reload();
     }
-    setTimeout('myrefresh()',10000); //指定10秒刷新一次
+    setTimeout('myrefresh()',1000000); //指定10秒刷新一次
 </script>
