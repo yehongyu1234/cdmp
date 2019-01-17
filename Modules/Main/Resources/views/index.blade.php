@@ -7,8 +7,8 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <style>
-       video{max-height: 300px;
-           width: 500px;}
+       video{height: 300px;
+           width: 400px;}
         body{background: #050d1d
         }
     </style>
@@ -18,15 +18,16 @@
             <div class="panel panel-bordered">
                 <div class="panel-body">
                     <div class="col-md-12">
-                        <h5>中民筑友项目分布</h5>
-                    <div class="col-md-8" style="height: 500px;width:400px" id="map-container">
-                    </div>
-                        <div class="col-md-4">
-                            <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
-                                <source src="rtmp://rtmp.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd" type="" />
-                                <source src="http://hls.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd.m3u8" type="application/x-mpegURL" />
-                            </video>
+                        <div class="col-md-12">
+                            <div class="col-md-4"><h5>中民筑友项目分布</h5></div> <div class="col-md-8"><h5>项目信息</h5></div></div>
+                        <div class="col-md-8" style="height: 400px;width:300px" id="map-container">
                         </div>
+                        <div class="col-md-4" style="border: #0c199c;height: 100px">项目总数：10</div>
+                        <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
+                            <source src="rtmp://rtmp.open.ys7.com/openlive/1d598db1b29042749447a2324b89a5ae" type="" />
+                            <source src="http://hls.open.ys7.com/openlive/1d598db1b29042749447a2324b89a5ae.m3u8" type="application/x-mpegURL" />
+                        </video>
+
                     </div>
                 </div>
             </div>

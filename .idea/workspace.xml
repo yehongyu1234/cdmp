@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2685b101-c1d9-4c87-9745-27cf525fd60b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Modules/Main/Resources/views/index.blade.php" afterPath="$PROJECT_DIR$/Modules/Main/Resources/views/index.blade.php" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
@@ -18,19 +17,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Modules/Main/Resources/views/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tcindex.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tcindex.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modules/Design/Resources/views/tcindex.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1408">
@@ -266,7 +253,7 @@
       <workItem from="1547474498719" duration="4005000" />
       <workItem from="1547525666093" duration="439000" />
       <workItem from="1547563004710" duration="5015000" />
-      <workItem from="1547598823028" duration="10523000" />
+      <workItem from="1547598823028" duration="11867000" />
     </task>
     <task id="LOCAL-00001" summary="update project">
       <created>1546008688745</created>
@@ -468,7 +455,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183371000" />
+    <option name="totallyTimeSpent" value="184715000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1000,28 +987,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Design/Resources/views/tcindex.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1408">
-          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding>
-            <marker date="1547719314063" expanded="true" signature="9:26" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="37:42" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="83:97" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="153:190" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="252:277" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="348:380" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="409:422" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="502:526" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="783:792" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="14022:14047" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="14119:14147" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="14203:14246" ph="..." />
-            <marker date="1547719314063" expanded="true" signature="14318:14370" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Setting/Resources/views/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
@@ -1074,10 +1039,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Main/Resources/views/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        <state relative-caret-position="352">
+          <caret line="19" column="32" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Design/Resources/views/tcindex.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1408">
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding>
+            <marker date="1547719314063" expanded="true" signature="9:26" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="37:42" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="83:97" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="153:190" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="252:277" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="348:380" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="409:422" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="502:526" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="783:792" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="14022:14047" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="14119:14147" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="14203:14246" ph="..." />
+            <marker date="1547719314063" expanded="true" signature="14318:14370" ph="..." />
           </folding>
         </state>
       </provider>
