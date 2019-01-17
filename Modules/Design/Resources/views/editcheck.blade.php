@@ -13,7 +13,6 @@
     <div class="page-content container-fluid">
         <div class="row">
             <div class="col-md-12">
-
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <form action="{{ url('tchecks/'.$field->id) }}" method="POST" enctype="multipart/form-data">

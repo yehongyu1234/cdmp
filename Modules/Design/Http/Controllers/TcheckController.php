@@ -26,10 +26,10 @@ class TcheckController extends Controller
     public function getlist(Request $request) {
         //dd($request->user()->id); //这里需要加入数据筛选同时设置权限
         $field = Tcheck::select(['id','taskid', 'status', 'checker', 'body','times','numbers','another','created_at','updated_at'])->get();
+        dd($field);
         $newdata=json_encode($field);
         $jsondata=json_decode($newdata,true);
         for ($i=0;$i<count($jsondata);$i++){
-
             $checker=intval($jsondata[$i]['checker']);
             $taskid=intval($jsondata[$i]['taskid']);
             $checkername=$this->getusername($checker);
@@ -42,8 +42,8 @@ class TcheckController extends Controller
         return $data;
     }
     /**
- * 检索用户名的函数
- */
+     * 检索用户名的函数
+     */
     public function getusername($id){
         $username=User::where('id',$id)->first();
         return $username->name;
@@ -53,10 +53,8 @@ class TcheckController extends Controller
      */
     public function gettaskname($id){
         $taskname=Task::where('id',$id)->first();
-        //dd($projectname);
         return $taskname->body;
     }
-
     /**
      * Show the form for creating a new resource.
      * @return Response
@@ -65,7 +63,6 @@ class TcheckController extends Controller
     {
         return view('design::create');
     }
-
     /**
      * Store a newly created resource in storage.
      * @param  Request $request
@@ -74,7 +71,6 @@ class TcheckController extends Controller
     public function store(Request $request)
     {
     }
-
     /**
      * Show the specified resource.
      * @return Response
@@ -83,7 +79,6 @@ class TcheckController extends Controller
     {
         return view('design::show');
     }
-
     /**
      * Show the form for editing the specified resource.
      * @return Response
@@ -95,7 +90,6 @@ class TcheckController extends Controller
         $user=User::where("name","<>","Admin")->get();
         return view('design::editcheck',compact('field','user','project'));
     }
-
     /**
      * Update the specified resource in storage.
      * @param  Request $request
@@ -107,7 +101,6 @@ class TcheckController extends Controller
         $tcheckdata = Tcheck::where('id',$task_id)->first();
         $re = Tcheck::where('id',$task_id)->update($rawinput);
         $realtaskid=$tcheckdata->taskid;
-
         //改变任务状态
         $changetaskstatus=Task::where('id',$realtaskid)->update(['status'=>2]);
         //dd($changetaskstatus);
@@ -116,9 +109,7 @@ class TcheckController extends Controller
         }else{
             return back()->with('errors','更新失败！');
         }
-
     }
-
     /**
      * Remove the specified resource from storage.
      * @return Response
