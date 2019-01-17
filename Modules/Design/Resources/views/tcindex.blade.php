@@ -10,7 +10,6 @@
         <i class=""></i>
         任务管理
         @if(Auth::user()->role_id==1)
-            <button class="btn btn-success" id="addBtn"><i class="voyager-plus">创建</i></button>&nbsp;&nbsp;&nbsp;
             <button class="btn btn-danger" id="deleteAll"><i class="voyager-trash">删除选中</i></button>
         @endif
     </h1>
@@ -87,7 +86,6 @@
                         "mData" : "id",
                         "sDefaultContent" : "",
                         "sWidth" : "2%"
-
                     },
                     { data: 'id',
                         name: 'id' ,
@@ -99,24 +97,24 @@
                     {
                         'data':'status',
                         'name':'status',
-                        "render":function(data){
-                            if(data==0){
-                                return '<button id="changestatus" class="btn btn-sm btn-warning" data-id='+data+'>未完成</button>';
-                            }else if(data==1){
-                                return '<button class="btn btn-sm btn-info">在审核</button>';
-                            }else{
-                                return '<button class="btn btn-sm btn-success">已完成</button>';
+                        "render":function(data) {
+                            if (data == 0) {
+                                return '<button class="btn btn-sm btn-warning" data-id=' + data + '>未审核</button>';
+                            } else {
+                                return '<button class="btn btn-sm btn-success">审核完成</button>';
                             }
-                        },
+                        }
                     },
                     { 'data': 'checker',
                         'name': 'checker'
                     },
                     { data: 'body', name: 'body' },
-
                     { data: 'times', name: 'times' },
                     { data: 'numbers',
                         name: 'numbers'
+                    },
+                    { data: 'another',
+                        name: 'another'
                     },
                     {
                         "mData" : "id",
@@ -136,7 +134,6 @@
                             return '<input type="checkbox" value="'+ data + '" name="id"/>';
                         }
                     }],
-
                 "language" : {
                     "lengthMenu": "每页 _MENU_ 条记录",
                     "processing": "正在加载数据...",
@@ -153,48 +150,17 @@
                     }
                 }
             });
-
             /**
              * 单行编辑
              */
             function editOne(data) {
-                self.location='task/'+data+'/edit';
+                self.location='tcheck/'+data+'/edit';
             }
             $(document).delegate('#editOne','click',function() {
                 var id=$(this).data("id");
                 editOne(id);
             });
 
-
-            /**
-             * 点击修改完成状态事件响应
-             */
-            $(document).delegate('#changestatus','click',function(){
-                var data = table.row( $(this).parents('tr') ).data();
-                document.getElementById('showdata').innerHTML="确定要修改完成状态？";
-                document.getElementById('modalfooter').innerHTML="<button type='button' class='btn btn-primary' id='statuschange'>确认</button>";
-                var id=data['id'];
-                $("#statuschange").val(id);
-                $("#deleteOneModal").modal('show');
-            } );
-            /**
-             * 点击修改完成状态
-             */
-            $(document).delegate('#statuschange','click',function(){
-                var id=$(this).val();
-                $('#deleteOneModal').modal('hide');
-                $.ajax({
-                    url:'task/status',
-                    async:true,
-                    type:"POST",
-                    data:{'id':id},
-                    dataType:"json",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-               window.location.reload();
-            });
             /**
              * 多选选中和取消选中,同时选中第一个单元格单选框,并联动全选单选框
              */
@@ -267,37 +233,6 @@
                     }
                 }
             }
-            //导出csv格式表格
-            $(document).delegate('#expCsv','click',function() {
-                //alert('可以执行！');
-                $("#exp").attr("src","/project/export.do?t=" + new Date().getTime());
-            });
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $(document).delegate('#addBtn','click',function() {
-                self.location='task/create';
-            });
-            /**
-             * 点击增加内容按钮
-             */
-            $(document).delegate('#taskaddbutton','click',function(){
-                $('#myModal-add-info').modal('hide');
-                $.ajax({
-                    url: "task",
-                    method: "POST",
-                    dataType: "json",
-                    success: function success(data) {
-                        if (data.error != 0) {
-                            alert(data.msg);
-                            return;
-                        }
-                    }
-                });
-                //window.location.reload();
-            });
             /**
              * 未选择提示
              */

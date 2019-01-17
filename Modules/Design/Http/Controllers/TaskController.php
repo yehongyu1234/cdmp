@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Modules\Design\Entities\Task;
-use Modules\Design\Entities\TCheck;
+use Modules\Design\Entities\Tcheck;
 use Modules\Design\Entities\Work;
 use Modules\Project\Entities\Project;
 use function PHPSTORM_META\type;
@@ -113,7 +113,7 @@ class TaskController extends Controller
      */
     public function show(Request $request,$task_id)
     {
-        $tcheck=TCheck::where('taskid',$task_id)->paginate(10);
+        $tcheck=Tcheck::where('taskid',$task_id)->paginate(10);
         $field=Task::where('id',$task_id)->first();
         $projectname=Project::where('id',$field->projectid)->first();
         $username=User::where('id',$field->personid)->first();
@@ -178,7 +178,7 @@ class TaskController extends Controller
         $re = Task::where('id',$id)->update(["status"=>1]);
 
         //这里创建一个审查任务
-        $check=New TCheck;
+        $check=New Tcheck;
 
         $check->taskid=$id;
         $check->status=0;//0为未审核状态，1为审核状态

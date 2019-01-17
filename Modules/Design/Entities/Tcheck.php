@@ -4,7 +4,7 @@ namespace Modules\Design\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TCheck extends Model
+class Tcheck extends Model
 {
     protected $fillable = [];
 }

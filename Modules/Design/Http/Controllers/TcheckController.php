@@ -2,10 +2,14 @@
 
 namespace Modules\Design\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Design\Entities\TCheck;
+use Illuminate\Support\Facades\Input;
+use Modules\Design\Entities\Task;
+use Modules\Design\Entities\Tcheck;
+use Modules\Project\Entities\Project;
 use Yajra\DataTables\DataTables;
 
 class TcheckController extends Controller
@@ -21,13 +25,36 @@ class TcheckController extends Controller
     #获取ajax列表
     public function getlist(Request $request) {
         //dd($request->user()->id); //这里需要加入数据筛选同时设置权限
-        $field = TCheck::select(['id','taskid', 'status', 'checker', 'body','times','numbers','another','created_at','updated_at'])->get();
+        $field = Tcheck::select(['id','taskid', 'status', 'checker', 'body','times','numbers','another','created_at','updated_at'])->get();
         $newdata=json_encode($field);
         $jsondata=json_decode($newdata,true);
+        for ($i=0;$i<count($jsondata);$i++){
 
+            $checker=intval($jsondata[$i]['checker']);
+            $taskid=intval($jsondata[$i]['taskid']);
+            $checkername=$this->getusername($checker);
+            $taskname=$this->gettaskname($taskid);
+            $jsondata[$i]['checker']=$checkername;
+            $jsondata[$i]['taskid']=$taskname;
+        };
         //下面是用来转译的
-        $data= DataTables::of($field)->make();
+        $data= DataTables::of($jsondata)->make();
         return $data;
+    }
+    /**
+ * 检索用户名的函数
+ */
+    public function getusername($id){
+        $username=User::where('id',$id)->first();
+        return $username->name;
+    }
+    /**
+     * 检索项目名称函数
+     */
+    public function gettaskname($id){
+        $taskname=Task::where('id',$id)->first();
+        //dd($projectname);
+        return $taskname->body;
     }
 
     /**
@@ -61,9 +88,12 @@ class TcheckController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit(Request $request,$task_id)
     {
-        return view('design::edit');
+        $field=Tcheck::find($task_id);
+        $project=Project::all();
+        $user=User::where("name","<>","Admin")->get();
+        return view('design::editcheck',compact('field','user','project'));
     }
 
     /**
@@ -71,8 +101,22 @@ class TcheckController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$task_id)
     {
+        $rawinput = Input::except('_token','_method');
+        $tcheckdata = Tcheck::where('id',$task_id)->first();
+        $re = Tcheck::where('id',$task_id)->update($rawinput);
+        $realtaskid=$tcheckdata->taskid;
+
+        //改变任务状态
+        $changetaskstatus=Task::where('id',$realtaskid)->update(['status'=>2]);
+        //dd($changetaskstatus);
+        if($changetaskstatus and $re){
+            return redirect('tcheck');
+        }else{
+            return back()->with('errors','更新失败！');
+        }
+
     }
 
     /**

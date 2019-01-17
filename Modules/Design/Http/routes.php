@@ -17,7 +17,5 @@ Route::group(['middleware' => 'web', 'prefix' => 'tcheck', 'namespace' => 'Modul
     Route::any('{task_id}/edit','TcheckController@edit');
     Route::any('{task_id}/destroy','TcheckController@destroy');
     Route::any('getlist','TcheckController@getlist');
-    Route::any('status','TcheckController@status');
-    Route::any('personget','TcheckController@personget');
 });
 
