@@ -10,3 +10,14 @@ Route::group(['middleware' => 'web', 'prefix' => 'task', 'namespace' => 'Modules
     Route::any('status','TaskController@status');
     Route::any('personget','TaskController@personget');
 });
+Route::group(['middleware' => 'web', 'prefix' => 'tcheck', 'namespace' => 'Modules\Design\Http\Controllers'], function()
+{
+    Route::resource('', 'TcheckController');
+    Route::get('{task_id}/show','TcheckController@show');
+    Route::any('{task_id}/edit','TcheckController@edit');
+    Route::any('{task_id}/destroy','TcheckController@destroy');
+    Route::any('getlist','TcheckController@getlist');
+    Route::any('status','TcheckController@status');
+    Route::any('personget','TcheckController@personget');
+});
+

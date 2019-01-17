@@ -5,6 +5,8 @@ namespace Modules\Design\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Design\Entities\TCheck;
+use Yajra\DataTables\DataTables;
 
 class TcheckController extends Controller
 {
@@ -14,7 +16,18 @@ class TcheckController extends Controller
      */
     public function index()
     {
-        return view('design::index');
+        return view('design::tcindex');
+    }
+    #获取ajax列表
+    public function getlist(Request $request) {
+        //dd($request->user()->id); //这里需要加入数据筛选同时设置权限
+        $field = TCheck::select(['id','taskid', 'status', 'checker', 'body','times','numbers','another','created_at','updated_at'])->get();
+        $newdata=json_encode($field);
+        $jsondata=json_decode($newdata,true);
+
+        //下面是用来转译的
+        $data= DataTables::of($field)->make();
+        return $data;
     }
 
     /**

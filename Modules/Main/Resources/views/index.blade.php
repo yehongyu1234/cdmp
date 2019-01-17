@@ -1,6 +1,13 @@
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <style>
-       video{max-width: 800px;
+       video{max-height: 400px;
            width: 100%;}
         body{background: #050d1d
         }
@@ -12,19 +19,15 @@
                 <div class="panel-body">
                     <div class="col-md-12">
                         <h3>项目分布</h3>
-                    <div class="col-md-8" style="height: 400px;width:500px" id="map-container">
+                    <div class="col-md-8" style="height: 300px;width:400px" id="map-container">
                     </div>
-                    <div class="col-md-4"><h3>项目清单</h3>
-                    这里导入项目信息
+                        <div class="col-md-4">项目监控显示
+                            <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
+                                <source src="rtmp://rtmp.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd" type="" />
+                                <source src="http://hls.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd.m3u8" type="application/x-mpegURL" />
+                            </video>
+                        </div>
                     </div>
-                    </div>
-                    <div class="col-md-12">项目监控显示
-                        <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
-                            <source src="rtmp://rtmp.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd" type="" />
-                            <source src="http://hls.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd.m3u8" type="application/x-mpegURL" />
-                        </video>
-                    </div>
-                    <div class="col-md-12">项目任务</div>
                 </div>
             </div>
         </div>
@@ -71,5 +74,5 @@
     function myrefresh(){
     window.location.reload();
     }
-    setTimeout('myrefresh()',10000); //指定1秒刷新一次
+    setTimeout('myrefresh()',10000); //指定10秒刷新一次
 </script>
