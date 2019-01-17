@@ -32,15 +32,15 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="col-sm-3 control-label">状态</label>
+                                <label class="col-sm-3 control-label">审核意见</label>
                                 <div class="col-sm-9">
                                     <select name="status" class="form-control">
                                         @if($field->status==0)
-                                        <option value="0" selected>未完成</option>
-                                            <option value="1">已完成</option>
+                                        <option value="0" selected>未通过</option>
+                                            <option value="1">通过</option>
                                         @else
-                                        <option value="0" >未完成</option>
-                                        <option value="1" selected>已完成</option>
+                                        <option value="0" >未通过</option>
+                                        <option value="1" selected>通过</option>
                                         @endif
                                     </select>
                                 </div>

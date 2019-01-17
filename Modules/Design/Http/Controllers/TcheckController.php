@@ -26,7 +26,7 @@ class TcheckController extends Controller
     public function getlist(Request $request) {
         //dd($request->user()->id); //这里需要加入数据筛选同时设置权限
         $field = Tcheck::select(['id','taskid', 'status', 'checker', 'body','times','numbers','another','created_at','updated_at'])->get();
-        dd($field);
+        //dd($field);
         $newdata=json_encode($field);
         $jsondata=json_decode($newdata,true);
         for ($i=0;$i<count($jsondata);$i++){
@@ -101,9 +101,13 @@ class TcheckController extends Controller
         $tcheckdata = Tcheck::where('id',$task_id)->first();
         $re = Tcheck::where('id',$task_id)->update($rawinput);
         $realtaskid=$tcheckdata->taskid;
+        $fractionolddata=Task::where('id',$realtaskid)->first();
+
+        $fractiondata=($request->numbers/100)*$fractionolddata->fraction;
+        //dd($fractiondata);
         //改变任务状态
-        $changetaskstatus=Task::where('id',$realtaskid)->update(['status'=>2]);
-        //dd($changetaskstatus);
+        $changetaskstatus=Task::where('id',$realtaskid)->update(['status'=>2,'fraction'=>$fractiondata]);
+
         if($changetaskstatus and $re){
             return redirect('tcheck');
         }else{
@@ -114,7 +118,16 @@ class TcheckController extends Controller
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy(Request $request,$task_id)
     {
+        $newarray=explode(",",$task_id);
+        for ($i=0;$i<count($newarray);$i++){
+            $re=Tcheck::where('id',$newarray[$i])->delete();
+        }
+        if($re){
+            return redirect('tcheck');
+        }else{
+            return back()->with('errors','删除失败！');
+        }
     }
 }

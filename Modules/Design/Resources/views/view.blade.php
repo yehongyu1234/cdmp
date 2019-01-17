@@ -4,7 +4,7 @@
 @stop
 @section('page_header')
     <h1 class="page-title">
-        <i class=""></i>
+        <i class="voyager-list"></i>
     {{$projectname->name}}-{{$field->taskname}}信息
     </h1>
         <a href="{{url('task/'.$field->id.'/edit')}}" class="btn btn-success">编辑</a>
@@ -70,6 +70,15 @@
                                     {{$field->pro_complatetime}}
                                 </div>
                             </div>
+                            @if(Auth::user()->role_id==1)
+
+                                <div class="form-group col-md-12">
+                                    <label class="col-sm-4 control-label">实际得到积分</label>
+                                    <div class="col-sm-8">
+                                        {{$field->fraction}}
+                                    </div>
+                                </div>
+                                @endif
                         </div>
                         </div>
                     </div>
@@ -101,28 +110,32 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>审核状态</th>
                                     <th>审核人</th>
                                     <th>评语</th>
                                     <th>当前审核次数</th>
                                     <th>评分</th>
+                                    @if(Auth::user()->role_id==1)
+                                    <th>原始积分</th>
+                                    @endif
                                     <th>是否需要再次审核</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($tcheck as $bd)
                                     <tr>
-                                        <td>{{$bd->id}}</td>
                                         @if($bd->status==0)
                                         <td>未审核</td>
                                         @else
-                                            <td>审核完成</td>
+                                            <td><button class="btn-xs btn-success">审核通过</button><i class="voyager-check"></i> </td>
                                         @endif
                                         <td>{{\App\User::where('id',$bd->checker)->first()->name}}</td>
                                         <td>{{$bd->body}}</td>
                                         <td>{{$bd->times}}</td>
                                         <td>{{$bd->numbers}}</td>
+                                            @if(Auth::user()->role_id==1)
+                                         <td>{{floatval($field->fraction)*100/intval($bd->numbers)}}</td>
+                                            @endif
                                         @if($bd->another==0)
                                             <td>否</td>
                                         @else

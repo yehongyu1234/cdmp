@@ -263,7 +263,7 @@
                 var id=$(this).val();
                 $('#deleteOneModal').modal('hide');
                 $.ajax({
-                    url:'task/'+id+'/destroy',
+                    url:'tcheck/'+id+'/destroy',
                     async:true,
                     type:"GET",
                     dataType:"json",

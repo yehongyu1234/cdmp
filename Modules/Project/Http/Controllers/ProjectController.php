@@ -230,10 +230,16 @@ class ProjectController extends Controller
         $tasklist=Work::where('workbody',$taskname->type)->first();
         $taskall=$tasklist->tasklist;
         $newtask=explode(",",$taskall);
+        //积分设置
+        $fractionlist=$tasklist->fraction;
+        //dd($fractionlist);
+        $newfraction=explode(',',$fractionlist);
+
         for ($n=0;$n<=count($newtask)-1;$n++){
             $tasks=New Task;
             $tasks->taskname = $tasklist->workbody;
             $tasks->body = $newtask[$n];
+            $tasks->fraction=$newfraction[$n];
             $tasks->projectid = $project_id;
             $tasks->status = 0;
             $tasks->personid=$taskname->managerid;
