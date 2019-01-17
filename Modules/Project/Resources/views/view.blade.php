@@ -10,7 +10,6 @@
         <a href="{{url('project/'.$field->id.'/edit')}}" class="btn btn-success">编辑</a>
     <a onclick="alert('还在开发中，采用的glTF技术！')" class="btn btn-warning">查看模型</a>
         <a href="{{url('project/'.$field->id.'/creatask')}}" class="btn btn-info pull-right">创建任务</a>
-
 @stop
 @section('content')
     <div class="page-content container-fluid">
@@ -156,12 +155,13 @@
                                 <td>{{$tf->body}}</td>
                                 <td>{{\App\User::where("id",$tf->personid)->first()->name}}</td>
                                 <td>{{$tf->pro_complatetime}}</td>
-                                    @if($tf->status==1)
-                                <td><button class="btn btm-xs btn-success">已完成</button></td>
-                                    @else
-                                    <td><button class="btn btm-xs btn-warning">未完成</button></td>
+                                    @if($tf->status==0)
+                                <td><button class="btn btm-xs btn-warning">未完成</button></td>
+                                    @elseif($tf->status==1)
+                                    <td><button class="btn btm-xs btn-info">在审核</button></td>
+                                @else
+                                    <td><button class="btn btm-xs btn-success">已完成</button></td>
                                     @endif
-
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -170,7 +170,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         <div class="col-md-12">
@@ -210,7 +209,6 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-
                             </table>
                             {{ $taskfield->links() }}
                         </div>
@@ -219,24 +217,24 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
-    <script type="text/javascript">
-        var map = new BMap.Map('map-container');
-        var newpt=document.getElementById('location').value;
-        //console.log(Number(newpt.split(',')[0]));
-        var point = new BMap.Point(Number(newpt.split(',')[0]),Number(newpt.split(',')[1]));
-        map.centerAndZoom(point, 12);
-        // 添加带有定位的导航控件
-        var navigationControl = new BMap.NavigationControl({
-            // 靠左上角位置
-            anchor: BMAP_ANCHOR_TOP_LEFT,
-            // LARGE类型
-            type: BMAP_NAVIGATION_CONTROL_LARGE,
-            // 启用显示定位
-            enableGeolocation: true
-        });
-        map.addControl(navigationControl);
-        var marker = new BMap.Marker(point);
-        map.addOverlay(marker);
-    </script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
+<script type="text/javascript">
+    var map = new BMap.Map('map-container');
+    var newpt=document.getElementById('location').value;
+    //console.log(Number(newpt.split(',')[0]));
+    var point = new BMap.Point(Number(newpt.split(',')[0]),Number(newpt.split(',')[1]));
+    map.centerAndZoom(point, 12);
+    // 添加带有定位的导航控件
+    var navigationControl = new BMap.NavigationControl({
+        // 靠左上角位置
+        anchor: BMAP_ANCHOR_TOP_LEFT,
+        // LARGE类型
+        type: BMAP_NAVIGATION_CONTROL_LARGE,
+        // 启用显示定位
+        enableGeolocation: true
+    });
+    map.addControl(navigationControl);
+    var marker = new BMap.Marker(point);
+    map.addOverlay(marker);
+</script>
 @stop

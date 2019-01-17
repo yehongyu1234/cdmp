@@ -1,13 +1,4 @@
-@extends('voyager::master')
 
-@section('css')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-@stop
-@section('page_header')
-    <h1 class="page-title">
-        <i class="voyager-home"></i>主页</h1>
-@stop
-@section('content')
     <style>
        video{max-width: 800px;width: 100%;}
     </style>
@@ -29,8 +20,8 @@
                     </div>
                     <div class="col-md-12">项目监控显示
                         <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
-                            <source src="rtmp://rtmp.open.ys7.com/openlive/5686a37ba9444d86bbe23cb0ed149b16.hd" type="" />
-                            <source src="http://hls.open.ys7.com/openlive/5686a37ba9444d86bbe23cb0ed149b16.hd.m3u8" type="application/x-mpegURL" />
+                            <source src="rtmp://rtmp.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd" type="" />
+                            <source src="http://hls.open.ys7.com/openlive/da0e69ab675840c1a82c547fff65a347.hd.m3u8" type="application/x-mpegURL" />
                         </video>
                     </div>
                     <div class="col-md-12">项目任务</div>
@@ -76,5 +67,9 @@
         console.log('pause');
     });
 </script>
-
-@stop
+<script language="JavaScript">
+    function myrefresh(){
+    window.location.reload();
+    }
+    setTimeout('myrefresh()',10000); //指定1秒刷新一次
+</script>
