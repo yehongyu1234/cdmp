@@ -1,6 +1,9 @@
 
     <style>
-       video{max-width: 800px;width: 100%;}
+       video{max-width: 800px;
+           width: 100%;}
+        body{background: #050d1d
+        }
     </style>
 <div class="page-content container-fluid">
     <div class="row">
@@ -9,14 +12,11 @@
                 <div class="panel-body">
                     <div class="col-md-12">
                         <h3>项目分布</h3>
-                    <div class="col-md-8" style="height: 500px" id="map-container">
-
+                    <div class="col-md-8" style="height: 400px;width:500px" id="map-container">
                     </div>
                     <div class="col-md-4"><h3>项目清单</h3>
                     这里导入项目信息
-
                     </div>
-
                     </div>
                     <div class="col-md-12">项目监控显示
                         <video id="myPlayer" poster="" controls playsInline webkit-playsinline autoplay>
