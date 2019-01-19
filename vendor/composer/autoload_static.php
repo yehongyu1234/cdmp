@@ -3091,7 +3091,6 @@ class ComposerStaticInite65417834eff2604cf674c41ea0d5ca8
         'Modules\\Design\\Database\\Seeders\\DesignDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Design/Database/Seeders/DesignDatabaseSeeder.php',
         'Modules\\Design\\Entities\\Task' => __DIR__ . '/../..' . '/Modules/Design/Entities/Task.php',
         'Modules\\Design\\Entities\\Tcheck' => __DIR__ . '/../..' . '/Modules/Design/Entities/Tcheck.php',
-        'Modules\\Design\\Entities\\UsersExport' => __DIR__ . '/../..' . '/Modules/Design/Entities/Extask.php',
         'Modules\\Design\\Entities\\Work' => __DIR__ . '/../..' . '/Modules/Design/Entities/Work.php',
         'Modules\\Design\\Http\\Controllers\\DesignController' => __DIR__ . '/../..' . '/Modules/Design/Http/Controllers/DesignController.php',
         'Modules\\Design\\Http\\Controllers\\TaskController' => __DIR__ . '/../..' . '/Modules/Design/Http/Controllers/TaskController.php',

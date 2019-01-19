@@ -303,11 +303,7 @@
                 }
             }
         }
-        //导出csv格式表格
-        $(document).delegate('#expCsv','click',function() {
-            //alert('可以执行！');
-            $("#exp").attr("src","/project/export.do?t=" + new Date().getTime());
-        });
+
         $(document).delegate('.addBtn','click',function() {
             $('#myModal-add-info').modal('show');
         });

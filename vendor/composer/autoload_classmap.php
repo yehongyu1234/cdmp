@@ -2538,7 +2538,6 @@ return array(
     'Modules\\Design\\Database\\Seeders\\DesignDatabaseSeeder' => $baseDir . '/Modules/Design/Database/Seeders/DesignDatabaseSeeder.php',
     'Modules\\Design\\Entities\\Task' => $baseDir . '/Modules/Design/Entities/Task.php',
     'Modules\\Design\\Entities\\Tcheck' => $baseDir . '/Modules/Design/Entities/Tcheck.php',
-    'Modules\\Design\\Entities\\UsersExport' => $baseDir . '/Modules/Design/Entities/Extask.php',
     'Modules\\Design\\Entities\\Work' => $baseDir . '/Modules/Design/Entities/Work.php',
     'Modules\\Design\\Http\\Controllers\\DesignController' => $baseDir . '/Modules/Design/Http/Controllers/DesignController.php',
     'Modules\\Design\\Http\\Controllers\\TaskController' => $baseDir . '/Modules/Design/Http/Controllers/TaskController.php',

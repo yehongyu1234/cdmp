@@ -12,6 +12,7 @@
         @if(Auth::user()->role_id==1)
             <button class="btn btn-success" id="addBtn"><i class="voyager-plus">创建</i></button>&nbsp;&nbsp;&nbsp;
             <button class="btn btn-danger" id="deleteAll"><i class="voyager-trash">删除选中</i></button>
+            <button class="btn btn-info" id="exportxlsx"><i class="voyager-wand">导出选中为表格</i></button>
         @endif
     </h1>
 @stop
@@ -58,6 +59,31 @@
                                     </div>
                                     <div class="modal-footer" id="modalfooter">
                                         <button type="button" class="btn btn-primary" id="delSubmit">
+                                            确认
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--导出表格确认对话框-->
+                    <div class="modal fade" id="exportxlsx" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true" >
+                        <form class="form-horizontal" role="form">
+                            <div class="modal-dialog modal-sm " >
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close"
+                                                data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            提示信息
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body" style="text-align: left;">
+                                        <h5 id="showdata">您确定要删除当前信息吗？</h5>
+                                    </div>
+                                    <div class="modal-footer" id="modalfooter">
+                                        <button type="button" class="btn btn-primary" id="exportxlsxsubmit">
                                             确认
                                         </button>
                                     </div>
@@ -267,36 +293,51 @@
                     }
                 }
             }
-            //导出csv格式表格
-            $(document).delegate('#expCsv','click',function() {
-                //alert('可以执行！');
-                $("#exp").attr("src","/project/export.do?t=" + new Date().getTime());
-            });
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //导出表格
+            $(document).delegate('#exportxlsx','click',function() {
+                var theArray=[];
+                $("input[name=id]:checked").each(function() {
+                    theArray.push($(this).val());
+                });
+                //
+                if(theArray.length<1){
+                    document.getElementById('showdata').innerHTML="未选择任何数据？";
+                    $("#exportxlsx").modal('show');
+                }else{
+                    //console.log(theArray);
+                    $.ajax({
+                        url:'task/exportxls',
+                        async:true,
+                        type:"POST",
+                        data:{'id':theArray},
+                        dataType:"json",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
                 }
-            });
-            $(document).delegate('#addBtn','click',function() {
-                self.location='task/create';
+                //alert('导出ID为'+theArray+'的任务清单？');
             });
             /**
-             * 点击增加内容按钮
+             * 点击确认导出按钮
              */
-            $(document).delegate('#taskaddbutton','click',function(){
-                $('#myModal-add-info').modal('hide');
+            $(document).delegate('#exportxlsxsubmit','click',function(){
+
+                $('#deleteOneModal').modal('hide');
                 $.ajax({
-                    url: "task",
-                    method: "POST",
-                    dataType: "json",
-                    success: function success(data) {
-                        if (data.error != 0) {
-                            alert(data.msg);
-                            return;
-                        }
+                    url:'task/'+id+'/exportxls',
+                    async:true,
+                    type:"POST",
+                    dataType:"json",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                //window.location.reload();
+               // window.location.reload();
+            });
+
+            $(document).delegate('#addBtn','click',function() {
+                self.location='task/create';
             });
             /**
              * 未选择提示

@@ -13,6 +13,7 @@ use Modules\Design\Entities\Tcheck;
 use Modules\Project\Entities\Project;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpParser\Node\Expr\Array_;
 use function PHPSTORM_META\type;
 use Yajra\Datatables\Datatables;
 
@@ -30,28 +31,66 @@ class TaskController extends Controller
         return view('design::index');
     }
     //导出excel
-    public function exportxls(){
-
+    public function exportxls(Request $request){
+        $taskid=$request->get('id');
+        //dd($taskid[0]);
+        $spreadsheet = new Spreadsheet();
+        $worksheet = $spreadsheet->getActiveSheet();
         ini_set('memory_limit','500M');
         set_time_limit(0);//设置超时限制为0分钟
-        $cellData = Task::all()->toArray();
-        $cellData[0] = array('id','名称','内容','执行人');
-        for($i=0;$i<count($cellData);$i++){
-            $cellData[$i] = array_values($cellData[$i]);
-            $cellData[$i][0] = str_replace('=',' '.'=',$cellData[$i][0]);
+        for ($m=0;$m<count($taskid);$m++){
+            $cellData = Task::where('id',$taskid[$m])->first();
+            dd($cellData);
+            $cellData[0] = array('id','名称','内容','执行人');
+            for($i=0;$i<count($cellData);$i++){
+                $cellData[$i] = array_values($cellData[$i]);
+                $cellData[$i][0] = str_replace('=',' '.'=',$cellData[$i][0]);
+            }
         }
-        //dd($cellData);
 
-        //return Excel::download($cellData, 'users.xlsx');
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Hello World !');
+        dd($cellData);
 
-        $writer = new Xlsx($spreadsheet);
-        $writer->save('hello world.xlsx');
+
+        //设置工作表标题名称
+        $worksheet->setTitle('任务清单'.date('Ymd'));
+        //表头
+        //设置单元格内容
+        $worksheet->setCellValueByColumnAndRow(1, 1, '任务清单');
+        $worksheet->setCellValueByColumnAndRow(1, 2, '姓名');
+        $worksheet->setCellValueByColumnAndRow(2, 2, '语文');
+        $worksheet->setCellValueByColumnAndRow(3, 2, '数学');
+        $worksheet->setCellValueByColumnAndRow(4, 2, '外语');
+        $worksheet->setCellValueByColumnAndRow(5, 2, '总分');
+
+        //合并单元格
+        $worksheet->mergeCells('A1:E1');
+
+
+        $filename = '任务清单'.date('Ymd').'.xlsx';
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="'.$filename.'"');
+        header('Cache-Control: max-age=0');
+
+
+        $writer =new Xlsx($spreadsheet, 'Xlsx');
+        $writer->save('php://output');
+        return view('design::index') ;
 
     }
+    //ojbect转化为array
+    function object_to_array($obj) {
+        $obj = (array)$obj;
+        foreach ($obj as $k => $v) {
+            if (gettype($v) == 'resource') {
+                return;
+            }
+            if (gettype($v) == 'object' || gettype($v) == 'array') {
+                $obj[$k] = (array)object_to_array($v);
+            }
+        }
 
+        return $obj;
+    }
     #获取ajax列表
     public function getlist(Request $request) {
         //dd($request->user()->id); //这里需要加入数据筛选同时设置权限
