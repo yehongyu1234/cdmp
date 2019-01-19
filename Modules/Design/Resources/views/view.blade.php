@@ -134,8 +134,12 @@
                                         <td>{{$bd->times}}</td>
                                         <td>{{$bd->numbers}}</td>
                                             @if(Auth::user()->role_id==1)
-                                         <td>{{floatval($field->fraction)*100/intval($bd->numbers)}}</td>
-                                            @endif
+                                                @if($bd->numbers==0)
+                                         <td>暂未评分</td>
+                                                    @else
+                                                    <td>{{floatval($field->fraction)*100/intval($bd->numbers)}}</td>
+@endif
+                                                @endif
                                         @if($bd->another==0)
                                             <td>否</td>
                                         @else

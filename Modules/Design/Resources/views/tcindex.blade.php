@@ -90,7 +90,7 @@
                     { data: 'id',
                         name: 'id' ,
                         'render':function(id){
-                            return '<a href="task/'+id+'/show">'+id+'</a>';
+                            return '<a href="tcheck/'+id+'/show">'+id+'</a>';
                         }
                     },
                     { data: 'taskid', name: 'taskid' },

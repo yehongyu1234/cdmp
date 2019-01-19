@@ -75,9 +75,12 @@ class TcheckController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show(Request $request,$task_id)
     {
-        return view('design::show');
+        $field=Tcheck::find($task_id);
+        $taskname=Task::where('id',$field->taskid)->first();
+        $project=Project::where('id',$taskname->projectid)->first();
+        return view('design::viewtcheck',compact('field','taskname','project'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -85,10 +88,11 @@ class TcheckController extends Controller
      */
     public function edit(Request $request,$task_id)
     {
+
         $field=Tcheck::find($task_id);
-        $project=Project::all();
-        $user=User::where("name","<>","Admin")->get();
-        return view('design::editcheck',compact('field','user','project'));
+        $taskname=Task::where('id',$field->taskid)->first();
+        $project=Project::where('id',$taskname->projectid)->first();
+        return view('design::editcheck',compact('field','taskname','project'));
     }
     /**
      * Update the specified resource in storage.

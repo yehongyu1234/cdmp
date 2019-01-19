@@ -5,7 +5,7 @@
 @section('page_header')
     <h1 class="page-title">
         <i class=""></i>
-        任务审核
+        任务审核状态
     </h1>
 @stop
 @section('content')
@@ -14,7 +14,6 @@
             <div class="col-md-8">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
-                        <form action="{{ url('tchecks/'.$field->id) }}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_method" value="put">
                             {!! csrf_field() !!}
                             <div class="form-group col-md-12">
@@ -34,36 +33,25 @@
                             <div class="form-group col-md-12">
                                 <label class="col-sm-2 control-label">审核意见：</label>
                                 <div class="col-sm-10">
-                                    <textarea name="body" placeholder="请输入内容" class="form-control" required="required">{{$field->body}}</textarea>
+                                    {{$field->body}}
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
                                 <label class="col-sm-2 control-label">审核意见：</label>
                                 <div class="col-sm-10">
-                                    <select name="status" class="form-control">
                                         @if($field->status==0)
-                                        <option value="0" selected>未通过</option>
-                                            <option value="1">通过</option>
+                                           未通过
                                         @else
-                                        <option value="0" >未通过</option>
-                                        <option value="1" selected>通过</option>
+                                            通过
                                         @endif
-                                    </select>
                                 </div>
                             </div>
-                                <div class="form-group col-md-12">
-                                    <label class="col-sm-2 control-label">评分：</label>
-                                    <div class="col-sm-10">
-                                        <input name="numbers" class="form-control" required="required" value="{{$field->numbers}}" />
-                                    </div>
+                            <div class="form-group col-md-12">
+                                <label class="col-sm-2 control-label">评分：</label>
+                                <div class="col-sm-10">
+                                    {{$field->numbers}}
                                 </div>
-                                <div class="form-group col-md-12">
-                                    <div class="col-sm-12 col-sm-offset-3">
-                                        <button class="btn btn-primary">提交</button>
-                                        <button type="reset" class="btn btn-white">重置</button>
-                                    </div>
-                                </div>
-                        </form>
+                            </div>
                     </div>
                 </div>
             </div>
