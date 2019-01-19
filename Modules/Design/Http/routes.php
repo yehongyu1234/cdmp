@@ -9,6 +9,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'task', 'namespace' => 'Modules
     Route::any('getlist','TaskController@getlist');
     Route::any('status','TaskController@status');
     Route::any('personget','TaskController@personget');
+    Route::get('exportxls','TaskController@exportxls');
 });
 Route::group(['middleware' => 'web', 'prefix' => 'tcheck', 'namespace' => 'Modules\Design\Http\Controllers'], function()
 {

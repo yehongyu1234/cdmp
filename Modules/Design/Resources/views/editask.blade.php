@@ -55,7 +55,7 @@
                                 <label class="col-sm-3 control-label">执行人</label>
                                 <div class="col-sm-9">
                                     <select name="personid" class="form-control">
-                                        <option value="{{$field->personid}}">{{$field->personid}}</option><!-- TODO这里要搞清楚blade中通过标识ID检索数据库的其他信息-->
+                                        <option value="{{$field->personid}}">{{\App\User::where('id',$field->personid)->first()->name}}</option>
                                         @foreach($user as $u)
                                             <option value="{{$u->id}}">{{$u->name}}</option>
                                         @endforeach

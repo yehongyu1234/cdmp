@@ -65,71 +65,7 @@
                             </div>
                         </form>
                     </div>
-                    <!--显示任务内容-->
-                    <!--
-                    <div class="modal fade" id="taskshow" tabindex="-1" role="dialog"
-                         aria-labelledby="myModalLabel" aria-hidden="true" >
-                        <form class="form-horizontal" role="form">
-                            <div class="modal-dialog modal-sm " >
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close"
-                                                data-dismiss="modal" aria-hidden="true">&times; </button>
-                                        <h4 class="modal-title" id="myModalLabel">
-                                            提示信息
-                                        </h4>
-                                    </div>
-                                    <div class="modal-body" style="text-align: left;">
-                                        <div class="col-md-5">
-                                            <div class="form-group col-md-8">
-                                                <label class="col-sm-3 control-label">项目名称</label>
-                                                <div class="col-sm-9">
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-12">
 
-                                                <label class="col-sm-2 control-label"><strong>任务名称:</strong></label>
-                                                <div class="col-sm-8">
-                                                </div>
-                                                <br>
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label class="col-sm-2 control-label">内容</label>
-                                                <div class="col-sm-8">
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-8">
-                                                <label class="col-sm-3 control-label">执行人</label>
-                                                <div class="col-sm-9">
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-8">
-                                                <label class="col-sm-3 control-label">状态</label>
-                                                <div class="col-sm-9">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-md-8">
-                                                <label class="col-sm-3 control-label">发布者</label>
-                                                <div class="col-sm-9">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group col-md-8">
-                                                <label class="col-sm-3 control-label">预计完成</label>
-                                                <div class="col-sm-9">
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    -->
                 </div>
             </div>
         </div>

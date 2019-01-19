@@ -340,7 +340,7 @@
             /**
              * 多选选中和取消选中,同时选中第一个单元格单选框,并联动全选单选框
              */
-            $('#example tbody').on('click', 'tr', function(event) {
+            $('#table tbody').on('click', 'tr', function(event) {
                 var allChecked=$('input[name=allChecked]')[0];//关联全选单选框
                 $($(this).children()[0]).children().each(function(){
                     if(this.type=="checkbox" && (!$(event.target).is(":checkbox") && $(":checkbox",this).trigger("click"))){
@@ -371,13 +371,13 @@
              */
             $('input[name=allChecked]').click(function(){
                 if(this.checked){
-                    $('#example tbody tr').each(function(){
+                    $('#table tbody tr').each(function(){
                         if(!$(this).hasClass('selected')){
                             $(this).click();
                         }
                     });
                 }else{
-                    $('#example tbody tr').click();
+                    $('#table tbody tr').click();
                 }
             });
 

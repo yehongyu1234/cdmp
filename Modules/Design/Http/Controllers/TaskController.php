@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Modules\Design\Entities\Task;
 use Modules\Design\Entities\Tcheck;
-use Modules\Design\Entities\Work;
 use Modules\Project\Entities\Project;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use function PHPSTORM_META\type;
 use Yajra\Datatables\Datatables;
 
@@ -28,6 +29,29 @@ class TaskController extends Controller
         //dd($users);
         return view('design::index');
     }
+    //导出excel
+    public function exportxls(){
+
+        ini_set('memory_limit','500M');
+        set_time_limit(0);//设置超时限制为0分钟
+        $cellData = Task::all()->toArray();
+        $cellData[0] = array('id','名称','内容','执行人');
+        for($i=0;$i<count($cellData);$i++){
+            $cellData[$i] = array_values($cellData[$i]);
+            $cellData[$i][0] = str_replace('=',' '.'=',$cellData[$i][0]);
+        }
+        //dd($cellData);
+
+        //return Excel::download($cellData, 'users.xlsx');
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Hello World !');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('hello world.xlsx');
+
+    }
+
     #获取ajax列表
     public function getlist(Request $request) {
         //dd($request->user()->id); //这里需要加入数据筛选同时设置权限
