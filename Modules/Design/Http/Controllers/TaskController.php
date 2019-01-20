@@ -68,8 +68,8 @@ class TaskController extends Controller
         header('Cache-Control: max-age=0');
 
         $writer =new Xlsx($spreadsheet);
-        $writer->save($filename);
-        //return $writer->save('php://output');
+        //$writer->save($filename);
+        return $writer->save('php://output');
         //return view('design::index') ;
 
     }
