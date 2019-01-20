@@ -81,7 +81,6 @@
                             </div>
                         </div>
                         <div class="col-md-3">项目二维码
-
                             <br>
                             {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.base64_decode($field->guid).'/out'); !!}
                         </div>
@@ -98,6 +97,10 @@
                         </div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <div class="col-md-12">
+                            <div>
+                                <input type="button" id="addrow" value="新增" />
+                                <input type="button" id="removerow" value="删除" />
+                            </div>
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
@@ -110,7 +113,16 @@
                                     <th>层高</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody  id="trlist">
+                                <tr>
+                                    <td><input type="checkbox" name="checkbox"/></td>
+                                    <td><input type="text"/></td>
+                                    <td><input type="text"/></td>
+                                    <td><input type="text"/></td>
+                                    <td><input type="text"/></td>
+                                    <td><input type="text"/></td>
+                                    <td><input type="text"/></td>
+                                </tr>
                                 @foreach($buildings as $bd)
                                     <tr>
                                         <td>{{$bd->id}}</td>
@@ -126,6 +138,7 @@
                             </table>
                             {{ $buildings->links() }}
                         </div>
+
                     </div>
                 </div>
                 <div class="panel panel-bordered">
@@ -217,6 +230,41 @@
             </div>
         </div>
     </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#addrow").click(addrow);//绑定添加事件
+        $("#removerow").click(removerow);//绑定删除事件。
+    });
+
+    var trlisthtml = $("#trlist").html();//获取默认的一行tr，用作复制
+    function addrow(){//增加
+        $(".table>tbody:last").append(trlisthtml);//向tbody最后添加一行tr.
+    }
+
+    function removerow(){//移除
+        $('input[name="checkbox"]:checked').each(function(){
+            $(this).parent().parent().remove();//移除当前行 checkbox的父级是td，td的父级是tr，然后删除tr。就ok了。用each，选择多行遍历删除
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(function(){
+        $("#addrow").click(addrow);//绑定添加事件
+        $("#removerow").click(removerow);//绑定删除事件。
+    });
+
+    function cloneaddrow(){
+        $(".table>tbody:last").append($("#tr").clone());//复制tr，并且添加
+    }
+
+    function removerow(){//移除
+        $('input[name="checkbox"]:checked').each(function(){
+            $(this).parent().parent().remove();//移除当前行 checkbox的父级是td，td的父级是tr，然后删除tr。就ok了。用each，选择多行遍历删除
+        });
+    }
+</script>
+
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
 <script type="text/javascript">
     var map = new BMap.Map('map-container');
