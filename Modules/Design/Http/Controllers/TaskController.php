@@ -36,19 +36,25 @@ class TaskController extends Controller
         //dd($taskid[0]);
         $spreadsheet = new Spreadsheet();
         $worksheet = $spreadsheet->getActiveSheet();
+        $arraydata=array();
         ini_set('memory_limit','500M');
         set_time_limit(0);//设置超时限制为0分钟
         for ($m=0;$m<count($taskid);$m++){
             $cellData = Task::where('id',$taskid[$m])->first();
-            dd($cellData);
-            $cellData[0] = array('id','名称','内容','执行人');
-            for($i=0;$i<count($cellData);$i++){
-                $cellData[$i] = array_values($cellData[$i]);
-                $cellData[$i][0] = str_replace('=',' '.'=',$cellData[$i][0]);
-            }
+            $newcd=json_decode(json_encode($cellData), true);
+            array_push($arraydata,$newcd);
+            //$cellData->toArray();
+            //dd($cellData);
+            //$cellData[0] = array('id','名称','内容','执行人','项目名称','发送人','预计完成时间','状态','积分','创建时间','更新时间');
         }
-
-        dd($cellData);
+        //$arraydata=
+        dd($arraydata);
+        /**
+        for($i=0;$i<count($cellData);$i++){
+            $cellData[$i] = array_values($cellData[$i]);
+            $cellData[$i][0] = str_replace('=',' '.'=',$cellData[$i][0]);
+        }
+**/
 
 
         //设置工作表标题名称
@@ -72,9 +78,10 @@ class TaskController extends Controller
         header('Cache-Control: max-age=0');
 
 
-        $writer =new Xlsx($spreadsheet, 'Xlsx');
-        $writer->save('php://output');
-        return view('design::index') ;
+        $writer =new Xlsx($spreadsheet);
+        $writer->save($filename);
+        //return $writer->save('php://output');
+        //return view('design::index') ;
 
     }
     //ojbect转化为array
