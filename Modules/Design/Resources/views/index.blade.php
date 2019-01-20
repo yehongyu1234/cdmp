@@ -17,6 +17,12 @@
     </h1>
 @stop
 @section('content')
+    <script>
+        function downloadFile() {
+            var dom = document.getElementById('ifile');
+            dom.src = 'task/exportxls';
+        }
+    </script>
     <div class="page-content container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -41,7 +47,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <!--单个删除确认对话框-->
+                    <!--对话框-->
                     <div class="modal fade" id="deleteOneModal" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel" aria-hidden="true" >
                         <form class="form-horizontal" role="form">
@@ -58,7 +64,7 @@
                                         <h5 id="showdata">您确定要删除当前信息吗？</h5>
                                     </div>
                                     <div class="modal-footer" id="modalfooter">
-                                        <button type="button" class="btn btn-primary" id="delSubmit">
+                                        <button type="button" class="btn btn-primary sumbitlog" id="delSubmit">
                                             确认
                                         </button>
                                     </div>
@@ -66,32 +72,6 @@
                             </div>
                         </form>
                     </div>
-                    <!--导出表格确认对话框-->
-                    <div class="modal fade" id="exportxlsx" tabindex="-1" role="dialog"
-                         aria-labelledby="myModalLabel" aria-hidden="true" >
-                        <form class="form-horizontal" role="form">
-                            <div class="modal-dialog modal-sm " >
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close"
-                                                data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="myModalLabel">
-                                            提示信息
-                                        </h4>
-                                    </div>
-                                    <div class="modal-body" style="text-align: left;">
-                                        <h5 id="showdata">您确定要删除当前信息吗？</h5>
-                                    </div>
-                                    <div class="modal-footer" id="modalfooter">
-                                        <button type="button" class="btn btn-primary" id="exportxlsxsubmit">
-                                            确认
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -299,11 +279,15 @@
                 $("input[name=id]:checked").each(function() {
                     theArray.push($(this).val());
                 });
-                //
                 if(theArray.length<1){
                     document.getElementById('showdata').innerHTML="未选择任何数据？";
-                    $("#exportxlsx").modal('show');
+                    $("#deleteOneModal").modal('show');
                 }else{
+                    $('.sumbitlog').attr('id','exportsubmit');
+                    $("#exportsubmit").val(theArray);
+                    document.getElementById('showdata').innerHTML="确定导出这些数据？";
+                    $('#deleteOneModal').modal('show');
+/**
                     $.ajax({
                         url:'task/exportxls',
                         async:true,
@@ -312,28 +296,55 @@
                         dataType:"json",
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success:function (redata) {
+                            // 创建a标签，设置属性，并触发点击下载
+                            var $a = $("<a>");
+                            $a.attr("href", redata.data.file);
+                            $a.attr("download", redata.data.filename);
+                            $("body").append($a);
+                            $a[0].click();
+                            $a.remove();
                         }
                     });
+ **/
+
                 }
                 //alert('导出ID为'+theArray+'的任务清单？');
             });
-            /**
-             * 点击确认导出按钮
-             */
-            $(document).delegate('#exportxlsxsubmit','click',function(){
 
+            /**
+             * 点击确认导出表格
+             */
+            $(document).delegate('#exportsubmit','click',function(){
+                var id=$(this).val();
                 $('#deleteOneModal').modal('hide');
+                console.log(id);
+                self.location='task/'+id+'/exportxls';
+                /**
                 $.ajax({
                     url:'task/'+id+'/exportxls',
                     async:true,
-                    type:"POST",
+                    type:"GET",
                     dataType:"json",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success:function (redata) {
+                        // 创建a标签，设置属性，并触发点击下载
+                        var $a = $("<a>");
+                        $a.attr("href", redata.data.file);
+                        $a.attr("download", redata.data.filename);
+                        $("body").append($a);
+                        $a[0].click();
+                        $a.remove();
                     }
                 });
+                 **/
+
                // window.location.reload();
             });
+
 
             $(document).delegate('#addBtn','click',function() {
                 self.location='task/create';

@@ -31,8 +31,11 @@ class TaskController extends Controller
         return view('design::index');
     }
     //导出excel
-    public function exportxls(Request $request){
-        $taskid=$request->get('id');
+    public function exportxls(Request $request,$task_id){
+       // $taskid=$request->get('id');
+        //$taskid=$task_id;
+        $taskid=explode(',',$task_id);
+        //dd(gettype($taskidata));
         $spreadsheet = new Spreadsheet();
         $worksheet = $spreadsheet->getActiveSheet();
         $arraydata=array();
@@ -69,6 +72,7 @@ class TaskController extends Controller
 
         $writer =new Xlsx($spreadsheet);
         //$writer->save($filename);
+
         return $writer->save('php://output');
         //return view('design::index') ;
 
