@@ -304,7 +304,6 @@
                     document.getElementById('showdata').innerHTML="未选择任何数据？";
                     $("#exportxlsx").modal('show');
                 }else{
-                    //console.log(theArray);
                     $.ajax({
                         url:'task/exportxls',
                         async:true,

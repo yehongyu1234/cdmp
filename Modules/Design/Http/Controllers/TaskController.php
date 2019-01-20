@@ -33,7 +33,6 @@ class TaskController extends Controller
     //导出excel
     public function exportxls(Request $request){
         $taskid=$request->get('id');
-        //dd($taskid[0]);
         $spreadsheet = new Spreadsheet();
         $worksheet = $spreadsheet->getActiveSheet();
         $arraydata=array();
@@ -43,40 +42,30 @@ class TaskController extends Controller
             $cellData = Task::where('id',$taskid[$m])->first();
             $newcd=json_decode(json_encode($cellData), true);
             array_push($arraydata,$newcd);
-            //$cellData->toArray();
-            //dd($cellData);
-            //$cellData[0] = array('id','名称','内容','执行人','项目名称','发送人','预计完成时间','状态','积分','创建时间','更新时间');
         }
-        //$arraydata=
-        dd($arraydata);
-        /**
-        for($i=0;$i<count($cellData);$i++){
-            $cellData[$i] = array_values($cellData[$i]);
-            $cellData[$i][0] = str_replace('=',' '.'=',$cellData[$i][0]);
-        }
-**/
-
-
+        $headdata=array('id','名称','内容','执行者','项目名称','提交者','预计完成时间','创建时间','更新时间','状态','积分');
         //设置工作表标题名称
         $worksheet->setTitle('任务清单'.date('Ymd'));
         //表头
         //设置单元格内容
         $worksheet->setCellValueByColumnAndRow(1, 1, '任务清单');
-        $worksheet->setCellValueByColumnAndRow(1, 2, '姓名');
-        $worksheet->setCellValueByColumnAndRow(2, 2, '语文');
-        $worksheet->setCellValueByColumnAndRow(3, 2, '数学');
-        $worksheet->setCellValueByColumnAndRow(4, 2, '外语');
-        $worksheet->setCellValueByColumnAndRow(5, 2, '总分');
-
+        for($i=0;$i<count($headdata);$i++){
+            $worksheet->setCellValueByColumnAndRow($i, 2, $headdata[$i]);
+        }
+       // dd($arraydatakey[0  ]);
+        for($m=0;$m<count($arraydata);$m++){
+            for($n=0;$n<count($arraydata[$m]);$n++){
+                $arraydatakey=array_keys($arraydata[$m]);//求取所有的key
+                $worksheet->setCellValueByColumnAndRow($n, $m+3, $arraydata[$m][$arraydatakey[$n]]);
+            }
+        }
         //合并单元格
-        $worksheet->mergeCells('A1:E1');
-
+        $worksheet->mergeCells('A1:J1');
 
         $filename = '任务清单'.date('Ymd').'.xlsx';
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="'.$filename.'"');
         header('Cache-Control: max-age=0');
-
 
         $writer =new Xlsx($spreadsheet);
         $writer->save($filename);
