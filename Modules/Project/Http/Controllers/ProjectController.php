@@ -150,7 +150,7 @@ class ProjectController extends Controller
         $proid=$field->id;
         $taskfield=Task::where('projectid',$proid)->paginate(10);
         $buildings=Building::where('project_id',$proid)->paginate(10);
-        //dd($taskfield);
+        //dd(count($buildings));
         return view('project::view',compact('field','taskfield','buildings'));
     }
     /**

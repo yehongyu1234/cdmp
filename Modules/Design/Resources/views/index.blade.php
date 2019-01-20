@@ -12,8 +12,8 @@
         @if(Auth::user()->role_id==1)
             <button class="btn btn-success" id="addBtn"><i class="voyager-plus">创建</i></button>&nbsp;&nbsp;&nbsp;
             <button class="btn btn-danger" id="deleteAll"><i class="voyager-trash">删除选中</i></button>
-            <button class="btn btn-info" id="exportxlsx"><i class="voyager-wand">导出选中为表格</i></button>
         @endif
+        <button class="btn btn-info" id="exportxlsx"><i class="voyager-wand">导出表格</i></button>
     </h1>
 @stop
 @section('content')
@@ -280,69 +280,29 @@
                     theArray.push($(this).val());
                 });
                 if(theArray.length<1){
-                    document.getElementById('showdata').innerHTML="未选择任何数据？";
+                    $('.sumbitlog').attr('id','selectnothing');
+                    document.getElementById('showdata').innerHTML="未选择任何数据，无法导出数据！";
                     $("#deleteOneModal").modal('show');
                 }else{
                     $('.sumbitlog').attr('id','exportsubmit');
                     $("#exportsubmit").val(theArray);
                     document.getElementById('showdata').innerHTML="确定导出这些数据？";
                     $('#deleteOneModal').modal('show');
-/**
-                    $.ajax({
-                        url:'task/exportxls',
-                        async:true,
-                        type:"POST",
-                        data:{'id':theArray},
-                        dataType:"json",
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success:function (redata) {
-                            // 创建a标签，设置属性，并触发点击下载
-                            var $a = $("<a>");
-                            $a.attr("href", redata.data.file);
-                            $a.attr("download", redata.data.filename);
-                            $("body").append($a);
-                            $a[0].click();
-                            $a.remove();
-                        }
-                    });
- **/
-
                 }
-                //alert('导出ID为'+theArray+'的任务清单？');
             });
-
+            /**
+             * 未选择提示
+             */
+            $(document).delegate('#selectnothing','click',function(){
+                $('#deleteOneModal').modal('hide');
+            });
             /**
              * 点击确认导出表格
              */
             $(document).delegate('#exportsubmit','click',function(){
                 var id=$(this).val();
                 $('#deleteOneModal').modal('hide');
-                console.log(id);
                 self.location='task/'+id+'/exportxls';
-                /**
-                $.ajax({
-                    url:'task/'+id+'/exportxls',
-                    async:true,
-                    type:"GET",
-                    dataType:"json",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success:function (redata) {
-                        // 创建a标签，设置属性，并触发点击下载
-                        var $a = $("<a>");
-                        $a.attr("href", redata.data.file);
-                        $a.attr("download", redata.data.filename);
-                        $("body").append($a);
-                        $a[0].click();
-                        $a.remove();
-                    }
-                });
-                 **/
-
-               // window.location.reload();
             });
 
 
@@ -358,19 +318,14 @@
                     theArray.push($(this).val());
                 });
                 if(theArray.length<1){
-                    document.getElementById('showdata').innerHTML="未选择任何数据？";
+                    $('.sumbitlog').attr('id','selectnothing');
+                    document.getElementById('showdata').innerHTML="未选择任何数据，无法删除任何数据！";
                     $("#deleteOneModal").modal('show');
                 }else{
                     $("#delSubmit").val(theArray);
                     document.getElementById('showdata').innerHTML="确定删除选择？";
                     $('#deleteOneModal').modal('show');
                 }
-            });
-            /**
-             * 未选择提示
-             */
-            $(document).delegate('#delSubmit','click',function(){
-                $('#deleteOneModal').modal('hide');
             });
             /**
              * 点击确认删除按钮

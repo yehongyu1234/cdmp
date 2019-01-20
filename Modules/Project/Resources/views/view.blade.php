@@ -98,45 +98,65 @@
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <div class="col-md-12">
                             <div>
-                                <input type="button" id="addrow" value="新增" />
-                                <input type="button" id="removerow" value="删除" />
+                                <a class="btn btn-info" id="addrow" value="新增" ><i class="voyager-plus"></i></a>
+                                <a class="btn btn-danger" id="removerow" value="删除"><i class="voyager-trash"></i></a>
                             </div>
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th><input type="checkbox" name="checkbox"/></th>
                                     <th>楼栋号</th>
                                     <th>层数</th>
                                     <th>结构类型</th>
-                                    <th>面积</th>
+                                    <th>面积(m²)</th>
                                     <th>相同于</th>
-                                    <th>层高</th>
+                                    <th>层高(m)</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody  id="trlist">
-                                <tr>
-                                    <td><input type="checkbox" name="checkbox"/></td>
-                                    <td><input type="text"/></td>
-                                    <td><input type="text"/></td>
-                                    <td><input type="text"/></td>
-                                    <td><input type="text"/></td>
-                                    <td><input type="text"/></td>
-                                    <td><input type="text"/></td>
-                                </tr>
+
+                                @if(count($buildings)==0)
+                                    <tr>
+                                        <td><input type="checkbox" name="checkbox"/></td>
+
+                                        <td><input type="text" /></td>
+                                        <td><input type="text" /></td>
+                                        <td><input type="text" /></td>
+                                        <td><input type="text" /></td>
+                                        <td><input type="text" /></td>
+                                        <td><input type="text" /></td>
+                                        <td> <div class="btn-group btn-group-sm">
+                                                <button type="button" class="btn btn-success">编辑</button>
+
+                                                <button type="button" class="btn btn-danger">删除</button>
+                                                <button type="button" class="btn btn-success">创建任务</button>
+                                            </div></td>
+                                    </tr>
+                                    @else
                                 @foreach($buildings as $bd)
                                     <tr>
-                                        <td>{{$bd->id}}</td>
-                                        <td>{{$bd->buildingid}}</td>
-                                        <td>{{$bd->floors}}</td>
-                                        <td>{{$bd->structure_type}}</td>
-                                        <td>{{$bd->area}}</td>
-                                        <td>{{$bd->sameas}}</td>
-                                        <td>{{$bd->floor_height}}</td>
+                                        <td><input type="checkbox" name="checkbox"/></td>
+                                        <td><input type="text" value="{{$bd->buildingid}}"/></td>
+                                        <td><input type="text" value="{{$bd->floors}}"/></td>
+                                        <td><input type="text" value="{{$bd->structure_type}}"/></td>
+                                        <td><input type="text" value="{{$bd->area}}"/></td>
+                                        <td><input type="text" value="{{$bd->sameas}}"/></td>
+                                        <td><input type="text" value="{{$bd->floor_height}}"/></td>
+                                        <td> <div class="btn-group btn-group-sm">
+                                                <button type="button" class="btn btn-success">编辑</button>
+
+                                                <button type="button" class="btn btn-danger">删除</button>
+                                                <button type="button" class="btn btn-success">创建任务</button>
+                                            </div></td>
                                     </tr>
                                 @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                             {{ $buildings->links() }}
+
+
                         </div>
 
                     </div>
@@ -230,41 +250,30 @@
             </div>
         </div>
     </div>
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{{asset('/js/jquery.min.js')}}"></script>
 <script type="text/javascript">
-    $(function(){
-        $("#addrow").click(addrow);//绑定添加事件
-        $("#removerow").click(removerow);//绑定删除事件。
-    });
+    $(document).ready(function() {
+        var trlisthtml = $("#trlist").html();//获取默认的一行tr，用作复制
 
-    var trlisthtml = $("#trlist").html();//获取默认的一行tr，用作复制
-    function addrow(){//增加
-        $(".table>tbody:last").append(trlisthtml);//向tbody最后添加一行tr.
-    }
+        function addrow(){//增加
+            $("#trlist").append(trlisthtml);//向tbody最后添加一行tr.
+        };
 
-    function removerow(){//移除
-        $('input[name="checkbox"]:checked').each(function(){
-            $(this).parent().parent().remove();//移除当前行 checkbox的父级是td，td的父级是tr，然后删除tr。就ok了。用each，选择多行遍历删除
+        function removerow(){//移除
+            $('input[name="checkbox"]:checked').each(function(){
+                $(this).parent().parent().remove();//移除当前行 checkbox的父级是td，td的父级是tr，然后删除tr。就ok了。用each，选择多行遍历删除
+            });
+        };
+
+        $(document).delegate('#addrow', 'click', function () {
+            //alert('点击过了');
+            addrow();
         });
-    }
-</script>
-<script type="text/javascript">
-    $(function(){
-        $("#addrow").click(addrow);//绑定添加事件
-        $("#removerow").click(removerow);//绑定删除事件。
-    });
-
-    function cloneaddrow(){
-        $(".table>tbody:last").append($("#tr").clone());//复制tr，并且添加
-    }
-
-    function removerow(){//移除
-        $('input[name="checkbox"]:checked').each(function(){
-            $(this).parent().parent().remove();//移除当前行 checkbox的父级是td，td的父级是tr，然后删除tr。就ok了。用each，选择多行遍历删除
+        $(document).delegate('#removerow', 'click', function () {
+            removerow();
         });
-    }
+    });
 </script>
-
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=HFQRg1xTCB9904KXqr6audLj"></script>
 <script type="text/javascript">
     var map = new BMap.Map('map-container');
