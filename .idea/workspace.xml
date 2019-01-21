@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2685b101-c1d9-4c87-9745-27cf525fd60b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Modules/Design/Resources/views/index.blade.php" afterPath="$PROJECT_DIR$/Modules/Design/Resources/views/index.blade.php" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +19,8 @@
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modules/Design/Resources/views/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+            <state relative-caret-position="506">
+              <caret line="55" column="42" lean-forward="true" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
               <folding>
                 <element signature="e#3615#6981#0#HTML" expanded="false" />
                 <marker date="1548031130584" expanded="true" signature="9:26" ph="..." />
@@ -293,7 +292,7 @@
       <workItem from="1547875583978" duration="17551000" />
       <workItem from="1547946014469" duration="11560000" />
       <workItem from="1547987592767" duration="5034000" />
-      <workItem from="1548031089401" duration="45000" />
+      <workItem from="1548031089401" duration="897000" />
     </task>
     <task id="LOCAL-00001" summary="update project">
       <created>1546008688745</created>
@@ -495,7 +494,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234370000" />
+    <option name="totallyTimeSpent" value="235222000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -912,8 +911,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Design/Resources/views/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+        <state relative-caret-position="506">
+          <caret line="55" column="42" lean-forward="true" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
           <folding>
             <element signature="e#3615#6981#0#HTML" expanded="false" />
             <marker date="1548031130584" expanded="true" signature="9:26" ph="..." />
