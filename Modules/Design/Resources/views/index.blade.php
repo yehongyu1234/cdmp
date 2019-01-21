@@ -17,12 +17,6 @@
     </h1>
 @stop
 @section('content')
-    <script>
-        function downloadFile() {
-            var dom = document.getElementById('ifile');
-            dom.src = 'task/exportxls';
-        }
-    </script>
     <div class="page-content container-fluid">
         <div class="row">
             <div class="col-md-12">
