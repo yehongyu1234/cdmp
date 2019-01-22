@@ -21,6 +21,7 @@
                         <div class="col-md-12"><h4>基本信息</h4></div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <input id="location" name="loaction" value="{{$field->location}}" type="hidden"\>
+                        <input name="projectid" value="{{$field->id}}" type="hidden"\>
                         <div class="col-md-5">
                             <div class="form-group col-md-12">
                                 <label class="col-sm-2 control-label"><strong>项目名称:</strong></label>
@@ -101,7 +102,7 @@
                                 <a class="btn btn-info" id="addrow" value="新增" ><i class="voyager-plus"></i></a>
                                 <a class="btn btn-danger" id="removerow" value="删除"><i class="voyager-trash"></i></a>
                             </div>
-                            <table class="table table-striped">
+                            <table class="table table-striped table-hover table-condensed">
                                 <thead>
                                 <tr>
                                     <th><input type="checkbox" name="checkbox"/></th>
@@ -115,34 +116,15 @@
                                 </tr>
                                 </thead>
                                 <tbody  id="trlist">
-
-                                @if(count($buildings)==0)
-                                    <tr>
-                                        <td><input type="checkbox" name="checkbox"/></td>
-
-                                        <td><input type="text" /></td>
-                                        <td><input type="text" /></td>
-                                        <td><input type="text" /></td>
-                                        <td><input type="text" /></td>
-                                        <td><input type="text" /></td>
-                                        <td><input type="text" /></td>
-                                        <td> <div class="btn-group btn-group-sm">
-                                                <button type="button" class="btn btn-success">编辑</button>
-
-                                                <button type="button" class="btn btn-danger">删除</button>
-                                                <button type="button" class="btn btn-success">创建任务</button>
-                                            </div></td>
-                                    </tr>
-                                    @else
                                 @foreach($buildings as $bd)
                                     <tr>
                                         <td><input type="checkbox" name="checkbox"/></td>
-                                        <td><input type="text" value="{{$bd->buildingid}}"/></td>
-                                        <td><input type="text" value="{{$bd->floors}}"/></td>
-                                        <td><input type="text" value="{{$bd->structure_type}}"/></td>
-                                        <td><input type="text" value="{{$bd->area}}"/></td>
-                                        <td><input type="text" value="{{$bd->sameas}}"/></td>
-                                        <td><input type="text" value="{{$bd->floor_height}}"/></td>
+                                        <td>{{$bd->buildingid}}</td>
+                                        <td>{{$bd->floors}}</td>
+                                        <td>{{$bd->structure_type}}</td>
+                                        <td>{{$bd->area}}</td>
+                                        <td>{{$bd->sameas}}</td>
+                                        <td>{{$bd->floor_height}}</td>
                                         <td> <div class="btn-group btn-group-sm">
                                                 <button type="button" class="btn btn-success">编辑</button>
 
@@ -151,17 +133,74 @@
                                             </div></td>
                                     </tr>
                                 @endforeach
-                                    @endif
+
                                 </tbody>
                             </table>
                             {{ $buildings->links() }}
-
-
                         </div>
-
+                        <!--增加数据-->
+                        <div class="modal fade" id="adddata" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <form class="form-horizontal" role="form" action="{{ url('building') }}" method="POST" enctype="multipart/form-data">
+                                {!! csrf_field() !!}
+                                <div class="modal-dialog modal-sm " >
+                                    <div class="modal-content" style="width: 500px;">
+                                        <div class="modal-header">
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                增加楼栋
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group col-md-12">
+                                            <label class="col-sm-3 control-label">楼栋号</label>
+                                            <div class="col-sm-9">
+                                                <input name="buildingid" class="form-control" placeholder="输入数字">
+                                            </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                            <label class="col-sm-3 control-label">层数</label>
+                                            <div class="col-sm-9">
+                                                <input name="floors" class="form-control" placeholder="">
+                                            </div>
+                                            </div><div class="form-group col-md-12">
+                                            <label class="col-sm-3 control-label">结构类型</label>
+                                            <div class="col-sm-9">
+                                                <input name="structure_type" class="form-control" placeholder="">
+                                            </div>
+                                            </div><div class="form-group col-md-12">
+                                            <label class="col-sm-3 control-label">面积(m²)</label>
+                                            <div class="col-sm-9">
+                                                <input name="area" class="form-control" placeholder="">
+                                            </div>
+                                            </div><div class="form-group col-md-12">
+                                            <label class="col-sm-3 control-label">相同于</label>
+                                            <div class="col-sm-9">
+                                                <input name="sameas" class="form-control" placeholder="">
+                                            </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label class="col-sm-3 control-label">层高(m)</label>
+                                                <div class="col-sm-9">
+                                                    <input name="floor_height" class="form-control" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" id="addSubmit">
+                                                确认
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="panel panel-bordered">
+                <div class="panel panel-bordered ">
                     <div class="panel-body">
                         <div class="col-md-12">
                             <h4 class="col-md-11">设计任务信息</h4>
@@ -169,7 +208,7 @@
                         </div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <div class="col-md-12">
-                        <table class="table table-striped">
+                        <table class="table table-striped table-hover">
                             <thead>
                             <tr>
                                 <th>#</th>
@@ -214,14 +253,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-bordered">
+                <div class="panel panel-bordered ">
                     <div class="panel-body">
                         <div class="col-md-12">
                             <h4>人员责任</h4>
                         </div>
                         <hr width="100%" color=#987cb9 SIZE=10 />
                         <div class="col-md-12">
-                            <table class="table table-striped">
+                            <table class="table table-striped  table-hover">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -255,20 +294,59 @@
     $(document).ready(function() {
         var trlisthtml = $("#trlist").html();//获取默认的一行tr，用作复制
 
-        function addrow(){//增加
-            $("#trlist").append(trlisthtml);//向tbody最后添加一行tr.
-        };
 
         function removerow(){//移除
             $('input[name="checkbox"]:checked').each(function(){
                 $(this).parent().parent().remove();//移除当前行 checkbox的父级是td，td的父级是tr，然后删除tr。就ok了。用each，选择多行遍历删除
             });
         };
-
+        //增加数据弹窗
         $(document).delegate('#addrow', 'click', function () {
             //alert('点击过了');
-            addrow();
+           // addrow();
+            $("#adddata").modal('show');
+            //var id=$(this).data("buildingid");
+            //console.log(id);
+            //$("#addSubmit").val(id);
+
         });
+        /**
+         * 点击确认后增加数据
+         */
+        $(document).delegate('#addSubmit','click',function(){
+            var projectid=document.getElementsByName('projectid')[0].value;
+            var buildingid=document.getElementsByName('buildingid')[0].value;
+            var floors=document.getElementsByName('floors')[0].value;
+            var structure_type=document.getElementsByName('structure_type')[0].value;
+            var area=document.getElementsByName('area')[0].value;
+            var sameas=document.getElementsByName('sameas')[0].value;
+            var floor_height=document.getElementsByName('floor_height')[0].value;
+            //console.log(buildingid);
+
+            $('#adddata').modal('hide');
+            var host = window.location.host;
+            var port=window.location.port;
+            $.ajax({
+                url:'http://'+host+':'+port+'/building',
+                async:true,
+                type:"POST",
+                data:{'projectid':projectid
+                    ,'buildingid':buildingid,
+                'floors':floors,
+                'structure_type':structure_type,
+                'area':area,
+                'sameas':sameas,
+                'floor_height':floor_height
+                },
+                dataType:"json",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            window.location.reload();
+        });
+
+
         $(document).delegate('#removerow', 'click', function () {
             removerow();
         });
