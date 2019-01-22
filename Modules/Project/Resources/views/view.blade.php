@@ -293,8 +293,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
         var trlisthtml = $("#trlist").html();//获取默认的一行tr，用作复制
-
-
         function removerow(){//移除
             $('input[name="checkbox"]:checked').each(function(){
                 $(this).parent().parent().remove();//移除当前行 checkbox的父级是td，td的父级是tr，然后删除tr。就ok了。用each，选择多行遍历删除
@@ -302,13 +300,7 @@
         };
         //增加数据弹窗
         $(document).delegate('#addrow', 'click', function () {
-            //alert('点击过了');
-           // addrow();
             $("#adddata").modal('show');
-            //var id=$(this).data("buildingid");
-            //console.log(id);
-            //$("#addSubmit").val(id);
-
         });
         /**
          * 点击确认后增加数据
@@ -321,12 +313,9 @@
             var area=document.getElementsByName('area')[0].value;
             var sameas=document.getElementsByName('sameas')[0].value;
             var floor_height=document.getElementsByName('floor_height')[0].value;
-            //console.log(buildingid);
 
             $('#adddata').modal('hide');
             var host = window.location.host;
-            //var port=window.location.port;
-            //console.log(host+':'+port);
             $.ajax({
                 url:'http://'+host+'/building',
                 async:true,
@@ -344,7 +333,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            //window.location.reload();
+            window.location.reload();
         });
 
 
