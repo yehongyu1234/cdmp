@@ -103,6 +103,8 @@ class ProjectController extends Controller
         $project->pro_drawings= $request->get('pro_drawings');
         $project->harder= $request->get('harder');
         $project->type= $request->get('type');
+        $project->com_person_id= 0;//占位用
+        $project->pds= 0;//占位用
         $project->market_manager= $request->get('market_manager');
         $project->construction_company_id= $request->get('construction_company_id');
         $project->construction_connector= $request->get('construction_connector');
