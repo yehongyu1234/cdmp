@@ -326,6 +326,7 @@
             $('#adddata').modal('hide');
             var host = window.location.host;
             var port=window.location.port;
+            console.log(host+':'+port);
             $.ajax({
                 url:'http://'+host+':'+port+'/building',
                 async:true,
