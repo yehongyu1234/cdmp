@@ -343,7 +343,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            window.location.reload();
+            //window.location.reload();
         });
 
 

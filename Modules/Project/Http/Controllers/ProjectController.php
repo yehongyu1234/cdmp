@@ -229,25 +229,44 @@ class ProjectController extends Controller
     //创建任务
     public function creatask(Request $request,$project_id){
         $taskname=Project::where('id',$project_id)->first();
+        $buildings=Building::where('project_id',$taskname->id)->get()->toArray();//楼栋号
+        //dd($buildings);
         $tasklist=Work::where('workbody',$taskname->type)->first();
+
         $taskall=$tasklist->tasklist;
         $newtask=explode(",",$taskall);
         //积分设置
         $fractionlist=$tasklist->fraction;
-        //dd($fractionlist);
         $newfraction=explode(',',$fractionlist);
-
-        for ($n=0;$n<=count($newtask)-1;$n++){
-            $tasks=New Task;
-            $tasks->taskname = $tasklist->workbody;
-            $tasks->body = $newtask[$n];
-            $tasks->fraction=$newfraction[$n];
-            $tasks->projectid = $project_id;
-            $tasks->status = 0;
-            $tasks->personid=$taskname->managerid;
-            $tasks->senterid=$request->user()->id;
-            $tasks->pro_complatetime=$taskname->complet_time;
-            $tasks->save();
+        //
+        if(count($buildings)==0){
+            for ($n=0;$n<=count($newtask)-1;$n++){
+                $tasks=New Task;
+                $tasks->taskname = $tasklist->workbody;
+                $tasks->body =$newtask[$n];
+                $tasks->fraction=$newfraction[$n];
+                $tasks->projectid = $project_id;
+                $tasks->status = 0;
+                $tasks->personid=$taskname->managerid;
+                $tasks->senterid=$request->user()->id;
+                $tasks->pro_complatetime=$taskname->complet_time;
+                $tasks->save();
+            }
+        }else{
+        for($m=0;$m<count($buildings);$m++){//多楼栋时会根据楼栋来生成工作任务
+            for ($n=0;$n<=count($newtask)-1;$n++){
+                $tasks=New Task;
+                $tasks->taskname = $tasklist->workbody;
+                $tasks->body =$buildings[$m]['buildingid'].'#'.$newtask[$n];
+                $tasks->fraction=$newfraction[$n];
+                $tasks->projectid = $project_id;
+                $tasks->status = 0;
+                $tasks->personid=$taskname->managerid;
+                $tasks->senterid=$request->user()->id;
+                $tasks->pro_complatetime=$taskname->complet_time;
+                $tasks->save();
+            }
+        }
         }
         if ($tasks->save()) {
             return redirect('tasks');
