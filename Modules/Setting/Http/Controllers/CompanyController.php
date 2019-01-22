@@ -119,9 +119,10 @@ class CompanyController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show(Request $request,$id)
     {
-        return view('setting::show');
+        $field=Company::where('id',$id)->first();
+        return view('setting::view',compact('field'));
     }
     /**
      * Show the form for editing the specified resource.
