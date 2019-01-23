@@ -8,7 +8,7 @@
         {{$field->buildingid}}#楼信息
     </h1>
         <a href="{{url('building/'.$field->id.'/edit')}}" class="btn btn-success">编辑</a>
-    <a href="{{url('building/'.$field->guid.'/model')}}" class="btn btn-info">查看模型</a>
+    <a href="{{url('building/'.base64_decode($field->guid).'/model')}}" class="btn btn-info">查看模型</a>
     <!--
     <a onclick="alert('还在开发中，采用的glTF技术！')" class="btn btn-warning">查看模型</a>
         <a href="{{url('project/'.$field->id.'/creatask')}}" class="btn btn-info pull-right">创建任务</a>
@@ -34,7 +34,7 @@
                                 <br>
                             </div>
                             <div class="form-group col-md-12">
-                                <label class="col-sm-2 control-label">内容介绍</label>
+                                <label class="col-sm-2 control-label">楼层</label>
                                 <div class="col-sm-8">
                                     {{$field->floors}}
                                 </div>

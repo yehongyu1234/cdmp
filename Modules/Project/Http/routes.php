@@ -19,6 +19,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'building', 'namespace' => 'Mod
     Route::resource('', 'BuildingController');
     Route::get('{guid}/building','BuildingController@outshow');
     Route::get('{building_id}/show','BuildingController@show');
+    Route::get('{building_id}/model','BuildingController@model');
     Route::any('{building_id}/edit','BuildingController@edit');
     Route::any('{building_id}/destroy','BuildingController@destroy');
 });

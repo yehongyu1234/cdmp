@@ -46,7 +46,7 @@ class BuildingController extends Controller
         $building->sameas = $request->get('sameas');
         $building->floor_height=$request->get('floor_height');
         $building->designer_id=1;//设计人员暂时未设置
-        $building->guid=$this->create_uuid();
+        $building->guid=base64_encode($this->create_uuid());
         if ($building->save()) {
             return view('project::index');
         } else {
@@ -63,6 +63,18 @@ class BuildingController extends Controller
         $field=Building::where('id',$building_id)->first();
         //dd($field->buildingid);
         return view('project::bview',compact('field'));
+    }
+    /**
+     * 显示模型
+     * @return Response
+     */
+    public function model(Request $request,$guid)
+    {
+        $guidencode=base64_encode($guid);
+        //dd($guidencode);
+        $field=Building::where('guid',$guidencode)->first();
+        //dd($field);
+        return view('project::bmodelview',compact('field'));
     }
 
     /**
