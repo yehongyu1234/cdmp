@@ -5,6 +5,7 @@ namespace Modules\Project\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Modules\Project\Entities\Building;
 
 class BuildingController extends Controller
@@ -15,7 +16,8 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        return view('project::index');
+        $feild=Building::paginate(10);
+        return view('project::bindex',compact('feild'));
     }
 
     /**
@@ -24,7 +26,7 @@ class BuildingController extends Controller
      */
     public function create()
     {
-        return view('project::create');
+        return view('project::bcreate');
     }
 
     /**
@@ -54,9 +56,11 @@ class BuildingController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show(Request $request,$building_id)
     {
-        return view('project::show');
+        $field=Building::where('id',$building_id)->first();
+        //dd($field->buildingid);
+        return view('project::bview',compact('field'));
     }
 
     /**

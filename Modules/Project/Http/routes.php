@@ -17,7 +17,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'project', 'namespace' => 'Modu
 Route::group(['middleware' => 'web', 'prefix' => 'building', 'namespace' => 'Modules\Project\Http\Controllers'], function()
 {
     Route::resource('', 'BuildingController');
-    Route::get('{project_id}/show','BuildingController@show');
-    Route::any('{project_id}/edit','BuildingController@edit');
-    Route::any('{project_id}/destroy','BuildingController@destroy');
+    Route::get('{guid}/building','BuildingController@outshow');
+    Route::get('{building_id}/show','BuildingController@show');
+    Route::any('{building_id}/edit','BuildingController@edit');
+    Route::any('{building_id}/destroy','BuildingController@destroy');
 });
