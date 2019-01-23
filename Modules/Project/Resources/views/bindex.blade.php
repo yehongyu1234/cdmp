@@ -39,7 +39,7 @@
                     @foreach($feild as $f)
                         <tr>
                             <td><input type="checkbox" name="allChecked" /></td>
-                            <td><a href="{{url('building/'.$f->buildingid.'/show')}}">{{$f->buildingid}}</a></td>
+                            <td><a href="{{url('building/'.$f->id.'/show')}}">{{$f->buildingid}}</a></td>
                             <td><a href="{{url('project/'.\Modules\Project\Entities\Project::where('id',$f->project_id)->first()->project_id.'/show')}}" >{{\Modules\Project\Entities\Project::where('id',$f->project_id)->first()->name}}</a></td>
                             <td>{{$f->floors}}</td>
                             <td>{{$f->structure_type}}</td>

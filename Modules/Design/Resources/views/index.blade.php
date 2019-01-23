@@ -316,6 +316,7 @@
                     document.getElementById('showdata').innerHTML="未选择任何数据，无法删除任何数据！";
                     $("#deleteOneModal").modal('show');
                 }else{
+                    $('.sumbitlog').attr('id','delSubmit');
                     $("#delSubmit").val(theArray);
                     document.getElementById('showdata').innerHTML="确定删除选择？";
                     $('#deleteOneModal').modal('show');

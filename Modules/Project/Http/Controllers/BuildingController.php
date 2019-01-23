@@ -45,6 +45,8 @@ class BuildingController extends Controller
         $building->area = $request->get('area');
         $building->sameas = $request->get('sameas');
         $building->floor_height=$request->get('floor_height');
+        $building->designer_id=1;//设计人员暂时未设置
+        $building->guid=$this->create_uuid();
         if ($building->save()) {
             return view('project::index');
         } else {
@@ -69,7 +71,7 @@ class BuildingController extends Controller
      */
     public function edit()
     {
-        return view('project::edit');
+        return view('project::bedit');
     }
 
     /**
@@ -87,5 +89,15 @@ class BuildingController extends Controller
      */
     public function destroy()
     {
+    }
+    //创建GUID
+    function create_uuid($prefix = ""){    //可以指定前缀
+        $str = md5(uniqid(mt_rand(), true));
+        $uuid  = substr($str,0,8) ;
+        $uuid .= substr($str,8,4) ;
+        $uuid .= substr($str,12,4);
+        $uuid .= substr($str,16,4);
+        $uuid .= substr($str,20,12);
+        return $prefix . $uuid;
     }
 }
