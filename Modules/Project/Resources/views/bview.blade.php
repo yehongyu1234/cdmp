@@ -73,10 +73,10 @@
                         </div>
                         <div class="col-md-3">项目二维码
                             <br>
-                            {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.base64_decode($field->guid).'/out'); !!}
+                            {!! QrCode::size(400)->generate('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/building/'.base64_decode($field->guid).'/outshow'); !!}
                         </div>
                     </div>
-                    {{'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/project/'.base64_decode($field->guid).'/out'}}
+                    {{'http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].'/building/'.base64_decode($field->guid).'/outshow'}}
                 </div>
             </div>
         </div>

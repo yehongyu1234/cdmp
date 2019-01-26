@@ -127,6 +127,7 @@
         $('#table').DataTable({
             "processing": true,
             "serverSide": true,
+            destroy:true,
             "ajax": {
                 'url':'{{ url('project/getlist') }}',
                 'type':"GET"
@@ -188,6 +189,7 @@
                 }
             }
         });
+
         /**
          * 创建事件
          */

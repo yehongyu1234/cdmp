@@ -1,7 +1,5 @@
 <?php
 
-
-
 Route::group(['middleware' => 'web', 'prefix' => 'project', 'namespace' => 'Modules\Project\Http\Controllers'], function()
 {
     Route::resource('', 'ProjectController');
@@ -17,7 +15,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'project', 'namespace' => 'Modu
 Route::group(['middleware' => 'web', 'prefix' => 'building', 'namespace' => 'Modules\Project\Http\Controllers'], function()
 {
     Route::resource('', 'BuildingController');
-    Route::get('{guid}/building','BuildingController@outshow');
+    Route::get('{guid}/outshow','BuildingController@outshow');
     Route::get('{building_id}/show','BuildingController@show');
     Route::get('{building_id}/model','BuildingController@model');
     Route::any('{building_id}/edit','BuildingController@edit');

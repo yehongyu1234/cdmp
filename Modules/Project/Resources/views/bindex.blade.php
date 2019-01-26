@@ -46,7 +46,7 @@
                             <td>{{$f->area}}</td>
                             <td>{{$f->sameas}}</td>
                             <td>{{$f->designerid}}</td>
-                            <td><button class="btn btn-warning btn-xs">编辑</button></td>
+                            <td><button class="btn btn-warning btn-xs" >编辑</button></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -90,7 +90,7 @@
          * 创建事件
          */
          $(document).delegate('#createdata','click',function() {
-             self.location='project/bcreate';
+             self.location='building/create';
          });
         /**
          * 单行编辑

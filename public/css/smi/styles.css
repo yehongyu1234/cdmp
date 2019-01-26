@@ -14,8 +14,6 @@ body {
     margin: 0;
 }
 
-
-
 #viewer {
     position: absolute;
     left: 300px;
@@ -156,7 +154,7 @@ body {
 #explorer {
     margin: 0;
     left:10px;
-    background: black;
+    background: #0c199c;
     width: auto;
     height:70%;
     position:absolute;
@@ -167,7 +165,7 @@ body {
 }
 #exploreright {
     margin: 0;    
-    background: black;
+    background: #0c199c;
     
     width: auto;
     height: 50%;

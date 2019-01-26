@@ -2,11 +2,16 @@
 
 namespace Modules\Project\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
+use Modules\Design\Entities\Work;
 use Modules\Project\Entities\Building;
+use Modules\Project\Entities\Custome;
+use Modules\Project\Entities\Project;
+use Modules\Setting\Entities\Company;
+use Modules\Setting\Entities\Dic;
 
 class BuildingController extends Controller
 {
@@ -26,7 +31,14 @@ class BuildingController extends Controller
      */
     public function create()
     {
-        return view('project::bcreate');
+        $user=User::where("name","<>","Admin")->get();
+        $project=Project::all();
+        $designtype=Work::all();
+        $custom=Custome::all();
+        $structure_type=json_decode(Dic::where('name',"StructureType")->first()->data);//通过字典获取数据，需要写个函数来获取
+        ////$jsondata=json_decode($structure_type);
+        //dd($jsondata);
+        return view('project::bcreate',compact('user','designtype','project','custom','structure_type'));
     }
 
     /**
