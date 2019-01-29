@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="{{ config('app.locale') }}" @if (config('voyager.multilingual.rtl')) dir="rtl" @endif>
 <head>
     <title>@yield('page_title', setting('admin.title') . " - " . setting('admin.description'))</title>
