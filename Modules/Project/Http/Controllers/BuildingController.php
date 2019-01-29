@@ -37,7 +37,7 @@ class BuildingController extends Controller
         $custom=Custome::all();
         $structure_type=json_decode(Dic::where('name',"StructureType")->first()->data);//通过字典获取数据，需要写个函数来获取
         ////$jsondata=json_decode($structure_type);
-        //dd($jsondata);
+        //dd(gettype($structure_type));
         return view('project::bcreate',compact('user','designtype','project','custom','structure_type'));
     }
 
@@ -50,7 +50,7 @@ class BuildingController extends Controller
     {
         //dd($request->get('buildingid'));
         $building = new Building;
-        $building->project_id = $request->get('projectid');
+        $building->project_id = $request->get('project_id');
         $building->buildingid = $request->get('buildingid');
         $building->floors= $request->get('floors');
         $building->structure_type= $request->get('structure_type');
@@ -60,7 +60,7 @@ class BuildingController extends Controller
         $building->designer_id=1;//设计人员暂时未设置
         $building->guid=base64_encode($this->create_uuid());
         if ($building->save()) {
-            return view('project::index');
+            return redirect('building');
         } else {
             return redirect()->back()->withInput()->withErrors('保存失败！');
         }

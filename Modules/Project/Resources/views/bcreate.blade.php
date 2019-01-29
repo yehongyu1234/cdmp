@@ -46,9 +46,29 @@
 
                             </div>
                             <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">层数</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="floors" lay-verify="name" autocomplete="off" placeholder="输入数字" class="form-control">
+
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label class="col-sm-3 control-label">面积(m²)</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="area" lay-verify="required" autocomplete="off" class="form-control" placeholder="面积">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">层高(m)</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="floor_height" lay-verify="required" autocomplete="off" class="form-control" placeholder="层高">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="col-sm-3 control-label">相同于</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="sameas" lay-verify="required" autocomplete="off" class="form-control" placeholder="相同于">
                                 </div>
                             </div>
                             <div class="form-group col-md-12">
