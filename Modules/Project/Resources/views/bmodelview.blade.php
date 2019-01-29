@@ -39,7 +39,7 @@
     movedobject("#exploreright","click_event2");
     smi("explorer","exploreright", "myCanvas3",[
         {
-            src: "http://localhost/images/models4.0.gltf"
+            src: "/images/models4.0.gltf"
         }
     ]);
 </script>

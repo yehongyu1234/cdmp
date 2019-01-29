@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2685b101-c1d9-4c87-9745-27cf525fd60b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Modules/Project/Http/Controllers/BuildingController.php" afterPath="$PROJECT_DIR$/Modules/Project/Http/Controllers/BuildingController.php" />
-      <change beforePath="$PROJECT_DIR$/Modules/Project/Resources/views/bcreate.blade.php" afterPath="$PROJECT_DIR$/Modules/Project/Resources/views/bcreate.blade.php" />
+      <change beforePath="$PROJECT_DIR$/Modules/Project/Resources/views/bmodelview.blade.php" afterPath="$PROJECT_DIR$/Modules/Project/Resources/views/bmodelview.blade.php" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +20,7 @@
       <file leaf-file-name="bcreate.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modules/Project/Resources/views/bcreate.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
+            <state relative-caret-position="-726">
               <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
                 <marker date="1548773968953" expanded="true" signature="9:26" ph="..." />
@@ -55,39 +54,9 @@
       <file leaf-file-name="BuildingController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modules/Project/Http/Controllers/BuildingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
+            <state relative-caret-position="506">
               <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bindex.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Project/Resources/views/bindex.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="44" column="56" lean-forward="false" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
-              <folding>
-                <marker date="1548305577534" expanded="true" signature="9:26" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="37:42" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="79:93" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="145:182" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="240:265" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="332:364" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="393:406" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="472:496" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="727:736" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="1554:1566" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="1721:1752" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="1758:1772" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="1827:1933" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="1940:2016" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="2062:2072" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="2114:2132" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="2174:2182" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="2224:2234" ph="..." />
-                <marker date="1548305577534" expanded="true" signature="2276:2290" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -163,12 +132,12 @@
         <option value="$PROJECT_DIR$/public/js/smi/movedobject.js" />
         <option value="$PROJECT_DIR$/public/js/smi/smi.js" />
         <option value="$PROJECT_DIR$/public/css/smi/styles.css" />
-        <option value="$PROJECT_DIR$/Modules/Project/Resources/views/bmodelview.blade.php" />
         <option value="$PROJECT_DIR$/Modules/Project/Http/routes.php" />
         <option value="$PROJECT_DIR$/Modules/Project/Resources/views/bindex.blade.php" />
         <option value="$PROJECT_DIR$/vendor/tcg/voyager/resources/views/master.blade.php" />
         <option value="$PROJECT_DIR$/Modules/Project/Http/Controllers/BuildingController.php" />
         <option value="$PROJECT_DIR$/Modules/Project/Resources/views/bcreate.blade.php" />
+        <option value="$PROJECT_DIR$/Modules/Project/Resources/views/bmodelview.blade.php" />
       </list>
     </option>
   </component>
@@ -394,7 +363,7 @@
       <workItem from="1548242605951" duration="11396000" />
       <workItem from="1548292849717" duration="11505000" />
       <workItem from="1548315391224" duration="2799000" />
-      <workItem from="1548771691838" duration="2703000" />
+      <workItem from="1548771691838" duration="2946000" />
     </task>
     <task id="LOCAL-00001" summary="update project">
       <created>1546008688745</created>
@@ -596,7 +565,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286683000" />
+    <option name="totallyTimeSpent" value="286926000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -953,13 +922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Project/Resources/views/bmodelview.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="43" column="7" lean-forward="true" selection-start-line="43" selection-start-column="7" selection-end-line="43" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Project/Resources/views/bedit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1259,9 +1221,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Project/Resources/views/bmodelview.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+          <folding>
+            <marker date="1548776396397" expanded="true" signature="9:26" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="37:42" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="83:97" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="117:130" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="195:213" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="252:290" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="332:372" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="405:429" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="463:500" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="534:562" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="640:665" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="699:721" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="754:784" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="817:844" ph="..." />
+            <marker date="1548776396397" expanded="true" signature="882:891" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Project/Http/Controllers/BuildingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
+        <state relative-caret-position="506">
           <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
           <folding />
         </state>
@@ -1269,7 +1255,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Project/Resources/views/bcreate.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
+        <state relative-caret-position="-726">
           <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding>
             <marker date="1548773968953" expanded="true" signature="9:26" ph="..." />
